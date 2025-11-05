@@ -1,0 +1,1007 @@
+Skip to main content
+Google Classroom
+Classroom
+P9 - Intro to Programming
+2025-2026
+Stream
+Classwork
+People
+Classwork for P9 - Intro to Programming 2025-2026
+Topic filterTopic filterTopic filter
+All topics
+Pinned
+Pinned
+Material
+Class Repo (Gemici)
+Edited Oct 14
+Material
+P9-IWD-GitHub Repo Links (students)
+Edited Sep 11
+Material
+Class Resources
+Edited Sep 11
+Completed Assignment
+***Important: Intro to Programming Student & Parent Acknowledgement Form
+Due Sep 15
+Unit 2 - CSS
+Unit 2 - CSS
+Assignment
+Lesson06-GameHub Project Setup
+Due Nov 11
+Posted 2:29 PM (Edited 2:31 PM)
+Assigned
+Lesson_06_Presentation.html
+HTML
+
+Student_Guide_Lesson_06.pdf
+PDF
+
+GameHub - ScreenShot.png
+Image
+
+Assignment
+CSS Grid Garden
+No due date
+Completed Assignment
+Flexbox Froggy
+Due Nov 30
+Completed Assignment
+CSS Guidebook Practice 1
+No due date
+Unit 1 - HTML
+Unit 1 - HTML
+Completed Assignment
+HTML Project - Personal Portfolio Website
+Due Oct 8
+Material
+HMTL Practice 1
+Posted Sep 22
+Completed Assignment
+U1L06 HW - Photo Gallery
+Due Sep 18
+Completed Assignment
+U1L04 Homework - Dream Vacation Planner
+Due Sep 14
+Completed Assignment
+U1L03 Homework - HTML Text Formatting
+Due Sep 10
+Completed Assignment
+HTML Skeleton Elements
+Due Sep 8
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 6: Setup & Foundation - GameHub Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <style>
+        :root {
+            --dark-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --accent-cyan: #4fc3f7;
+            --accent-pink: #ff6ec7;
+            --accent-green: #00e676;
+            --accent-orange: #ffa726;
+            --accent-purple: #ba68c8;
+            --accent-yellow: #ffd54f;
+            --accent-blue: #3498db;
+            --accent-red: #e74c3c;
+            --text-light: #e0e0e0;
+            --code-bg: #1e1e1e;
+        }
+
+        .reveal {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 36px;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-transform: none;
+            font-weight: 700;
+        }
+
+        .reveal h1 {
+            color: var(--accent-cyan);
+            font-size: 3em;
+            text-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .reveal h2 {
+            color: var(--accent-pink);
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .reveal code {
+            background: var(--code-bg);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: #d4d4d4;
+            font-size: 1.1em;
+            font-weight: 700;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        .reveal pre {
+            background: var(--code-bg);
+            border: 2px solid #3c3c3c;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            font-size: 0.85em;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .reveal pre code {
+            background: transparent;
+            padding: 0;
+            color: #d4d4d4;
+            line-height: 1.5;
+            font-weight: 700;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        /* Syntax Highlighting */
+        .kw { color: #569cd6; font-weight: 700; }
+        .pr { color: #9cdcfe; font-weight: 700; }
+        .st { color: #ce9178; font-weight: 700; }
+        .nm { color: #b5cea8; font-weight: 700; }
+        .cm { color: #6a9955; font-weight: 600; }
+        .vl { color: #ce9178; font-weight: 700; }
+        .tag { color: #4ec9b0; font-weight: 700; }
+        .attr { color: #9cdcfe; font-weight: 700; }
+
+        .highlight {
+            background: linear-gradient(135deg, #ff6ec7 0%, #ff9a9e 100%);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 110, 199, 0.4);
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #ffa726 0%, #ff7043 100%);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 167, 38, 0.4);
+        }
+
+        .success {
+            background: linear-gradient(135deg, #00e676 0%, #00c853 100%);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 230, 118, 0.4);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.1) 0%, rgba(79, 195, 247, 0.05) 100%);
+            border: 3px solid var(--accent-cyan);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        .info-box strong {
+            color: var(--accent-cyan);
+            font-size: 1.1em;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .comparison-card {
+            background: rgba(68, 71, 90, 0.4);
+            border: 3px solid;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .comparison-card.correct {
+            border-color: var(--accent-green);
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.15) 0%, rgba(0, 200, 83, 0.1) 100%);
+        }
+
+        .comparison-card.incorrect {
+            border-color: #ff6b6b;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15) 0%, rgba(238, 90, 82, 0.1) 100%);
+        }
+
+        .comparison-card .title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .comparison-card.correct .title {
+            color: var(--accent-green);
+        }
+
+        .comparison-card.incorrect .title {
+            color: #ff6b6b;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            border: 1px solid #3c3c3c;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #d4d4d4;
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        .big-emoji {
+            font-size: 4em;
+            margin: 30px 0;
+        }
+
+        .concept-box {
+            background: rgba(68, 71, 90, 0.5);
+            border-left: 5px solid;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .concept-box.reset {
+            border-color: var(--accent-purple);
+        }
+
+        .concept-box.container {
+            border-color: var(--accent-cyan);
+        }
+
+        .concept-box.flexbox {
+            border-color: var(--accent-green);
+        }
+
+        .concept-box.semantic {
+            border-color: var(--accent-orange);
+        }
+
+        .visual-demo {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+
+        .title-slide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px !important;
+        }
+
+        .layout-visual {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .layout-visual .left {
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        .layout-visual .right {
+            color: var(--accent-pink);
+            font-weight: bold;
+        }
+
+        .header-demo {
+            background: #2c3e50;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .hero-demo {
+            background: #3498db;
+            padding: 40px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .button-demo {
+            background: #e74c3c;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- SLIDE 1: Title -->
+            <section class="title-slide">
+                <h1 style="font-size: 3.5em; color: white;">🎮 GameHub Project</h1>
+                <h2 style="color: rgba(255,255,255,0.9); font-size: 2em; margin-top: 40px;">Lesson 6: Setup & Foundation</h2>
+                <p style="font-size: 1.3em; margin-top: 60px; color: rgba(255,255,255,0.8);">Building Your First Professional Website</p>
+            </section>
+
+            <!-- SLIDE 2: What You'll Build Today -->
+            <section>
+                <h2>What You'll Build Today 🚀</h2>
+                
+                <div style="font-size: 0.95em; text-align: left; max-width: 800px; margin: 40px auto; line-height: 2.2;">
+                    <p class="fragment">✅ Complete header with navigation</p>
+                    <p class="fragment">✅ Eye-catching hero section</p>
+                    <p class="fragment">✅ Professional button styling</p>
+                    <p class="fragment">✅ Foundation for 8 more lessons</p>
+                </div>
+
+                <div class="highlight fragment" style="margin-top: 40px;">
+                    By the end: A working website you can show off!
+                </div>
+            </section>
+
+            <!-- SLIDE 3: The Big Picture -->
+            <section>
+                <h2>The Big Picture 🗺️</h2>
+                
+                <div class="big-emoji">🏗️</div>
+
+                <div class="info-box" style="font-size: 0.9em;">
+                    <strong>GameHub Project Structure:</strong><br><br>
+                    Over the next 9 lessons, you'll build a complete landing page with:
+                    header, hero, features, images, footer, and responsive design.
+                </div>
+
+                <div class="success fragment">
+                    Today = Foundation! Everything builds on this.
+                </div>
+            </section>
+
+            <!-- SLIDE 4: Files You'll Create -->
+            <section>
+                <h2>Project Setup 📁</h2>
+                
+                <div style="font-size: 0.9em; margin-top: 30px;">
+                    <div class="concept-box container fragment">
+                        <strong style="color: var(--accent-cyan); font-size: 1.1em;">index.html</strong>
+                        <p style="margin-top: 10px;">Your HTML structure (the skeleton)</p>
+                    </div>
+
+                    <div class="concept-box flexbox fragment">
+                        <strong style="color: var(--accent-green); font-size: 1.1em;">style.css</strong>
+                        <p style="margin-top: 10px;">Your CSS styling (the appearance)</p>
+                    </div>
+                </div>
+
+                <div class="warning fragment" style="margin-top: 30px;">
+                    Both files must be in the SAME folder!
+                </div>
+            </section>
+
+            <!-- SLIDE 5: CSS Reset Concept -->
+            <section>
+                <h2>Concept #1: CSS Reset 🔄</h2>
+                
+                <div class="highlight">
+                    Every professional site starts with a reset!
+                </div>
+
+                <pre class="fragment"><code><span class="cm">/* Reset browser defaults */</span>
+<span class="pr">*</span> {
+    <span class="pr">margin</span>: <span class="nm">0</span>;
+    <span class="pr">padding</span>: <span class="nm">0</span>;
+    <span class="pr">box-sizing</span>: <span class="vl">border-box</span>;
+}</code></pre>
+
+                <div class="info-box fragment" style="font-size: 0.85em;">
+                    <strong>Why?</strong> Browsers add default margins/padding. The <code>*</code> selector removes them ALL so you start with a clean slate.
+                </div>
+            </section>
+
+            <!-- SLIDE 6: Box-Sizing Explained -->
+            <section>
+                <h2>Box-Sizing: Border-Box 📦</h2>
+                
+                <div class="comparison-row" style="font-size: 0.75em;">
+                    <div class="comparison-card incorrect">
+                        <div class="title">❌ Without border-box</div>
+                        <div class="code-block">
+                            width: 200px;<br>
+                            padding: 20px;<br>
+                            <br>
+                            <span style="color: #ff6b6b;">Total = 240px!</span><br>
+                            (200 + 20 + 20)
+                        </div>
+                    </div>
+                    <div class="comparison-card correct">
+                        <div class="title">✓ With border-box</div>
+                        <div class="code-block">
+                            width: 200px;<br>
+                            padding: 20px;<br>
+                            <br>
+                            <span style="color: #51cf66;">Total = 200px!</span><br>
+                            (includes padding)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="success fragment">
+                    border-box makes width calculations EASY!
+                </div>
+            </section>
+
+            <!-- SLIDE 7: The Container Pattern -->
+            <section>
+                <h2>Concept #2: The Container 📦</h2>
+                
+                <div class="big-emoji">🎯</div>
+
+                <pre class="fragment"><code><span class="pr">.container</span> {
+    <span class="pr">max-width</span>: <span class="nm">1200px</span>;
+    <span class="pr">margin</span>: <span class="nm">0</span> <span class="vl">auto</span>;
+    <span class="pr">padding</span>: <span class="nm">0</span> <span class="nm">20px</span>;
+}</code></pre>
+
+                <div class="info-box fragment" style="font-size: 0.9em;">
+                    <strong>The Magic:</strong><br>
+                    • <code>max-width</code> keeps content readable<br>
+                    • <code>margin: 0 auto</code> centers it<br>
+                    • <code>padding: 0 20px</code> adds breathing room
+                </div>
+            </section>
+
+            <!-- SLIDE 8: Container Visual -->
+            <section>
+                <h2>Container in Action 🖼️</h2>
+                
+                <div class="visual-demo" style="font-size: 0.8em;">
+                    <div style="text-align: center; color: #888; margin-bottom: 20px;">← Full Browser Width →</div>
+                    <div style="max-width: 800px; margin: 0 auto; padding: 20px; background: rgba(79, 195, 247, 0.2); border: 2px dashed var(--accent-cyan); border-radius: 8px;">
+                        <div style="text-align: center; color: var(--accent-cyan); font-weight: bold;">
+                            .container (max-width: 1200px)
+                        </div>
+                        <div style="margin-top: 15px; text-align: center; color: #ccc;">
+                            Content stays here, no matter how wide the screen!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight fragment" style="margin-top: 30px;">
+                    You'll use .container in EVERY section!
+                </div>
+            </section>
+
+            <!-- SLIDE 9: Semantic HTML -->
+            <section>
+                <h2>Concept #3: Semantic HTML 🏷️</h2>
+                
+                <div class="comparison-row" style="font-size: 0.75em;">
+                    <div class="comparison-card incorrect">
+                        <div class="title">❌ Bad (Divitis)</div>
+                        <div class="code-block">
+                            <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="st">"header"</span><span class="tag">&gt;</span><br>
+                            &nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class=</span><span class="st">"nav"</span><span class="tag">&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class=</span><span class="st">"link"</span><span class="tag">&gt;</span><br>
+                        </div>
+                    </div>
+                    <div class="comparison-card correct">
+                        <div class="title">✓ Good (Semantic)</div>
+                        <div class="code-block">
+                            <span class="tag">&lt;header&gt;</span><br>
+                            &nbsp;&nbsp;<span class="tag">&lt;nav&gt;</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="tag">&lt;a</span> <span class="attr">href=</span><span class="st">"#"</span><span class="tag">&gt;</span><br>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="font-size: 0.85em; margin-top: 30px; text-align: left; max-width: 700px; margin: 30px auto;">
+                    <p class="fragment">✅ Screen readers understand structure</p>
+                    <p class="fragment">✅ Better for SEO (Google loves it!)</p>
+                    <p class="fragment">✅ More readable for other developers</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 10: Header Structure -->
+            <section>
+                <h2>Building the Header 🎯</h2>
+                
+                <pre style="font-size: 0.75em;"><code><span class="tag">&lt;header</span> <span class="attr">class=</span><span class="st">"main-header"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="st">"container"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="st">"logo"</span><span class="tag">&gt;</span>GameHub<span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;nav</span> <span class="attr">class=</span><span class="st">"main-nav"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="st">"#features"</span><span class="tag">&gt;</span>Features<span class="tag">&lt;/a&gt;</span>
+            <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="st">"#about"</span><span class="tag">&gt;</span>About<span class="tag">&lt;/a&gt;</span>
+            <span class="tag">&lt;a</span> <span class="attr">href=</span><span class="st">"#contact"</span><span class="tag">&gt;</span>Contact<span class="tag">&lt;/a&gt;</span>
+        <span class="tag">&lt;/nav&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/header&gt;</span></code></pre>
+
+                <div class="info-box fragment" style="font-size: 0.85em;">
+                    <strong>Structure:</strong> Semantic tags + container pattern + navigation
+                </div>
+            </section>
+
+            <!-- SLIDE 11: Flexbox for Header -->
+            <section>
+                <h2>Concept #4: Flexbox Layout 💪</h2>
+                
+                <pre class="fragment"><code><span class="pr">.main-header .container</span> {
+    <span class="pr">display</span>: <span class="vl">flex</span>;
+    <span class="pr">justify-content</span>: <span class="vl">space-between</span>;
+    <span class="pr">align-items</span>: <span class="vl">center</span>;
+}</code></pre>
+
+                <div class="layout-visual fragment">
+                    <div class="left">🎮 GameHub</div>
+                    <div class="right">Features | About | Contact</div>
+                </div>
+
+                <div class="info-box fragment" style="font-size: 0.85em;">
+                    <strong>Remember:</strong> Flexbox properties go on the PARENT!
+                </div>
+            </section>
+
+            <!-- SLIDE 12: Header Styling -->
+            <section>
+                <h2>Styling the Header 🎨</h2>
+                
+                <pre style="font-size: 0.75em;"><code><span class="pr">.main-header</span> {
+    <span class="pr">background-color</span>: <span class="vl">#2c3e50</span>;
+    <span class="pr">padding</span>: <span class="nm">20px</span> <span class="nm">0</span>;
+}
+
+<span class="pr">.logo</span> {
+    <span class="pr">font-size</span>: <span class="nm">24px</span>;
+    <span class="pr">font-weight</span>: <span class="vl">bold</span>;
+    <span class="pr">color</span>: <span class="vl">#ffffff</span>;
+}
+
+<span class="pr">.main-nav a</span> {
+    <span class="pr">color</span>: <span class="vl">#ffffff</span>;
+    <span class="pr">text-decoration</span>: <span class="vl">none</span>;
+    <span class="pr">margin-left</span>: <span class="nm">30px</span>;
+}</code></pre>
+
+                <div class="header-demo fragment" style="font-size: 0.7em;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; color: white;">
+                        <div style="font-weight: bold;">🎮 GameHub</div>
+                        <div>Features | About | Contact</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 13: Hero Section Structure -->
+            <section>
+                <h2>Building the Hero Section 🦸</h2>
+                
+                <pre style="font-size: 0.7em;"><code><span class="tag">&lt;section</span> <span class="attr">class=</span><span class="st">"hero"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class=</span><span class="st">"container"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;h1</span> <span class="attr">class=</span><span class="st">"hero-title"</span><span class="tag">&gt;</span>
+            Connect with Gamers Worldwide
+        <span class="tag">&lt;/h1&gt;</span>
+        <span class="tag">&lt;p</span> <span class="attr">class=</span><span class="st">"hero-subtitle"</span><span class="tag">&gt;</span>
+            Join the ultimate gaming community...
+        <span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;button</span> <span class="attr">class=</span><span class="st">"btn btn-primary"</span><span class="tag">&gt;</span>
+            Get Started
+        <span class="tag">&lt;/button&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/section&gt;</span></code></pre>
+
+                <div class="warning fragment" style="font-size: 0.9em;">
+                    Only ONE &lt;h1&gt; per page! It's your main heading.
+                </div>
+            </section>
+
+            <!-- SLIDE 14: Hero Styling -->
+            <section>
+                <h2>Styling the Hero 🎨</h2>
+                
+                <pre style="font-size: 0.7em;"><code><span class="pr">.hero</span> {
+    <span class="pr">background-color</span>: <span class="vl">#3498db</span>;
+    <span class="pr">color</span>: <span class="vl">#ffffff</span>;
+    <span class="pr">padding</span>: <span class="nm">100px</span> <span class="nm">0</span>;
+    <span class="pr">text-align</span>: <span class="vl">center</span>;
+}
+
+<span class="pr">.hero-title</span> {
+    <span class="pr">font-size</span>: <span class="nm">48px</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">20px</span>;
+}
+
+<span class="pr">.hero-subtitle</span> {
+    <span class="pr">font-size</span>: <span class="nm">20px</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">30px</span>;
+}</code></pre>
+            </section>
+
+            <!-- SLIDE 15: Hero Visual -->
+            <section>
+                <h2>Hero Section Preview 👀</h2>
+                
+                <div class="hero-demo">
+                    <h1 style="font-size: 1.2em; margin-bottom: 15px;">Connect with Gamers Worldwide</h1>
+                    <p style="font-size: 0.7em; margin-bottom: 20px; opacity: 0.9;">Join the ultimate gaming community. Find teammates, share achievements, and level up together.</p>
+                    <button class="button-demo" style="font-size: 0.7em;">Get Started</button>
+                </div>
+
+                <div class="success fragment" style="margin-top: 20px;">
+                    Eye-catching and professional! 🌟
+                </div>
+            </section>
+
+            <!-- SLIDE 16: Button Styling -->
+            <section>
+                <h2>Button Styling 🔘</h2>
+                
+                <pre class="fragment"><code><span class="pr">.btn</span> {
+    <span class="pr">padding</span>: <span class="nm">15px</span> <span class="nm">30px</span>;
+    <span class="pr">font-size</span>: <span class="nm">18px</span>;
+    <span class="pr">border</span>: <span class="vl">none</span>;
+    <span class="pr">border-radius</span>: <span class="nm">5px</span>;
+    <span class="pr">cursor</span>: <span class="vl">pointer</span>;
+}
+
+<span class="pr">.btn-primary</span> {
+    <span class="pr">background-color</span>: <span class="vl">#e74c3c</span>;
+    <span class="pr">color</span>: <span class="vl">#ffffff</span>;
+}</code></pre>
+
+                <div class="info-box fragment" style="font-size: 0.85em;">
+                    <strong>Why two classes?</strong> <code>.btn</code> = shared styles, <code>.btn-primary</code> = specific color
+                </div>
+            </section>
+
+            <!-- SLIDE 17: CSS Organization -->
+            <section>
+                <h2>Concept #5: Organization 📋</h2>
+                
+                <div class="highlight">
+                    Organized CSS = Happy Developers!
+                </div>
+
+                <pre class="fragment" style="font-size: 0.7em;"><code><span class="cm">/* ===================================
+   HEADER SECTION
+   =================================== */</span>
+<span class="pr">.main-header</span> { }
+
+<span class="cm">/* ===================================
+   HERO SECTION
+   =================================== */</span>
+<span class="pr">.hero</span> { }
+
+<span class="cm">/* ===================================
+   BUTTONS
+   =================================== */</span>
+<span class="pr">.btn</span> { }</code></pre>
+
+                <div class="success fragment" style="font-size: 0.9em; margin-top: 20px;">
+                    Comments make code navigable and maintainable!
+                </div>
+            </section>
+
+            <!-- SLIDE 18: Why This Pattern Matters -->
+            <section>
+                <h2>Professional Patterns 💼</h2>
+                
+                <div style="font-size: 0.85em; text-align: left; max-width: 750px; margin: 30px auto;">
+                    <div class="concept-box reset fragment">
+                        <strong style="color: var(--accent-purple);">CSS Reset</strong>
+                        <p style="margin-top: 8px; font-size: 0.95em;">Clean slate for consistent styling</p>
+                    </div>
+
+                    <div class="concept-box container fragment">
+                        <strong style="color: var(--accent-cyan);">Container Pattern</strong>
+                        <p style="margin-top: 8px; font-size: 0.95em;">Keeps content readable and centered</p>
+                    </div>
+
+                    <div class="concept-box semantic fragment">
+                        <strong style="color: var(--accent-orange);">Semantic HTML</strong>
+                        <p style="margin-top: 8px; font-size: 0.95em;">Better accessibility and SEO</p>
+                    </div>
+
+                    <div class="concept-box flexbox fragment">
+                        <strong style="color: var(--accent-green);">Flexbox Layouts</strong>
+                        <p style="margin-top: 8px; font-size: 0.95em;">Modern, flexible positioning</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 19: Common Mistakes -->
+            <section>
+                <h2>⚠️ Common Mistakes to Avoid</h2>
+                
+                <div style="font-size: 0.85em; margin-top: 20px;">
+                    <div class="comparison-row fragment">
+                        <div class="comparison-card incorrect">
+                            <div class="title">❌ WRONG</div>
+                            <div class="code-block">
+                                Forget CSS reset<br><br>
+                                <span style="color: #ff6b6b;">Inconsistent spacing!</span>
+                            </div>
+                        </div>
+                        <div class="comparison-card correct">
+                            <div class="title">✓ CORRECT</div>
+                            <div class="code-block">
+                                * { margin: 0; padding: 0; }<br><br>
+                                <span style="color: #51cf66;">Clean start!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-row fragment">
+                        <div class="comparison-card incorrect">
+                            <div class="title">❌ WRONG</div>
+                            <div class="code-block">
+                                Files in different folders<br><br>
+                                <span style="color: #ff6b6b;">CSS won't load!</span>
+                            </div>
+                        </div>
+                        <div class="comparison-card correct">
+                            <div class="title">✓ CORRECT</div>
+                            <div class="code-block">
+                                Both files in same folder<br><br>
+                                <span style="color: #51cf66;">Works perfectly!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 20: File Linking -->
+            <section>
+                <h2>Linking CSS to HTML 🔗</h2>
+                
+                <div class="highlight">
+                    Critical! This makes your styles work!
+                </div>
+
+                <pre class="fragment"><code><span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset=</span><span class="st">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span>GameHub<span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;link</span> <span class="attr">rel=</span><span class="st">"stylesheet"</span> <span class="attr">href=</span><span class="st">"style.css"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/head&gt;</span></code></pre>
+
+                <div class="warning fragment" style="font-size: 0.9em; margin-top: 30px;">
+                    File name must match EXACTLY: <code>style.css</code>
+                </div>
+            </section>
+
+            <!-- SLIDE 21: Testing Your Site -->
+            <section>
+                <h2>Testing with Live Server 🧪</h2>
+                
+                <div class="big-emoji">🔴</div>
+
+                <div style="font-size: 0.9em; margin-top: 30px; text-align: left; max-width: 650px; margin: 30px auto; line-height: 2;">
+                    <p class="fragment">1️⃣ Right-click <code>index.html</code></p>
+                    <p class="fragment">2️⃣ Select <strong>"Open with Live Server"</strong></p>
+                    <p class="fragment">3️⃣ Browser opens automatically!</p>
+                    <p class="fragment">4️⃣ Changes update in real-time! ⚡</p>
+                </div>
+
+                <div class="success fragment" style="margin-top: 25px;">
+                    Live reload = instant feedback!
+                </div>
+            </section>
+
+            <!-- SLIDE 22: What You Should See -->
+            <section>
+                <h2>Expected Result ✅</h2>
+                
+                <div style="font-size: 0.85em; text-align: left; max-width: 700px; margin: 40px auto; line-height: 2.2;">
+                    <p class="fragment">✓ Dark header with white logo</p>
+                    <p class="fragment">✓ Navigation links on the right</p>
+                    <p class="fragment">✓ Blue hero section</p>
+                    <p class="fragment">✓ Large heading and subtitle</p>
+                    <p class="fragment">✓ Red "Get Started" button</p>
+                </div>
+
+                <div class="info-box fragment" style="margin-top: 30px; font-size: 0.9em;">
+                    <strong>If something's wrong:</strong> Check file names, folder location, and spelling!
+                </div>
+            </section>
+
+            <!-- SLIDE 23: Customization Ideas -->
+            <section>
+                <h2>Make It Your Own! 🎨</h2>
+                
+                <div style="font-size: 0.95em; margin-top: 30px; line-height: 2.2;">
+                    <p class="fragment">🎮 Change the theme (music, sports, books)</p>
+                    <p class="fragment">🌈 Pick different colors</p>
+                    <p class="fragment">✨ Add emojis to the logo</p>
+                    <p class="fragment">📝 Write custom content</p>
+                    <p class="fragment">🎯 Adjust button size</p>
+                </div>
+
+                <div class="highlight fragment" style="margin-top: 40px;">
+                    Creativity encouraged! Experiment!
+                </div>
+            </section>
+
+            <!-- SLIDE 24: Color Customization -->
+            <section>
+                <h2>Changing Colors 🎨</h2>
+                
+                <div class="info-box" style="font-size: 0.85em;">
+                    <strong>Quick Color Guide:</strong><br>
+                    Replace hex codes to change colors!
+                </div>
+
+                <pre class="fragment" style="font-size: 0.75em;"><code><span class="cm">/* Header background */</span>
+<span class="pr">background-color</span>: <span class="vl">#2c3e50</span>;  <span class="cm">← Change this!</span>
+
+<span class="cm">/* Hero background */</span>
+<span class="pr">background-color</span>: <span class="vl">#3498db</span>;  <span class="cm">← And this!</span>
+
+<span class="cm">/* Button background */</span>
+<span class="pr">background-color</span>: <span class="vl">#e74c3c</span>;  <span class="cm">← And this!</span></code></pre>
+
+                <div class="success fragment" style="margin-top: 25px; font-size: 0.9em;">
+                    Use <a href="https://coolors.co" target="_blank" style="color: white; text-decoration: underline;">Coolors.co</a> for inspiration!
+                </div>
+            </section>
+
+            <!-- SLIDE 25: Building on This Foundation -->
+            <section>
+                <h2>The Journey Ahead 🗺️</h2>
+                
+                <div style="font-size: 0.85em; text-align: left; max-width: 700px; margin: 30px auto; line-height: 2;">
+                    <p class="fragment"><strong style="color: var(--accent-cyan);">Lesson 7:</strong> Hover effects & interactivity</p>
+                    <p class="fragment"><strong style="color: var(--accent-pink);">Lessons 8-9:</strong> Feature cards with Flexbox</p>
+                    <p class="fragment"><strong style="color: var(--accent-green);">Lesson 10:</strong> Professional typography</p>
+                    <p class="fragment"><strong style="color: var(--accent-purple);">Lesson 11:</strong> Images & content sections</p>
+                    <p class="fragment"><strong style="color: var(--accent-yellow);">Lessons 12-14:</strong> Polish & responsive design</p>
+                </div>
+
+                <div class="highlight fragment" style="margin-top: 30px;">
+                    Each lesson builds on this foundation!
+                </div>
+            </section>
+
+            <!-- SLIDE 26: Key Takeaways -->
+            <section>
+                <h2>🎯 Key Takeaways</h2>
+                
+                <div style="font-size: 0.9em; text-align: left; max-width: 750px; margin: 40px auto; line-height: 2.2;">
+                    <p class="fragment">✓ Always start with a CSS reset</p>
+                    <p class="fragment">✓ Use the .container pattern for consistency</p>
+                    <p class="fragment">✓ Semantic HTML improves accessibility & SEO</p>
+                    <p class="fragment">✓ Flexbox makes layouts easy</p>
+                    <p class="fragment">✓ Organize CSS with comments</p>
+                    <p class="fragment">✓ Test frequently with Live Server</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 27: Debugging Tips -->
+            <section>
+                <h2>Quick Debugging Tips 🐛</h2>
+                
+                <div style="font-size: 0.8em; margin-top: 20px;">
+                    <div class="concept-box reset fragment">
+                        <strong style="color: var(--accent-purple);">No styles showing?</strong>
+                        <p style="margin-top: 8px;">Check CSS file name and location</p>
+                    </div>
+
+                    <div class="concept-box container fragment">
+                        <strong style="color: var(--accent-cyan);">Layout looks wrong?</strong>
+                        <p style="margin-top: 8px;">Verify Flexbox properties and container class</p>
+                    </div>
+
+                    <div class="concept-box semantic fragment">
+                        <strong style="color: var(--accent-orange);">Changes not updating?</strong>
+                        <p style="margin-top: 8px;">Save files & hard refresh (Ctrl+Shift+R)</p>
+                    </div>
+                </div>
+
+                <div class="info-box fragment" style="margin-top: 20px; font-size: 0.85em;">
+                    <strong>🔧 Browser DevTools:</strong> Right-click → Inspect → See your HTML/CSS live!
+                </div>
+            </section>
+
+            <!-- SLIDE 28: Practice Time -->
+            <section>
+                <h2>Time to Build! 🏗️</h2>
+                
+                <div class="big-emoji">👨‍💻</div>
+
+                <div class="highlight" style="font-size: 1.2em;">
+                    Follow the Student Guide now!
+                </div>
+
+                <div style="font-size: 0.95em; margin-top: 40px; line-height: 2.2;">
+                    <p class="fragment">📋 Open the Student Guide</p>
+                    <p class="fragment">⚡ Work at your own pace</p>
+                    <p class="fragment">🙋 Ask questions anytime</p>
+                    <p class="fragment">🎉 Complete challenges for extra credit</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 29: Success Criteria -->
+            <section>
+                <h2>✅ You'll Know You Succeeded When...</h2>
+                
+                <div style="font-size: 0.9em; text-align: left; max-width: 750px; margin: 40px auto; line-height: 2.2;">
+                    <p class="fragment">✓ Header displays with logo and nav</p>
+                    <p class="fragment">✓ Hero section is centered and styled</p>
+                    <p class="fragment">✓ Button looks professional</p>
+                    <p class="fragment">✓ Live Server updates your changes</p>
+                    <p class="fragment">✓ You can explain the container pattern</p>
+                    <p class="fragment">✓ You feel ready for Lesson 7!</p>
+                </div>
+
+                <div class="success fragment" style="margin-top: 30px;">
+                    You've got this! 💪
+                </div>
+            </section>
+
+            <!-- SLIDE 30: Final Slide -->
+            <section class="title-slide">
+                <h1 style="font-size: 3em; color: white;">Let's Build GameHub! 🎮</h1>
+                <p style="font-size: 1.5em; margin-top: 60px;">Foundation First, Then We Scale!</p>
+                <p style="font-size: 1.2em; margin-top: 40px; color: rgba(255,255,255,0.7);">Open your Student Guide and start coding! 🚀</p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            controls: true,
+            progress: true,
+            center: true,
+            slideNumber: 'c/t',
+            width: 1400,
+            height: 900,
+            margin: 0.04,
+            plugins: [ RevealNotes ]
+        });
+    </script>
+</body>
+</html>
+Lesson_06_Presentation.html
+Displaying GameHub - ScreenShot.png.

@@ -11,3 +11,64 @@ body {
     color: #333;
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px
+}
+
+/* Header Section */
+.main-header {
+    background-color: #1a1a1a;
+    padding: 20px 0
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff
+}
+
+.main-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 30px
+}
+
+/* Hero Section */
+.hero {
+    background-color: #104a71;
+    color: #ffffff;
+    padding: 100px 0;
+    text-align: center
+}
+
+.hero-title {
+    font-size: 48px;
+    margin-bottom: 20px
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    margin-bottom: 30px
+}
+
+/* Buttons */
+.btn {
+    padding: 20px 40px;
+    font-size: 22px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer
+}
+
+.btn-primary {
+    background-color: #239b1f;
+    color: #ffffff
+}

@@ -32,13 +32,33 @@ body {
 .logo {
     font-size: 24px;
     font-weight: bold;
-    color: #ffffff
+    color: #ffffff;
+    transition: transform 0.3s ease;
 }
 
+/* LESSON 7: HOVERING FOR LOGO */
+.logo:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
 .main-nav a {
     color: #ffffff;
     text-decoration: none;
-    margin-left: 30px
+    margin-left: 30px;
+    transition: color 0.4s ease;
+}
+
+/* FOR LESSON 7 */
+.main-nav a:hover {
+    color: #2fe979;
+    /* text-decoration: underline; */
+    border-bottom: 2px solid #2fe979;
+    padding-bottom: 5px;
+}
+
+.main-nav a:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 4px;
 }
 
 /* Hero Section */
@@ -54,6 +74,12 @@ body {
     margin-bottom: 20px
 }
 
+/* LESSON 6: HOVERING AGAIN */
+.hero-title:hover {
+    color:#41a796;
+    transform: scale(1.05);
+}
+
 .hero-subtitle {
     font-size: 20px;
     margin-bottom: 30px
@@ -65,10 +91,21 @@ body {
     font-size: 22px;
     border: none;
     border-radius: 5px;
-    cursor: pointer
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .btn-primary {
     background-color: #239b1f;
     color: #ffffff
+}
+
+/* LESSON 7: BUTTON HOVERING */
+.btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    opacity: 0.9;
+}
+
+.btn:active {
+    transform: translateY(0)
 }

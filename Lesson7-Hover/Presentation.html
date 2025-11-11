@@ -1,0 +1,1112 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7: Hover Effects & Interactivity - GameHub Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <style>
+        :root {
+            --dark-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --accent-cyan: #4fc3f7;
+            --accent-pink: #ff6ec7;
+            --accent-green: #00e676;
+            --accent-orange: #ffa726;
+            --accent-purple: #ba68c8;
+            --accent-yellow: #ffd54f;
+            --accent-blue: #3498db;
+            --accent-red: #e74c3c;
+            --text-light: #e0e0e0;
+            --code-bg: #1e1e1e;
+        }
+
+        .reveal {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 36px;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-transform: none;
+            font-weight: 700;
+        }
+
+        .reveal h1 {
+            color: var(--accent-cyan);
+            font-size: 3em;
+            text-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .reveal h2 {
+            color: var(--accent-pink);
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .reveal code {
+            background: var(--code-bg);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: #d4d4d4;
+            font-size: 1.1em;
+            font-weight: 700;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        .reveal pre {
+            background: var(--code-bg);
+            border: 2px solid #3c3c3c;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            font-size: 0.85em;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .reveal pre code {
+            background: transparent;
+            padding: 0;
+            color: #d4d4d4;
+            line-height: 1.5;
+            font-weight: 700;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        /* Syntax Highlighting */
+        .kw { color: #569cd6; font-weight: 700; }
+        .pr { color: #9cdcfe; font-weight: 700; }
+        .st { color: #ce9178; font-weight: 700; }
+        .nm { color: #b5cea8; font-weight: 700; }
+        .cm { color: #6a9955; font-weight: 600; }
+        .vl { color: #ce9178; font-weight: 700; }
+        .tag { color: #4ec9b0; font-weight: 700; }
+        .attr { color: #9cdcfe; font-weight: 700; }
+        .ps { color: #dcdcaa; font-weight: 700; }
+
+        .highlight {
+            background: linear-gradient(135deg, #ff6ec7 0%, #ff9a9e 100%);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 110, 199, 0.4);
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #ffa726 0%, #ff7043 100%);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 167, 38, 0.4);
+        }
+
+        .success {
+            background: linear-gradient(135deg, #00e676 0%, #00c853 100%);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 230, 118, 0.4);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.1) 0%, rgba(79, 195, 247, 0.05) 100%);
+            border: 3px solid var(--accent-cyan);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        .info-box strong {
+            color: var(--accent-cyan);
+            font-size: 1.1em;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .comparison-card {
+            background: rgba(68, 71, 90, 0.4);
+            border: 3px solid;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .comparison-card.correct {
+            border-color: var(--accent-green);
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.15) 0%, rgba(0, 200, 83, 0.1) 100%);
+        }
+
+        .comparison-card.incorrect {
+            border-color: #ff6b6b;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15) 0%, rgba(238, 90, 82, 0.1) 100%);
+        }
+
+        .comparison-card .title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .comparison-card.correct .title {
+            color: var(--accent-green);
+        }
+
+        .comparison-card.incorrect .title {
+            color: #ff6b6b;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            border: 1px solid #3c3c3c;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.85em;
+            font-weight: 700;
+            color: #d4d4d4;
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        .big-emoji {
+            font-size: 4em;
+            margin: 30px 0;
+        }
+
+        .concept-box {
+            background: rgba(68, 71, 90, 0.5);
+            border-left: 5px solid;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .concept-box.hover {
+            border-color: var(--accent-pink);
+        }
+
+        .concept-box.focus {
+            border-color: var(--accent-cyan);
+        }
+
+        .concept-box.active {
+            border-color: var(--accent-purple);
+        }
+
+        .concept-box.transition {
+            border-color: var(--accent-green);
+        }
+
+        .title-slide {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px !important;
+        }
+
+        .interactive-demo {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .demo-button {
+            background: #e74c3c;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .demo-button:active {
+            transform: translateY(0);
+        }
+
+        .demo-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-block;
+            margin: 10px;
+            transition: color 0.3s ease, background 0.3s ease;
+        }
+
+        .demo-link:hover {
+            color: var(--accent-cyan);
+            background: rgba(79, 195, 247, 0.2);
+        }
+
+        .state-diagram {
+            background: rgba(68, 71, 90, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 0.85em;
+        }
+
+        .state-box {
+            display: inline-block;
+            padding: 15px 25px;
+            border: 2px solid;
+            border-radius: 8px;
+            margin: 10px;
+            font-weight: bold;
+        }
+
+        .state-box.normal {
+            border-color: var(--accent-cyan);
+            background: rgba(79, 195, 247, 0.1);
+            color: var(--accent-cyan);
+        }
+
+        .state-box.hover-state {
+            border-color: var(--accent-pink);
+            background: rgba(255, 110, 199, 0.1);
+            color: var(--accent-pink);
+        }
+
+        .state-box.active-state {
+            border-color: var(--accent-purple);
+            background: rgba(186, 104, 200, 0.1);
+            color: var(--accent-purple);
+        }
+
+        .timing-visual {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin: 20px 0;
+            font-size: 0.8em;
+        }
+
+        .timing-bar {
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-green) 0%, var(--accent-cyan) 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 230, 118, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- SLIDE 1: Title -->
+            <section class="title-slide">
+                <h1 style="font-size: 3.5em; color: white;">✨ Hover Effects</h1>
+                <h2 style="color: rgba(255,255,255,0.9); font-size: 2em; margin-top: 40px;">Lesson 7: Adding Interactivity</h2>
+                <p style="font-size: 1.3em; margin-top: 60px; color: rgba(255,255,255,0.8);">Making Your Site Come Alive!</p>
+            </section>
+
+            <!-- SLIDE 2: Why Interactivity Matters -->
+            <section>
+                <h2>Why Add Interactivity? 🎯</h2>
+                
+                <div style="font-size: 0.95em; text-align: left; max-width: 800px; margin: 40px auto; line-height: 2.2;">
+                    <p class="fragment">💡 <strong>Feedback:</strong> Users know what's clickable</p>
+                    <p class="fragment">✨ <strong>Polish:</strong> Feels professional and modern</p>
+                    <p class="fragment">♿ <strong>Accessibility:</strong> Helps keyboard users navigate</p>
+                    <p class="fragment">🎨 <strong>Engagement:</strong> Makes site more enjoyable</p>
+                </div>
+
+                <div class="highlight fragment" style="margin-top: 40px;">
+                    Static sites feel dead. Interactive sites feel alive!
+                </div>
+            </section>
+
+            <!-- SLIDE 3: What You'll Add Today -->
+            <section>
+                <h2>What You'll Build Today 🚀</h2>
+                
+                <div style="font-size: 0.9em; text-align: left; max-width: 750px; margin: 40px auto; line-height: 2.2;">
+                    <p class="fragment">✅ Navigation link hover effects</p>
+                    <p class="fragment">✅ Smooth color transitions</p>
+                    <p class="fragment">✅ Button hover animations (lift effect)</p>
+                    <p class="fragment">✅ Button click feedback (press effect)</p>
+                    <p class="fragment">✅ Focus states for accessibility</p>
+                </div>
+
+                <div class="success fragment" style="margin-top: 30px;">
+                    Your site will feel premium! 💎
+                </div>
+            </section>
+
+            <!-- SLIDE 4: Pseudo-Classes Introduction -->
+            <section>
+                <h2>Concept #1: Pseudo-Classes 🎭</h2>
+                
+                <div class="big-emoji">🔮</div>
+
+                <div class="highlight">
+                    Special selectors for different states!
+                </div>
+
+                <div style="font-size: 0.9em; margin-top: 30px; text-align: left; max-width: 700px; margin: 30px auto;">
+                    <div class="concept-box hover fragment">
+                        <strong style="color: var(--accent-pink);">:hover</strong>
+                        <p style="margin-top: 8px;">When mouse is over the element</p>
+                    </div>
+
+                    <div class="concept-box focus fragment">
+                        <strong style="color: var(--accent-cyan);">:focus</strong>
+                        <p style="margin-top: 8px;">When element is selected (keyboard navigation)</p>
+                    </div>
+
+                    <div class="concept-box active fragment">
+                        <strong style="color: var(--accent-purple);">:active</strong>
+                        <p style="margin-top: 8px;">When element is being clicked</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 5: Pseudo-Class Syntax -->
+            <section>
+                <h2>Pseudo-Class Syntax 📝</h2>
+                
+                <div class="warning" style="font-size: 1.1em;">
+                    Critical: Don't forget the colon!
+                </div>
+
+                <div class="comparison-row" style="font-size: 0.8em; margin-top: 30px;">
+                    <div class="comparison-card incorrect">
+                        <div class="title">❌ WRONG</div>
+                        <div class="code-block">
+                            .btn hover {<br>
+                            &nbsp;&nbsp;/* Missing colon! */<br>
+                            }
+                        </div>
+                    </div>
+                    <div class="comparison-card correct">
+                        <div class="title">✓ CORRECT</div>
+                        <div class="code-block">
+                            .btn<span style="color: #ff6ec7;">:</span>hover {<br>
+                            &nbsp;&nbsp;/* Colon required! */<br>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box fragment" style="margin-top: 30px; font-size: 0.85em;">
+                    <strong>Remember:</strong> No space before the colon! <code>.btn:hover</code> not <code>.btn :hover</code>
+                </div>
+            </section>
+
+            <!-- SLIDE 6: Basic Hover Effect -->
+            <section>
+                <h2>Your First Hover Effect! 🎨</h2>
+                
+                <pre class="fragment"><code><span class="cm">/* Base styles */</span>
+<span class="pr">.main-nav a</span> {
+    <span class="pr">color</span>: <span class="vl">#ffffff</span>;
+    <span class="pr">text-decoration</span>: <span class="vl">none</span>;
+}
+
+<span class="cm">/* Hover state */</span>
+<span class="pr">.main-nav a<span class="ps">:hover</span></span> {
+    <span class="pr">color</span>: <span class="vl">#3498db</span>;  <span class="cm">← Changes to blue!</span>
+}</code></pre>
+
+                <div class="interactive-demo fragment">
+                    <a href="#" class="demo-link">Hover over me!</a>
+                </div>
+
+                <div class="success fragment" style="font-size: 0.9em;">
+                    Simple, but makes a huge difference!
+                </div>
+            </section>
+
+            <!-- SLIDE 7: The Problem with Instant Changes -->
+            <section>
+                <h2>Instant vs Smooth 🎬</h2>
+                
+                <div class="comparison-row" style="font-size: 0.8em;">
+                    <div class="comparison-card incorrect">
+                        <div class="title">❌ Instant (Jarring)</div>
+                        <div class="code-block">
+                            .btn:hover {<br>
+                            &nbsp;&nbsp;color: blue;<br>
+                            }<br><br>
+                            <span style="color: #ff6b6b;">Snaps instantly!</span>
+                        </div>
+                    </div>
+                    <div class="comparison-card correct">
+                        <div class="title">✓ Smooth (Professional)</div>
+                        <div class="code-block">
+                            .btn {<br>
+                            &nbsp;&nbsp;transition: color 0.3s ease;<br>
+                            }<br><br>
+                            <span style="color: #51cf66;">Animates smoothly!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight fragment" style="margin-top: 30px;">
+                    Transitions = Professional polish!
+                </div>
+            </section>
+
+            <!-- SLIDE 8: Transition Concept -->
+            <section>
+                <h2>Concept #2: Transitions 🎞️</h2>
+                
+                <div class="big-emoji">⏱️</div>
+
+                <pre class="fragment"><code><span class="pr">transition</span>: <span class="vl">property</span> <span class="nm">duration</span> <span class="vl">timing-function</span>;</code></pre>
+
+                <div style="font-size: 0.85em; margin-top: 30px;">
+                    <div class="concept-box transition fragment">
+                        <strong style="color: var(--accent-green);">property</strong> = What to animate (color, transform, opacity)
+                    </div>
+
+                    <div class="concept-box transition fragment">
+                        <strong style="color: var(--accent-green);">duration</strong> = How long (0.3s = 300 milliseconds)
+                    </div>
+
+                    <div class="concept-box transition fragment">
+                        <strong style="color: var(--accent-green);">timing-function</strong> = Animation curve (ease, linear, ease-in-out)
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 9: Transition Placement CRITICAL -->
+            <section>
+                <h2>⚠️ Where to Put Transitions?</h2>
+                
+                <div class="warning" style="font-size: 1.2em;">
+                    This is CRITICAL! Most common mistake!
+                </div>
+
+                <div class="comparison-row" style="font-size: 0.75em; margin-top: 30px;">
+                    <div class="comparison-card incorrect">
+                        <div class="title">❌ WRONG</div>
+                        <div class="code-block">
+                            .btn:hover {<br>
+                            &nbsp;&nbsp;color: blue;<br>
+                            &nbsp;&nbsp;transition: color 0.3s ease;<br>
+                            }<br><br>
+                            <span style="color: #ff6b6b;">Only works one way!</span>
+                        </div>
+                    </div>
+                    <div class="comparison-card correct">
+                        <div class="title">✓ CORRECT</div>
+                        <div class="code-block">
+                            .btn {<br>
+                            &nbsp;&nbsp;transition: color 0.3s ease;<br>
+                            }<br>
+                            .btn:hover {<br>
+                            &nbsp;&nbsp;color: blue;<br>
+                            }<br><br>
+                            <span style="color: #51cf66;">Works both ways!</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 10: Why BASE Selector? -->
+            <section>
+                <h2>Why Put Transition on Base? 🤔</h2>
+                
+                <div class="state-diagram">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <div class="state-box normal">Normal State</div>
+                        <span style="font-size: 2em; margin: 0 20px;">→</span>
+                        <div class="state-box hover-state">Hover State</div>
+                        <span style="font-size: 2em; margin: 0 20px;">→</span>
+                        <div class="state-box normal">Back to Normal</div>
+                    </div>
+                </div>
+
+                <div class="info-box fragment" style="font-size: 0.85em;">
+                    <strong>The Rule:</strong> Put <code>transition</code> on the BASE selector so it animates in BOTH directions:
+                    <br><br>
+                    • Normal → Hover (smooth ✓)<br>
+                    • Hover → Normal (smooth ✓)
+                </div>
+
+                <div class="success fragment">
+                    Transition goes where the element lives!
+                </div>
+            </section>
+
+            <!-- SLIDE 11: Complete Navigation Hover -->
+            <section>
+                <h2>Complete Navigation Hover 🧭</h2>
+                
+                <pre style="font-size: 0.75em;"><code><span class="cm">/* Base state - includes transition */</span>
+<span class="pr">.main-nav a</span> {
+    <span class="pr">color</span>: <span class="vl">#ffffff</span>;
+    <span class="pr">text-decoration</span>: <span class="vl">none</span>;
+    <span class="pr">margin-left</span>: <span class="nm">30px</span>;
+    <span class="pr">transition</span>: <span class="vl">color</span> <span class="nm">0.3s</span> <span class="vl">ease</span>;  <span class="cm">← HERE!</span>
+}
+
+<span class="cm">/* Hover state - just the change */</span>
+<span class="pr">.main-nav a<span class="ps">:hover</span></span> {
+    <span class="pr">color</span>: <span class="vl">#3498db</span>;  <span class="cm">← Light blue</span>
+}</code></pre>
+
+                <div class="highlight fragment" style="margin-top: 25px;">
+                    Smooth color fade on hover! ✨
+                </div>
+            </section>
+
+            <!-- SLIDE 12: Transform Introduction -->
+            <section>
+                <h2>Concept #3: Transform 🔄</h2>
+                
+                <div class="big-emoji">📐</div>
+
+                <div class="info-box" style="font-size: 0.9em;">
+                    <strong>Transform:</strong> Moves, scales, rotates, or skews elements WITHOUT affecting layout!
+                </div>
+
+                <div style="font-size: 0.85em; margin-top: 30px; text-align: left; max-width: 700px; margin: 30px auto;">
+                    <div class="concept-box hover fragment">
+                        <code>translateY(-2px)</code> = Move UP 2 pixels
+                    </div>
+                    <div class="concept-box focus fragment">
+                        <code>translateY(2px)</code> = Move DOWN 2 pixels
+                    </div>
+                    <div class="concept-box active fragment">
+                        <code>scale(1.1)</code> = Grow to 110% size
+                    </div>
+                    <div class="concept-box transition fragment">
+                        <code>rotate(45deg)</code> = Rotate 45 degrees
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 13: Why Transform vs Margin -->
+            <section>
+                <h2>Transform vs Margin 🎯</h2>
+                
+                <div class="comparison-row" style="font-size: 0.75em;">
+                    <div class="comparison-card incorrect">
+                        <div class="title">❌ Using Margin</div>
+                        <div class="code-block">
+                            .btn:hover {<br>
+                            &nbsp;&nbsp;margin-top: -2px;<br>
+                            }<br><br>
+                            <span style="color: #ff6b6b;">• Shifts other elements<br>
+                            • Poor performance<br>
+                            • Causes layout reflow</span>
+                        </div>
+                    </div>
+                    <div class="comparison-card correct">
+                        <div class="title">✓ Using Transform</div>
+                        <div class="code-block">
+                            .btn:hover {<br>
+                            &nbsp;&nbsp;transform: translateY(-2px);<br>
+                            }<br><br>
+                            <span style="color: #51cf66;">• Doesn't affect layout<br>
+                            • GPU accelerated<br>
+                            • Buttery smooth!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="success fragment" style="margin-top: 25px;">
+                    Always use transform for animations!
+                </div>
+            </section>
+
+            <!-- SLIDE 14: Button Hover Effect -->
+            <section>
+                <h2>Button Lift Effect 🚀</h2>
+                
+                <pre style="font-size: 0.8em;"><code><span class="cm">/* Base button with transition */</span>
+<span class="pr">.btn</span> {
+    <span class="pr">padding</span>: <span class="nm">15px</span> <span class="nm">30px</span>;
+    <span class="pr">transition</span>: <span class="vl">transform</span> <span class="nm">0.3s</span> <span class="vl">ease</span>, <span class="vl">opacity</span> <span class="nm">0.3s</span> <span class="vl">ease</span>;
+}
+
+<span class="cm">/* Hover: lifts up slightly */</span>
+<span class="pr">.btn<span class="ps">:hover</span></span> {
+    <span class="pr">transform</span>: <span class="vl">translateY</span>(<span class="nm">-2px</span>);
+    <span class="pr">opacity</span>: <span class="nm">0.9</span>;
+}</code></pre>
+
+                <div class="interactive-demo fragment">
+                    <button class="demo-button">Hover Me!</button>
+                </div>
+
+                <div class="info-box fragment" style="font-size: 0.85em;">
+                    <strong>Note:</strong> Negative translateY = moves UP, Positive = moves DOWN
+                </div>
+            </section>
+
+            <!-- SLIDE 15: Multiple Property Transitions -->
+            <section>
+                <h2>Multiple Transitions 🎨</h2>
+                
+                <div class="highlight">
+                    Animate multiple properties at once!
+                </div>
+
+                <pre class="fragment" style="font-size: 0.8em;"><code><span class="pr">.btn</span> {
+    <span class="pr">transition</span>: <span class="vl">transform</span> <span class="nm">0.3s</span> <span class="vl">ease</span>, 
+                <span class="vl">opacity</span> <span class="nm">0.3s</span> <span class="vl">ease</span>;
+}
+
+<span class="cm">/* OR shorthand for all properties: */</span>
+<span class="pr">.btn</span> {
+    <span class="pr">transition</span>: <span class="vl">all</span> <span class="nm">0.3s</span> <span class="vl">ease</span>;
+}</code></pre>
+
+                <div class="info-box fragment" style="font-size: 0.85em; margin-top: 30px;">
+                    <strong>Best Practice:</strong> List specific properties for better performance, but <code>all</code> is fine for learning!
+                </div>
+            </section>
+
+            <!-- SLIDE 16: Active State -->
+            <section>
+                <h2>Concept #4: Active State 👆</h2>
+                
+                <div class="big-emoji">🖱️</div>
+
+                <pre class="fragment"><code><span class="cm">/* When button is being clicked */</span>
+<span class="pr">.btn<span class="ps">:active</span></span> {
+    <span class="pr">transform</span>: <span class="vl">translateY</span>(<span class="nm">0</span>);
+}</code></pre>
+
+                <div class="state-diagram fragment" style="font-size: 0.8em;">
+                    <div style="text-align: center;">
+                        <div class="state-box normal">Normal (0px)</div>
+                        <span style="font-size: 2em; margin: 0 15px;">→</span>
+                        <div class="state-box hover-state">Hover (-2px)</div>
+                        <span style="font-size: 2em; margin: 0 15px;">→</span>
+                        <div class="state-box active-state">Click (0px)</div>
+                    </div>
+                </div>
+
+                <div class="success fragment" style="margin-top: 25px;">
+                    Creates a "press" feeling! Satisfying feedback! 🎯
+                </div>
+            </section>
+
+            <!-- SLIDE 17: Complete Button States -->
+            <section>
+                <h2>Complete Button Interaction 🎮</h2>
+                
+                <pre style="font-size: 0.7em;"><code><span class="cm">/* Base state */</span>
+<span class="pr">.btn</span> {
+    <span class="pr">padding</span>: <span class="nm">15px</span> <span class="nm">30px</span>;
+    <span class="pr">transition</span>: <span class="vl">transform</span> <span class="nm">0.3s</span> <span class="vl">ease</span>, <span class="vl">opacity</span> <span class="nm">0.3s</span> <span class="vl">ease</span>;
+}
+
+<span class="cm">/* Hover: Button lifts */</span>
+<span class="pr">.btn<span class="ps">:hover</span></span> {
+    <span class="pr">transform</span>: <span class="vl">translateY</span>(<span class="nm">-2px</span>);
+    <span class="pr">opacity</span>: <span class="nm">0.9</span>;
+}
+
+<span class="cm">/* Active: Button presses down */</span>
+<span class="pr">.btn<span class="ps">:active</span></span> {
+    <span class="pr">transform</span>: <span class="vl">translateY</span>(<span class="nm">0</span>);
+}</code></pre>
+
+                <div class="highlight fragment" style="margin-top: 20px; font-size: 1.1em;">
+                    Three states = Professional interaction!
+                </div>
+            </section>
+
+            <!-- SLIDE 18: Focus State - Accessibility -->
+            <section>
+                <h2>Concept #5: Focus State ♿</h2>
+                
+                <div class="big-emoji">⌨️</div>
+
+                <div class="warning" style="font-size: 1.1em;">
+                    Critical for accessibility!
+                </div>
+
+                <pre class="fragment" style="font-size: 0.8em;"><code><span class="cm">/* For keyboard navigation */</span>
+<span class="pr">.main-nav a<span class="ps">:focus</span></span> {
+    <span class="pr">outline</span>: <span class="nm">2px</span> <span class="vl">solid</span> <span class="vl">#3498db</span>;
+    <span class="pr">outline-offset</span>: <span class="nm">4px</span>;
+}</code></pre>
+
+                <div class="info-box fragment" style="font-size: 0.85em; margin-top: 30px;">
+                    <strong>Why it matters:</strong><br>
+                    • Keyboard users need visual feedback<br>
+                    • Required for accessibility standards<br>
+                    • Test by pressing TAB key!
+                </div>
+            </section>
+
+            <!-- SLIDE 19: Never Remove Focus Outlines -->
+            <section>
+                <h2>⚠️ Accessibility Warning</h2>
+                
+                <div class="comparison-row" style="font-size: 0.75em;">
+                    <div class="comparison-card incorrect">
+                        <div class="title">❌ NEVER DO THIS</div>
+                        <div class="code-block">
+                            * {<br>
+                            &nbsp;&nbsp;outline: none;<br>
+                            }<br><br>
+                            <span style="color: #ff6b6b;">Breaks accessibility!<br>
+                            Keyboard users can't<br>
+                            navigate your site!</span>
+                        </div>
+                    </div>
+                    <div class="comparison-card correct">
+                        <div class="title">✓ DO THIS</div>
+                        <div class="code-block">
+                            .btn:focus {<br>
+                            &nbsp;&nbsp;outline: 2px solid blue;<br>
+                            &nbsp;&nbsp;outline-offset: 4px;<br>
+                            }<br><br>
+                            <span style="color: #51cf66;">Custom but visible<br>
+                            focus states!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning fragment" style="margin-top: 25px; font-size: 0.9em;">
+                    If you remove default outlines, you MUST provide alternatives!
+                </div>
+            </section>
+
+            <!-- SLIDE 20: Timing Guidelines -->
+            <section>
+                <h2>Transition Timing ⏱️</h2>
+                
+                <div class="info-box" style="font-size: 0.85em;">
+                    <strong>How long should transitions be?</strong>
+                </div>
+
+                <div style="font-size: 0.75em; margin-top: 30px;">
+                    <div class="timing-visual fragment">
+                        <div style="flex: 1;">
+                            <div class="timing-bar" style="width: 20%;">0.1s</div>
+                            <div style="margin-top: 10px; text-align: center;">Too fast!</div>
+                        </div>
+                    </div>
+
+                    <div class="timing-visual fragment">
+                        <div style="flex: 1;">
+                            <div class="timing-bar" style="width: 60%;">0.2s - 0.4s</div>
+                            <div style="margin-top: 10px; text-align: center; color: var(--accent-green); font-weight: bold;">Perfect! ✓</div>
+                        </div>
+                    </div>
+
+                    <div class="timing-visual fragment">
+                        <div style="flex: 1;">
+                            <div class="timing-bar" style="width: 100%;">1s+</div>
+                            <div style="margin-top: 10px; text-align: center;">Too slow!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="success fragment" style="margin-top: 30px;">
+                    0.3s = The sweet spot! Most common in professional sites.
+                </div>
+            </section>
+
+            <!-- SLIDE 21: Common Mistakes -->
+            <section>
+                <h2>⚠️ Common Mistakes to Avoid</h2>
+                
+                <div style="font-size: 0.8em; margin-top: 20px;">
+                    <div class="comparison-row fragment">
+                        <div class="comparison-card incorrect">
+                            <div class="title">❌ WRONG</div>
+                            <div class="code-block">
+                                .btn hover {<br>
+                                &nbsp;&nbsp;/* Missing colon! */
+                            </div>
+                        </div>
+                        <div class="comparison-card correct">
+                            <div class="title">✓ CORRECT</div>
+                            <div class="code-block">
+                                .btn:hover {<br>
+                                &nbsp;&nbsp;/* Has colon! */
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="comparison-row fragment">
+                        <div class="comparison-card incorrect">
+                            <div class="title">❌ WRONG</div>
+                            <div class="code-block">
+                                .btn:hover {<br>
+                                &nbsp;&nbsp;transition: ...<br>
+                                }<br>
+                                <span style="color: #ff6b6b;">Wrong place!</span>
+                            </div>
+                        </div>
+                        <div class="comparison-card correct">
+                            <div class="title">✓ CORRECT</div>
+                            <div class="code-block">
+                                .btn {<br>
+                                &nbsp;&nbsp;transition: ...<br>
+                                }<br>
+                                <span style="color: #51cf66;">On base selector!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 22: Opacity for Subtle Effect -->
+            <section>
+                <h2>Using Opacity for Subtlety 👻</h2>
+                
+                <pre class="fragment"><code><span class="pr">.btn<span class="ps">:hover</span></span> {
+    <span class="pr">transform</span>: <span class="vl">translateY</span>(<span class="nm">-2px</span>);
+    <span class="pr">opacity</span>: <span class="nm">0.9</span>;  <span class="cm">← Slightly transparent</span>
+}</code></pre>
+
+                <div class="info-box fragment" style="font-size: 0.85em; margin-top: 30px;">
+                    <strong>Opacity values:</strong><br>
+                    • <code>1.0</code> = Fully opaque (100%)<br>
+                    • <code>0.9</code> = 90% opaque (subtle!)<br>
+                    • <code>0.5</code> = 50% opaque<br>
+                    • <code>0.0</code> = Fully transparent
+                </div>
+
+                <div class="success fragment">
+                    Small opacity change = Elegant feedback!
+                </div>
+            </section>
+
+            <!-- SLIDE 23: Ease Timing Function -->
+            <section>
+                <h2>Understanding "ease" 📈</h2>
+                
+                <pre class="fragment"><code><span class="pr">transition</span>: <span class="vl">transform</span> <span class="nm">0.3s</span> <span class="vl">ease</span>;</code></pre>
+
+                <div style="font-size: 0.8em; margin-top: 30px; text-align: left; max-width: 700px; margin: 30px auto;">
+                    <div class="concept-box transition fragment">
+                        <strong style="color: var(--accent-green);">ease</strong> = Slow start, fast middle, slow end
+                        <p style="margin-top: 8px; color: #aaa;">Most natural feeling! (default)</p>
+                    </div>
+
+                    <div class="concept-box hover fragment">
+                        <strong style="color: var(--accent-pink);">linear</strong> = Constant speed throughout
+                        <p style="margin-top: 8px; color: #aaa;">Feels robotic, rarely used</p>
+                    </div>
+
+                    <div class="concept-box focus fragment">
+                        <strong style="color: var(--accent-cyan);">ease-in-out</strong> = Very smooth curve
+                        <p style="margin-top: 8px; color: #aaa;">Extra polish for important elements</p>
+                    </div>
+                </div>
+
+                <div class="success fragment">
+                    "ease" works great for 90% of cases!
+                </div>
+            </section>
+
+            <!-- SLIDE 24: Real-World Example -->
+            <section>
+                <h2>Complete Example 📝</h2>
+                
+                <pre style="font-size: 0.65em;"><code><span class="cm">/* === NAVIGATION LINKS === */</span>
+<span class="pr">.main-nav a</span> {
+    <span class="pr">color</span>: <span class="vl">#ffffff</span>;
+    <span class="pr">transition</span>: <span class="vl">color</span> <span class="nm">0.3s</span> <span class="vl">ease</span>;
+}
+<span class="pr">.main-nav a<span class="ps">:hover</span></span> { <span class="pr">color</span>: <span class="vl">#3498db</span>; }
+<span class="pr">.main-nav a<span class="ps">:focus</span></span> { <span class="pr">outline</span>: <span class="nm">2px</span> <span class="vl">solid</span> <span class="vl">#3498db</span>; }
+
+<span class="cm">/* === BUTTONS === */</span>
+<span class="pr">.btn</span> {
+    <span class="pr">padding</span>: <span class="nm">15px</span> <span class="nm">30px</span>;
+    <span class="pr">transition</span>: <span class="vl">transform</span> <span class="nm">0.3s</span> <span class="vl">ease</span>, <span class="vl">opacity</span> <span class="nm">0.3s</span> <span class="vl">ease</span>;
+}
+<span class="pr">.btn<span class="ps">:hover</span></span> {
+    <span class="pr">transform</span>: <span class="vl">translateY</span>(<span class="nm">-2px</span>);
+    <span class="pr">opacity</span>: <span class="nm">0.9</span>;
+}
+<span class="pr">.btn<span class="ps">:active</span></span> { <span class="pr">transform</span>: <span class="vl">translateY</span>(<span class="nm">0</span>); }</code></pre>
+
+                <div class="highlight fragment" style="margin-top: 20px; font-size: 1em;">
+                    Everything you need for professional interactions!
+                </div>
+            </section>
+
+            <!-- SLIDE 25: Best Practices Summary -->
+            <section>
+                <h2>Best Practices 💼</h2>
+                
+                <div style="font-size: 0.85em; text-align: left; max-width: 750px; margin: 30px auto; line-height: 2.2;">
+                    <p class="fragment">✓ Put <code>transition</code> on base selector</p>
+                    <p class="fragment">✓ Use 0.2s - 0.4s for most transitions</p>
+                    <p class="fragment">✓ Always include :focus states</p>
+                    <p class="fragment">✓ Use <code>transform</code> not <code>margin</code></p>
+                    <p class="fragment">✓ Keep effects subtle (don't overdo it!)</p>
+                    <p class="fragment">✓ Test with keyboard navigation (TAB key)</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 26: What Makes Good Hover Effects -->
+            <section>
+                <h2>Good vs Bad Hover Effects 🎯</h2>
+                
+                <div class="comparison-row" style="font-size: 0.8em;">
+                    <div class="comparison-card correct">
+                        <div class="title">✓ GOOD</div>
+                        <div style="text-align: left; padding: 15px; line-height: 2;">
+                            • Subtle<br>
+                            • Smooth<br>
+                            • Fast (0.3s)<br>
+                            • Provides feedback<br>
+                            • Accessible
+                        </div>
+                    </div>
+                    <div class="comparison-card incorrect">
+                        <div class="title">❌ BAD</div>
+                        <div style="text-align: left; padding: 15px; line-height: 2;">
+                            • Too dramatic<br>
+                            • Instant/jarring<br>
+                            • Too slow (1s+)<br>
+                            • Distracting<br>
+                            • No focus states
+                        </div>
+                    </div>
+                </div>
+
+                <div class="success fragment" style="margin-top: 25px;">
+                    Less is more! Subtle beats flashy!
+                </div>
+            </section>
+
+            <!-- SLIDE 27: Testing Your Effects -->
+            <section>
+                <h2>Testing Checklist ✅</h2>
+                
+                <div style="font-size: 0.9em; text-align: left; max-width: 700px; margin: 40px auto; line-height: 2.2;">
+                    <p class="fragment">🖱️ Hover over all interactive elements</p>
+                    <p class="fragment">👆 Click buttons (check :active)</p>
+                    <p class="fragment">⌨️ Press TAB key (check :focus)</p>
+                    <p class="fragment">👀 Watch transitions (smooth? right speed?)</p>
+                    <p class="fragment">🔄 Hover off elements (animates back?)</p>
+                </div>
+
+                <div class="info-box fragment" style="margin-top: 30px; font-size: 0.85em;">
+                    <strong>Pro tip:</strong> If transitions aren't working, check that they're on the BASE selector!
+                </div>
+            </section>
+
+            <!-- SLIDE 28: Debugging Tips -->
+            <section>
+                <h2>Quick Debugging Tips 🐛</h2>
+                
+                <div style="font-size: 0.8em; margin-top: 20px;">
+                    <div class="concept-box hover fragment">
+                        <strong style="color: var(--accent-pink);">Hover not working?</strong>
+                        <p style="margin-top: 8px;">Check for typos: <code>:hover</code> not <code>hover</code></p>
+                    </div>
+
+                    <div class="concept-box focus fragment">
+                        <strong style="color: var(--accent-cyan);">Not smooth?</strong>
+                        <p style="margin-top: 8px;">Move <code>transition</code> to base selector</p>
+                    </div>
+
+                    <div class="concept-box active fragment">
+                        <strong style="color: var(--accent-purple);">Button jumps?</strong>
+                        <p style="margin-top: 8px;">Use <code>transform</code> not <code>margin</code></p>
+                    </div>
+
+                    <div class="concept-box transition fragment">
+                        <strong style="color: var(--accent-green);">Focus not showing?</strong>
+                        <p style="margin-top: 8px;">Press TAB key, don't click!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SLIDE 29: Practice Time -->
+            <section>
+                <h2>Time to Build! 🏗️</h2>
+                
+                <div class="big-emoji">💻</div>
+
+                <div class="highlight" style="font-size: 1.2em;">
+                    Follow the Student Guide now!
+                </div>
+
+                <div style="font-size: 0.95em; margin-top: 40px; line-height: 2.2;">
+                    <p class="fragment">📋 Open Lesson 7 Student Guide</p>
+                    <p class="fragment">⚡ Add hover effects to navigation</p>
+                    <p class="fragment">🎨 Add button animations</p>
+                    <p class="fragment">♿ Add focus states</p>
+                    <p class="fragment">🎉 Complete challenges for extra credit</p>
+                </div>
+            </section>
+
+            <!-- SLIDE 30: Final Slide -->
+            <section class="title-slide">
+                <h1 style="font-size: 3em; color: white;">Make It Interactive! ✨</h1>
+                <p style="font-size: 1.5em; margin-top: 60px;">Add life to your GameHub site!</p>
+                <p style="font-size: 1.2em; margin-top: 40px; color: rgba(255,255,255,0.7);">Remember: Subtle effects = Professional polish! 🎯</p>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            controls: true,
+            progress: true,
+            center: true,
+            slideNumber: 'c/t',
+            width: 1400,
+            height: 900,
+            margin: 0.04,
+            plugins: [ RevealNotes ]
+        });
+    </script>
+</body>
+</html>
+Lesson_07_Presentation.html
+External
+Displaying Lesson_07_Presentation.html.

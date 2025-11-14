@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 9: Typography & Google Fonts - GameHub Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <style>
+        :root {
+            --dark-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --accent-cyan: #4fc3f7;
+            --accent-pink: #ff6ec7;
+            --accent-green: #00e676;
+            --accent-orange: #ffa726;
+            --accent-purple: #ba68c8;
+            --accent-yellow: #ffd54f;
+            --accent-blue: #3498db;
+            --accent-red: #e74c3c;
+            --text-light: #e0e0e0;
+            --code-bg: #1e1e1e;
+        }
+
+        .reveal {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 36px;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-transform: none;
+            font-weight: 700;
+        }
+
+        .reveal h1 {
+            color: var(--accent-cyan);
+            font-size: 3em;
+            text-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .reveal h2 {
+            color: var(--accent-pink);
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .reveal code {
+            background: var(--code-bg);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: #d4d4d4;
+            font-size: 1.1em;
+            font-weight: 700;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        .reveal pre {
+            background: var(--code-bg);
+            border: 2px solid #3c3c3c;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            font-size: 0.85em;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .reveal pre code {
+            background: transparent;
+            padding: 0;
+            color: #d4d4d4;
+            line-height: 1.5;
+            font-weight: 700;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        /* Syntax Highlighting */
+        .kw { color: #569cd6; font-weight: 700; }
+        .pr { color: #9cdcfe; font-weight: 700; }
+        .st { color: #ce9178; font-weight: 700; }
+        .nm { color: #b5cea8; font-weight: 700; }
+        .cm { color: #6a9955; font-weight: 600; }
+        .vl { color: #ce9178; font-weight: 700; }
+        .tag { color: #4ec9b0; font-weight: 700; }
+        .attr { color: #9cdcfe; font-weight: 700; }
+        .ps { color: #dcdcaa; font-weight: 700; }
+
+        .highlight {
+            background: linear-gradient(135deg, #ff6ec7 0%, #ff9a9e 100%);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 110, 199, 0.4);
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #ffa726 0%, #ff7043 100%);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 167, 38, 0.4);
+        }
+
+        .success {
+            background: linear-gradient(135deg, #00e676 0%, #00c853 100%);
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 230, 118, 0.4);
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.1) 0%, rgba(79, 195, 247, 0.05) 100%);
+            border: 3px solid var(--accent-cyan);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        .info-box strong {
+            color: var(--accent-cyan);
+            font-size: 1.1em;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .comparison-card {
+            background: rgba(68, 71, 90, 0.4);
+            border: 3px solid;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .comparison-card.good {
+            border-color: var(--accent-green);
+        }
+
+        .comparison-card.bad {
+            border-color: var(--accent-red);
+        }
+
+        .big-emoji {
+            font-size: 6em;
+            margin: 30px 0;
+        }
+
+        .checklist {
+            text-align: left;
+            max-width: 700px;
+            margin: 30px auto;
+            font-size: 0.9em;
+            line-height: 2;
+        }
+
+        .checklist p {
+            margin: 10px 0;
+        }
+
+        ul, ol {
+            text-align: left;
+            line-height: 1.8;
+        }
+
+        .concept-box {
+            background: rgba(68, 71, 90, 0.4);
+            border: 3px solid;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .concept-box.flexbox {
+            border-color: var(--accent-purple);
+        }
+
+        .concept-box.boxmodel {
+            border-color: var(--accent-orange);
+        }
+
+        .concept-box.shadows {
+            border-color: var(--accent-cyan);
+        }
+
+        .title-slide {
+            background: linear-gradient(135deg, #060d2d 0%, #764ba2 100%);
+            padding: 60px !important;
+        }
+
+        .font-demo {
+            background: white;
+            color: #2c3e50;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px auto;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .font-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .font-example {
+            background: white;
+            color: #2c3e50;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .font-example.before {
+            border: 3px solid var(--accent-red);
+        }
+
+        .font-example.after {
+            border: 3px solid var(--accent-green);
+        }
+
+        .typography-scale {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .type-level {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .property-demo {
+            background: rgba(68, 71, 90, 0.4);
+            border: 2px solid var(--accent-cyan);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 0.85em;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- SLIDE 1: Title -->
+            <section class="title-slide">
+                <h1 style="font-size: 3.5em; color: white;">🔤 Typography & Google Fonts</h1>
+                <h2 style="color: rgba(255,255,255,0.9); font-size: 2em; margin-top: 40px;">Lesson 9: Professional Text Styling</h2>
+                <p style="font-size: 1.3em; margin-top: 60px; color: rgba(255,255,255,0.8);">Making Your Text Look Amazing!</p>
+                <aside class="notes">
+                    Welcome to Lesson 9! Today we'll transform our website's typography using Google Fonts and professional text styling techniques. Good typography makes your site look polished and professional.
+                </aside>
+            </section>
+
+            <!-- SLIDE 2: Why Typography Matters -->
+            <section>
+                <h2>Why Typography Matters 🎯</h2>
+                
+                <div style="font-size: 0.95em; text-align: left; max-width: 800px; margin: 40px auto; line-height: 2.2;">
+                    <p class="fragment">📖 <strong>Readability:</strong> Good fonts are easier to read</p>
+                    <p class="fragment">🎨 <strong>Branding:</strong> Fonts create personality and mood</p>
+                    <p class="fragment">👁️ <strong>Visual Hierarchy:</strong> Guides users through content</p>
+                    <p class="fragment">💼 <strong>Professionalism:</strong> Makes your site look credible</p>
+                </div>
+
+                <div class="highlight fragment" style="margin-top: 40px;">
+                    Typography is 95% of web design!
+                </div>
+                <aside class="notes">
+                    Explain why typography is crucial: readability, branding, hierarchy, and professionalism. Good typography makes users trust your site more.
+                </aside>
+            </section>
+
+            <!-- SLIDE 3: What You'll Build -->
+            <section>
+                <h2>What You'll Build Today 🚀</h2>
+                
+                <div style="font-size: 0.9em; text-align: left; max-width: 750px; margin: 40px auto; line-height: 2.2;">
+                    <p class="fragment">✅ Add Google Fonts to your site</p>
+                    <p class="fragment">✅ Create a typography system</p>
+                    <p class="fragment">✅ Set font weights and line heights</p>
+                    <p class="fragment">✅ Add text shadows for depth</p>
+                    <p class="fragment">✅ Improve spacing and readability</p>
+                </div>
+
+                <div class="font-demo fragment">
+                    <h3 style="color: #2c3e50; margin-bottom: 10px;">Before & After</h3>
+                    <div class="font-comparison">
+                        <div class="font-example before">
+                            <p style="font-family: Arial; font-size: 0.8em;">Basic Arial Font</p>
+                            <p style="font-family: Arial; font-size: 0.6em; color: #7f8c8d;">Looks okay, but basic</p>
+                        </div>
+                        <div class="font-example after">
+                            <p style="font-family: 'Poppins', sans-serif; font-size: 0.8em; font-weight: 600;">Poppins Google Font</p>
+                            <p style="font-family: 'Poppins', sans-serif; font-size: 0.6em; color: #7f8c8d;">Modern and professional!</p>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Preview what students will achieve: adding Google Fonts, creating a typography system, and making text look professional.
+                </aside>
+            </section>
+
+            <!-- SLIDE 4: Big Picture Overview -->
+            <section>
+                <h2>The Big Picture 🗺️</h2>
+                
+                <div class="info-box">
+                    <strong>Lesson 9 covers THREE main skills:</strong>
+                    <div style="margin-top: 20px; font-size: 0.95em; text-align: left;">
+                        <p><span style="color: var(--accent-purple); font-weight: bold;">1. Google Fonts</span> - Professional web fonts</p>
+                        <p style="margin-top: 10px;"><span style="color: var(--accent-orange); font-weight: bold;">2. Typography System</span> - Font sizes, weights, spacing</p>
+                        <p style="margin-top: 10px;"><span style="color: var(--accent-cyan); font-weight: bold;">3. Text Effects</span> - Shadows and styling</p>
+                    </div>
+                </div>
+
+                <div class="success fragment" style="margin-top: 30px;">
+                    These skills make your site look 10x more professional! 💡
+                </div>
+                <aside class="notes">
+                    Outline the big picture: Google Fonts for professional typography, creating a system for consistency, and text effects for polish.
+                </aside>
+            </section>
+
+            <!-- SLIDE 5: Part 1 - Google Fonts -->
+            <section>
+                <h2>Part 1: Google Fonts 🌐</h2>
+                
+                <div class="highlight">
+                    Free, professional fonts for your website!
+                </div>
+
+                <div style="font-size: 0.9em; text-align: left; max-width: 750px; margin: 40px auto; line-height: 2;">
+                    <p class="fragment">🎯 <strong>Why Google Fonts?</strong></p>
+                    <p class="fragment">• Free and easy to use</p>
+                    <p class="fragment">• Fast loading (CDN)</p>
+                    <p class="fragment">• Works on all browsers</p>
+                    <p class="fragment">• Hundreds of professional fonts</p>
+                </div>
+
+                <div class="info-box fragment">
+                    Today we'll use <strong>Poppins</strong> - a modern, clean font perfect for websites!
+                </div>
+                <aside class="notes">
+                    Introduce Google Fonts and explain why they're better than system fonts. Mention CDN, browser compatibility, and variety.
+                </aside>
+            </section>
+
+            <!-- SLIDE 6: Adding Google Fonts -->
+            <section>
+                <h2>Step 1: Add Google Font Link</h2>
+                
+                <div class="highlight">
+                    Add this to your HTML head section!
+                </div>
+
+                <pre><code class="language-html"><span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="st">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="st">"viewport"</span> <span class="attr">content</span>=<span class="st">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title</span><span class="tag">&gt;</span>GameHub - Your Gaming Community<span class="tag">&lt;/title&gt;</span>
+    
+    <span class="cm">&lt;!-- LESSON 9: Google Fonts --&gt;</span>
+    <span class="tag">&lt;link</span> <span class="attr">href</span>=<span class="st">"https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"</span> <span class="attr">rel</span>=<span class="st">"stylesheet"</span><span class="tag">&gt;</span>
+    
+    <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="st">"stylesheet"</span> <span class="attr">href</span>=<span class="st">"style.css"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/head&gt;</span></code></pre>
+
+                <div class="warning fragment">
+                    <strong>Important:</strong> Google Font link must come BEFORE your CSS file!
+                </div>
+                <aside class="notes">
+                    Show how to add the Google Font link to HTML head. Emphasize that it must come before the CSS file.
+                </aside>
+            </section>
+
+            <!-- SLIDE 7: Understanding Google Font Link -->
+            <section>
+                <h2>Understanding the Font Link 🔗</h2>
+                
+                <div class="highlight">
+                    Let's break down what we just added
+                </div>
+
+                <pre><code class="language-html"><span class="tag">&lt;link</span> <span class="attr">href</span>=<span class="st">"https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"</span> <span class="attr">rel</span>=<span class="st">"stylesheet"</span><span class="tag">&gt;</span></code></pre>
+
+                <div style="font-size: 0.85em; text-align: left; max-width: 800px; margin: 30px auto;">
+                    <div class="property-demo fragment">
+                        <strong style="color: var(--accent-cyan);">family=Poppins</strong>
+                        <p style="margin-top: 8px;">The font name we want to use</p>
+                    </div>
+
+                    <div class="property-demo fragment">
+                        <strong style="color: var(--accent-orange);">wght@400;600;700</strong>
+                        <p style="margin-top: 8px;">Three font weights we're importing:</p>
+                        <p style="margin-top: 5px;">• 400 = Normal text</p>
+                        <p>• 600 = Semi-bold headings</p>
+                        <p>• 700 = Bold important text</p>
+                    </div>
+
+                    <div class="property-demo fragment">
+                        <strong style="color: var(--accent-purple);">display=swap</strong>
+                        <p style="margin-top: 8px;">Shows text immediately while font loads</p>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Break down the Google Font URL to explain font family, weights, and display swap for performance.
+                </aside>
+            </section>
+
+            <!-- SLIDE 8: Apply Font to CSS -->
+            <section>
+                <h2>Step 2: Apply Font in CSS</h2>
+                
+                <div class="highlight">
+                    Update your body font-family!
+                </div>
+
+                <pre><code class="language-css"><span class="cm">/* Apply Google Font to entire site */</span>
+<span class="ps">body</span> {
+    <span class="pr">font-family</span>: <span class="st">'Poppins'</span>, <span class="vl">sans-serif</span>;  <span class="cm">/* CHANGED! */</span>
+    <span class="pr">line-height</span>: <span class="nm">1.6</span>;
+    <span class="pr">color</span>: <span class="vl">#333</span>;
+}</code></pre>
+
+                <div class="success fragment">
+                    Save and refresh - everything should look different!
+                </div>
+
+                <div class="info-box fragment">
+                    <strong>Why put font on body?</strong><br>
+                    All child elements inherit it - only need to set it once!
+                </div>
+                <aside class="notes">
+                    Show how to apply the Google Font in CSS. Explain inheritance and why setting it on body affects all elements.
+                </aside>
+            </section>
+
+            <!-- SLIDE 9: Part 2 - Typography System -->
+            <section>
+                <h2>Part 2: Typography System 📐</h2>
+                
+                <div class="highlight">
+                    Create consistent text styling across your site!
+                </div>
+
+                <div style="font-size: 0.9em; text-align: left; max-width: 750px; margin: 40px auto; line-height: 2;">
+                    <p class="fragment">✅ Clear heading hierarchy</p>
+                    <p class="fragment">✅ Consistent font sizes</p>
+                    <p class="fragment">✅ Proper font weights</p>
+                    <p class="fragment">✅ Good line spacing</p>
+                    <p class="fragment">✅ Professional margins</p>
+                </div>
+
+                <div class="info-box fragment">
+                    This makes your site look cohesive and professional!
+                </div>
+                <aside class="notes">
+                    Introduce the concept of a typography system for consistency across the entire website.
+                </aside>
+            </section>
+
+            <!-- SLIDE 10: Create Typography Rules -->
+            <section>
+                <h2>Step 3: Add Typography Rules</h2>
+                
+                <div class="highlight">
+                    Add this to your CSS file
+                </div>
+
+                <pre><code class="language-css"><span class="cm">/* ===================================
+   LESSON 9: TYPOGRAPHY SYSTEM
+   =================================== */</span>
+<span class="ps">h1</span> {
+    <span class="pr">font-size</span>: <span class="nm">48px</span>;
+    <span class="pr">font-weight</span>: <span class="nm">700</span>;
+    <span class="pr">line-height</span>: <span class="nm">1.2</span>;
+}
+
+<span class="ps">h2</span> {
+    <span class="pr">font-size</span>: <span class="nm">36px</span>;
+    <span class="pr">font-weight</span>: <span class="nm">600</span>;
+    <span class="pr">line-height</span>: <span class="nm">1.3</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">15px</span>;
+}
+
+<span class="ps">h3</span> {
+    <span class="pr">font-size</span>: <span class="nm">24px</span>;
+    <span class="pr">font-weight</span>: <span class="nm">600</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">10px</span>;
+}
+
+<span class="ps">p</span> {
+    <span class="pr">font-size</span>: <span class="nm">18px</span>;
+    <span class="pr">line-height</span>: <span class="nm">1.8</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">15px</span>;
+}</code></pre>
+
+                <div class="success fragment">
+                    Save and see immediate improvement!
+                </div>
+                <aside class="notes">
+                    Provide the complete typography system CSS for headings and paragraphs. Show how it creates hierarchy.
+                </aside>
+            </section>
+
+            <!-- SLIDE 11: Understanding Typography System -->
+            <section>
+                <h2>Understanding the System 🎓</h2>
+                
+                <div class="typography-scale">
+                    <div class="type-level fragment">
+                        <h1 style="color: var(--accent-cyan); margin: 0;">Heading 1 - 48px</h1>
+                        <p style="font-size: 0.7em; margin: 5px 0 0 0; color: var(--accent-cyan);">Main page title - only one per page!</p>
+                    </div>
+                    
+                    <div class="type-level fragment">
+                        <h2 style="color: var(--accent-pink); margin: 0;">Heading 2 - 36px</h2>
+                        <p style="font-size: 0.7em; margin: 5px 0 0 0; color: var(--accent-pink);">Section titles - features, about, etc.</p>
+                    </div>
+                    
+                    <div class="type-level fragment">
+                        <h3 style="color: var(--accent-orange); margin: 0;">Heading 3 - 24px</h3>
+                        <p style="font-size: 0.7em; margin: 5px 0 0 0; color: var(--accent-orange);">Subsection titles - card headings</p>
+                    </div>
+                    
+                    <div class="type-level fragment">
+                        <p style="color: var(--accent-green); margin: 0;">Paragraph - 18px</p>
+                        <p style="font-size: 0.7em; margin: 5px 0 0 0; color: var(--accent-green);">Body text - descriptions, content</p>
+                    </div>
+                </div>
+
+                <div class="info-box fragment">
+                    <strong>Clear hierarchy:</strong> Users can quickly scan and understand your content!
+                </div>
+                <aside class="notes">
+                    Visualize the typography hierarchy. Show how different heading levels create structure and guide users.
+                </aside>
+            </section>
+
+            <!-- SLIDE 12: Font Weights Explained -->
+            <section>
+                <h2>Font Weights Explained ⚖️</h2>
+                
+                <div class="highlight">
+                    How thick or thin the text appears
+                </div>
+
+                <div style="font-size: 0.85em; text-align: left; max-width: 700px; margin: 30px auto;">
+                    <p class="fragment"><strong style="font-weight: 100;">100-300:</strong> Light (Thin)</p>
+                    <p class="fragment"><strong style="font-weight: 400;">400:</strong> Normal (Regular)</p>
+                    <p class="fragment"><strong style="font-weight: 500;">500:</strong> Medium</p>
+                    <p class="fragment"><strong style="font-weight: 600;">600:</strong> Semi-bold (Demi-bold)</p>
+                    <p class="fragment"><strong style="font-weight: 700;">700:</strong> Bold</p>
+                    <p class="fragment"><strong style="font-weight: 800;">800-900:</strong> Extra bold (Black)</p>
+                </div>
+
+                <div class="info-box fragment">
+                    <strong>For GameHub:</strong><br>
+                    • Body text: 400 (normal)<br>
+                    • Headings: 600-700 (bold)
+                </div>
+                <aside class="notes">
+                    Explain font weights and show examples. Discuss which weights work best for different content types.
+                </aside>
+            </section>
+
+            <!-- SLIDE 13: Line Height Matters -->
+            <section>
+                <h2>Line Height Matters 📏</h2>
+                
+                <div class="highlight">
+                    Space between lines of text
+                </div>
+
+                <div class="comparison-row">
+                    <div class="comparison-card bad fragment">
+                        <h3 style="color: var(--accent-red);">Too Tight</h3>
+                        <p style="font-size: 0.7em; line-height: 1.0; margin: 10px 0;">This text is cramped and hard to read because the lines are too close together making it difficult to distinguish where one line ends and the next begins.</p>
+                    </div>
+                    <div class="comparison-card good fragment">
+                        <h3 style="color: var(--accent-green);">Just Right</h3>
+                        <p style="font-size: 0.7em; line-height: 1.8; margin: 10px 0;">This text is comfortable to read with good spacing between lines that helps guide your eyes smoothly from one line to the next without getting lost.</p>
+                    </div>
+                </div>
+
+                <div class="info-box fragment">
+                    <strong>Guidelines:</strong><br>
+                    • Headings: 1.2-1.3 (tight)<br>
+                    • Body text: 1.6-1.8 (comfortable)<br>
+                    • Small text: 1.8-2.0 (extra space)
+                </div>
+                <aside class="notes">
+                    Demonstrate the importance of line height for readability. Show bad vs good examples.
+                </aside>
+            </section>
+
+            <!-- SLIDE 14: Part 3 - Enhancing Hero Section -->
+            <section>
+                <h2>Part 3: Enhancing Hero Section ✨</h2>
+                
+                <div class="highlight">
+                    Make your hero text stand out!
+                </div>
+
+                <div style="font-size: 0.9em; text-align: left; max-width: 750px; margin: 40px auto; line-height: 2;">
+                    <p class="fragment">✅ Add text shadow for depth</p>
+                    <p class="fragment">✅ Improve spacing and padding</p>
+                    <p class="fragment">✅ Constrain text width for readability</p>
+                    <p class="fragment">✅ Enhance button typography</p>
+                </div>
+
+                <div class="info-box fragment">
+                    The hero section is the first thing users see - make it amazing!
+                </div>
+                <aside class="notes">
+                    Focus on enhancing the hero section since it's the most important visual element.
+                </aside>
+            </section>
+
+            <!-- SLIDE 15: Add Text Shadow -->
+            <section>
+                <h2>Step 4: Add Text Shadow</h2>
+                
+                <div class="highlight">
+                    Make the hero title pop with depth!
+                </div>
+
+                <pre><code class="language-css"><span class="ps">.hero-title</span> {
+    <span class="pr">margin-bottom</span>: <span class="nm">20px</span>;
+    <span class="pr">text-shadow</span>: <span class="nm">2px</span> <span class="nm">2px</span> <span class="nm">4px</span> <span class="kw">rgba</span>(<span class="nm">0,0,0,0.2</span>);  <span class="cm">/* ADD THIS! */</span>
+}</code></pre>
+
+                <div class="font-demo fragment">
+                    <h3 style="text-shadow: 2px 2px 4px rgba(0,0,0,0.2); color: #2c3e50; margin-bottom: 10px;">With Text Shadow</h3>
+                    <p style="font-size: 0.7em; color: #7f8c8d;">Adds depth and makes text stand out!</p>
+                </div>
+
+                <div class="info-box fragment">
+                    <strong>text-shadow breakdown:</strong><br>
+                    • 2px = horizontal offset<br>
+                    • 2px = vertical offset<br>
+                    • 4px = blur radius<br>
+                    • rgba(0,0,0,0.2) = black at 20% opacity
+                </div>
+                <aside class="notes">
+                    Show how to add text shadow to the hero title and explain each parameter.
+                </aside>
+            </section>
+
+            <!-- SLIDE 16: Improve Hero Spacing -->
+            <section>
+                <h2>Step 5: Improve Hero Spacing</h2>
+                
+                <div class="highlight">
+                    Give the hero more breathing room
+                </div>
+
+                <pre><code class="language-css"><span class="ps">.hero</span> {
+    <span class="pr">background-color</span>: <span class="vl">#3498db</span>;
+    <span class="pr">color</span>: <span class="vl">#ffffff</span>;
+    <span class="pr">padding</span>: <span class="nm">120px</span> <span class="nm">0</span>;  <span class="cm">/* Increased from 100px */</span>
+    <span class="pr">text-align</span>: <span class="vl">center</span>;
+}
+
+<span class="ps">.hero-subtitle</span> {
+    <span class="pr">font-size</span>: <span class="nm">22px</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">40px</span>;  <span class="cm">/* Increased from 30px */</span>
+    <span class="pr">max-width</span>: <span class="nm">700px</span>;     <span class="cm">/* ADD THIS */</span>
+    <span class="pr">margin-left</span>: <span class="vl">auto</span>;    <span class="cm">/* ADD THIS */</span>
+    <span class="pr">margin-right</span>: <span class="vl">auto</span>;   <span class="cm">/* ADD THIS */</span>
+}</code></pre>
+
+                <div class="success fragment">
+                    Hero now has more space and better text flow!
+                </div>
+
+                <div class="info-box fragment">
+                    <strong>Why max-width on text?</strong><br>
+                    Prevents lines from getting too long (hard to read on wide screens)
+                </div>
+                <aside class="notes">
+                    Show how to improve hero spacing with more padding and constrained text width for better readability.
+                </aside>
+            </section>
+
+            <!-- SLIDE 17: Update Button Typography -->
+            <section>
+                <h2>Step 6: Update Button Typography</h2>
+                
+                <div class="highlight">
+                    Make buttons look more professional
+                </div>
+
+                <pre><code class="language-css"><span class="ps">.btn</span> {
+    <span class="pr">padding</span>: <span class="nm">15px</span> <span class="nm">35px</span>;
+    <span class="pr">font-size</span>: <span class="nm">18px</span>;
+    <span class="pr">border</span>: <span class="vl">none</span>;
+    <span class="pr">border-radius</span>: <span class="nm">8px</span>;
+    <span class="pr">cursor</span>: <span class="vl">pointer</span>;
+    <span class="pr">font-weight</span>: <span class="nm">600</span>;  <span class="cm">/* ADD THIS - semi-bold */</span>
+    <span class="pr">font-family</span>: <span class="st">'Poppins'</span>, <span class="vl">sans-serif</span>;  <span class="cm">/* ADD THIS */</span>
+    <span class="pr">transition</span>: <span class="vl">transform</span> <span class="nm">0.3s</span> <span class="vl">ease</span>, <span class="vl">opacity</span> <span class="nm">0.3s</span> <span class="vl">ease</span>;
+}</code></pre>
+
+                <div class="font-demo fragment">
+                    <button style="background: #e74c3c; color: white; border: none; padding: 15px 35px; border-radius: 8px; font-weight: 600; font-family: 'Poppins', sans-serif; font-size: 0.8em;">Professional Button</button>
+                    <p style="font-size: 0.6em; margin-top: 10px; color: #7f8c8d;">Bolder text, consistent font</p>
+                </div>
+                <aside class="notes">
+                    Update button typography with proper font weight and family for consistency.
+                </aside>
+            </section>
+
+            <!-- SLIDE 18: Challenges Overview -->
+            <section>
+                <h2>Time for Challenges! 🎯</h2>
+                
+                <div class="highlight">
+                    Practice makes perfect!
+                </div>
+
+                <div style="font-size: 0.9em; text-align: left; max-width: 750px; margin: 40px auto; line-height: 2;">
+                    <p class="fragment">⭐ <strong>Easy:</strong> Try different Google Fonts</p>
+                    <p class="fragment">⭐⭐ <strong>Medium:</strong> Adjust typography scale</p>
+                    <p class="fragment">⭐⭐ <strong>Medium:</strong> Add letter spacing</p>
+                    <p class="fragment">⭐⭐⭐ <strong>Hard:</strong> Style the logo better</p>
+                    <p class="fragment">⭐⭐⭐⭐ <strong>Expert:</strong> Add gradient text</p>
+                </div>
+                <aside class="notes">
+                    Introduce challenges to reinforce learning. Start with easy ones and build up to expert level.
+                </aside>
+            </section>
+
+            <!-- SLIDE 19: Challenge 1 - Different Fonts -->
+            <section>
+                <h2>Challenge 1: Try Different Fonts ⭐⭐</h2>
+                
+                <div class="highlight">
+                    Replace Poppins with another Google Font!
+                </div>
+
+                <div style="font-size: 0.85em; text-align: left; max-width: 800px; margin: 30px auto; line-height: 1.8;">
+                    <p><strong>Steps:</strong></p>
+                    <ol>
+                        <li>Go to <a href="https://fonts.google.com" target="_blank">fonts.google.com</a></li>
+                        <li>Browse popular fonts:
+                            <ul>
+                                <li><strong>Roboto</strong> - Very common</li>
+                                <li><strong>Open Sans</strong> - Clean and readable</li>
+                                <li><strong>Montserrat</strong> - Geometric, modern</li>
+                                <li><strong>Lato</strong> - Friendly</li>
+                                <li><strong>Inter</strong> - Tech/modern</li>
+                            </ul>
+                        </li>
+                        <li>Select font and copy the new link code</li>
+                        <li>Replace your current Google Font link</li>
+                        <li>Update CSS: Change 'Poppins' to your new font</li>
+                    </ol>
+                </div>
+
+                <div class="success fragment">
+                    Find the font that matches your site's personality!
+                </div>
+                <aside class="notes">
+                    Guide students through trying different Google Fonts to find one that matches their site's style.
+                </aside>
+            </section>
+
+            <!-- SLIDE 20: Challenge 2 - Typography Scale -->
+            <section>
+                <h2>Challenge 2: Adjust Typography Scale ⭐⭐</h2>
+                
+                <div class="highlight">
+                    Make headings bigger or smaller
+                </div>
+
+                <pre><code class="language-css"><span class="cm">/* Larger scale */</span>
+<span class="ps">h1</span> { <span class="pr">font-size</span>: <span class="nm">56px</span>; }
+<span class="ps">h2</span> { <span class="pr">font-size</span>: <span class="nm">42px</span>; }
+<span class="ps">h3</span> { <span class="pr">font-size</span>: <span class="nm">28px</span>; }
+
+<span class="cm">/* OR Smaller scale */</span>
+<span class="ps">h1</span> { <span class="pr">font-size</span>: <span class="nm">40px</span>; }
+<span class="ps">h2</span> { <span class="pr">font-size</span>: <span class="nm">30px</span>; }
+<span class="ps">h3</span> { <span class="pr">font-size</span>: <span class="nm">20px</span>; }</code></pre>
+
+                <div class="info-box fragment">
+                    <strong>Question:</strong> Which scale looks best on your site?
+                </div>
+
+                <div class="font-demo fragment">
+                    <div class="font-comparison">
+                        <div class="font-example">
+                            <h3 style="font-size: 0.9em; margin-bottom: 5px;">Large Scale</h3>
+                            <p style="font-size: 0.6em;">Bold and dramatic</p>
+                        </div>
+                        <div class="font-example">
+                            <h3 style="font-size: 0.9em; margin-bottom: 5px;">Small Scale</h3>
+                            <p style="font-size: 0.6em;">Subtle and elegant</p>
+                        </div>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Challenge students to experiment with different typography scales to find what works best for their design.
+                </aside>
+            </section>
+
+            <!-- SLIDE 21: Challenge 3 - Letter Spacing -->
+            <section>
+                <h2>Challenge 3: Add Letter Spacing ⭐⭐</h2>
+                
+                <div class="highlight">
+                    Control space between letters for style
+                </div>
+
+                <pre><code class="language-css"><span class="ps">h1</span> {
+    <span class="pr">font-size</span>: <span class="nm">48px</span>;
+    <span class="pr">font-weight</span>: <span class="nm">700</span>;
+    <span class="pr">line-height</span>: <span class="nm">1.2</span>;
+    <span class="pr">letter-spacing</span>: <span class="nm">-1px</span>;  <span class="cm">/* Tighter spacing */</span>
+}
+
+<span class="ps">h2</span> {
+    <span class="pr">font-size</span>: <span class="nm">36px</span>;
+    <span class="pr">font-weight</span>: <span class="nm">600</span>;
+    <span class="pr">line-height</span>: <span class="nm">1.3</span>;
+    <span class="pr">letter-spacing</span>: <span class="nm">-0.5px</span>;  <span class="cm">/* Slightly tighter */</span>
+}</code></pre>
+
+                <div class="font-demo fragment">
+                    <div class="font-comparison">
+                        <div class="font-example">
+                            <p style="font-size: 0.8em; letter-spacing: 2px;">Wide Spacing</p>
+                            <p style="font-size: 0.6em;">Airy and elegant</p>
+                        </div>
+                        <div class="font-example">
+                            <p style="font-size: 0.8em; letter-spacing: -1px;">Tight Spacing</p>
+                            <p style="font-size: 0.6em;">Modern and compact</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-box fragment">
+                    <strong>letter-spacing values:</strong><br>
+                    • Positive = spread letters apart<br>
+                    • Negative = bring letters closer<br>
+                    • -1px to -2px = modern, tight headings
+                </div>
+                <aside class="notes">
+                    Introduce letter-spacing property and show how it can create different visual effects.
+                </aside>
+            </section>
+
+            <!-- SLIDE 22: Challenge 4 - Style Logo -->
+            <section>
+                <h2>Challenge 4: Style the Logo Better ⭐⭐⭐</h2>
+                
+                <div class="highlight">
+                    Make your logo stand out!
+                </div>
+
+                <pre><code class="language-css"><span class="ps">.logo</span> {
+    <span class="pr">font-size</span>: <span class="nm">28px</span>;  <span class="cm">/* Bigger */</span>
+    <span class="pr">font-weight</span>: <span class="nm">700</span>;  <span class="cm">/* Bolder */</span>
+    <span class="pr">color</span>: <span class="vl">#ffffff</span>;
+    <span class="pr">letter-spacing</span>: <span class="nm">1px</span>;  <span class="cm">/* Spaced out */</span>
+    <span class="pr">text-transform</span>: <span class="vl">uppercase</span>;  <span class="cm">/* ALL CAPS */</span>
+    <span class="pr">transition</span>: <span class="vl">transform</span> <span class="nm">0.3s</span> <span class="vl">ease</span>;
+}</code></pre>
+
+                <div class="font-demo fragment">
+                    <div style="background: #2c3e50; padding: 20px; border-radius: 8px;">
+                        <p style="font-size: 1.2em; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: white; margin: 0;">🎮 GameHub</p>
+                        <p style="font-size: 0.6em; margin-top: 8px; color: #bdc3c7;">Professional logo styling!</p>
+                    </div>
+                </div>
+
+                <div class="success fragment">
+                    Logo now commands attention!
+                </div>
+                <aside class="notes">
+                    Show how to enhance the logo with better typography styling to make it more prominent.
+                </aside>
+            </section>
+
+            <!-- SLIDE 23: Challenge 5 - Gradient Text -->
+            <section>
+                <h2>Challenge 5: Gradient Text ⭐⭐⭐⭐</h2>
+                
+                <div class="highlight">
+                    Advanced technique for hero title
+                </div>
+
+                <pre><code class="language-css"><span class="ps">.hero-title</span> {
+    <span class="pr">font-size</span>: <span class="nm">48px</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">20px</span>;
+    <span class="pr">text-shadow</span>: <span class="nm">2px</span> <span class="nm">2px</span> <span class="nm">4px</span> <span class="kw">rgba</span>(<span class="nm">0,0,0,0.2</span>);
+    
+    <span class="cm">/* Gradient text effect */</span>
+    <span class="pr">background</span>: <span class="kw">linear-gradient</span>(<span class="nm">135deg</span>, <span class="vl">#ffffff</span> <span class="nm">0%</span>, <span class="vl">#f0f0f0</span> <span class="nm">100%</span>);
+    <span class="pr">-webkit-background-clip</span>: <span class="vl">text</span>;
+    <span class="pr">-webkit-text-fill-color</span>: <span class="vl">transparent</span>;
+    <span class="pr">background-clip</span>: <span class="vl">text</span>;
+}</code></pre>
+
+                <div class="warning fragment">
+                    <strong>Note:</strong> This is advanced and doesn't work in all browsers!
+                </div>
+
+                <div class="font-demo fragment">
+                    <h3 style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px;">Gradient Text Effect</h3>
+                    <p style="font-size: 0.6em; color: #7f8c8d;">Colorful gradient text!</p>
+                </div>
+                <aside class="notes">
+                    Introduce advanced gradient text effect with appropriate warnings about browser compatibility.
+                </aside>
+            </section>
+
+            <!-- SLIDE 24: Complete Code Reference -->
+            <section>
+                <h2>Complete Code Reference 📚</h2>
+                
+                <div class="highlight">
+                    All the CSS you added today!
+                </div>
+
+                <pre><code class="language-css" style="font-size: 0.75em;"><span class="cm">/* ===================================
+   LESSON 9: TYPOGRAPHY SYSTEM
+   =================================== */</span>
+
+<span class="cm">/* Apply Google Font */</span>
+<span class="ps">body</span> {
+    <span class="pr">font-family</span>: <span class="st">'Poppins'</span>, <span class="vl">sans-serif</span>;
+    <span class="pr">line-height</span>: <span class="nm">1.6</span>;
+    <span class="pr">color</span>: <span class="vl">#333</span>;
+}
+
+<span class="cm">/* Heading hierarchy */</span>
+<span class="ps">h1</span> {
+    <span class="pr">font-size</span>: <span class="nm">48px</span>;
+    <span class="pr">font-weight</span>: <span class="nm">700</span>;
+    <span class="pr">line-height</span>: <span class="nm">1.2</span>;
+}
+
+<span class="ps">h2</span> {
+    <span class="pr">font-size</span>: <span class="nm">36px</span>;
+    <span class="pr">font-weight</span>: <span class="nm">600</span>;
+    <span class="pr">line-height</span>: <span class="nm">1.3</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">15px</span>;
+}
+
+<span class="ps">h3</span> {
+    <span class="pr">font-size</span>: <span class="nm">24px</span>;
+    <span class="pr">font-weight</span>: <span class="nm">600</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">10px</span>;
+}
+
+<span class="cm">/* Body text */</span>
+<span class="ps">p</span> {
+    <span class="pr">font-size</span>: <span class="nm">18px</span>;
+    <span class="pr">line-height</span>: <span class="nm">1.8</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">15px</span>;
+}
+
+<span class="cm">/* Hero enhancements */</span>
+<span class="ps">.hero-title</span> {
+    <span class="pr">margin-bottom</span>: <span class="nm">20px</span>;
+    <span class="pr">text-shadow</span>: <span class="nm">2px</span> <span class="nm">2px</span> <span class="nm">4px</span> <span class="kw">rgba</span>(<span class="nm">0,0,0,0.2</span>);
+}
+
+<span class="ps">.hero-subtitle</span> {
+    <span class="pr">font-size</span>: <span class="nm">22px</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">40px</span>;
+    <span class="pr">max-width</span>: <span class="nm">700px</span>;
+    <span class="pr">margin-left</span>: <span class="vl">auto</span>;
+    <span class="pr">margin-right</span>: <span class="vl">auto</span>;
+}
+
+<span class="cm">/* Button typography */</span>
+<span class="ps">.btn</span> {
+    <span class="pr">font-weight</span>: <span class="nm">600</span>;
+    <span class="pr">font-family</span>: <span class="st">'Poppins'</span>, <span class="vl">sans-serif</span>;
+}</code></pre>
+                <aside class="notes">
+                    Provide the complete CSS reference for students to copy or compare their code.
+                </aside>
+            </section>
+
+            <!-- SLIDE 25: Key Concepts Review -->
+            <section>
+                <h2>Key Concepts Review 🎓</h2>
+                
+                <div style="font-size: 0.85em; text-align: left; max-width: 800px; margin: 30px auto;">
+                    <div class="concept-box flexbox fragment">
+                        <strong style="color: var(--accent-purple);">Google Fonts</strong>
+                        <p style="margin-top: 8px;">Professional web fonts - free, fast, easy to use</p>
+                    </div>
+
+                    <div class="concept-box boxmodel fragment">
+                        <strong style="color: var(--accent-orange);">Typography System</strong>
+                        <p style="margin-top: 8px;">Consistent font sizes, weights, and spacing</p>
+                    </div>
+
+                    <div class="concept-box shadows fragment">
+                        <strong style="color: var(--accent-cyan);">Text Shadow</strong>
+                        <p style="margin-top: 8px;">Adds depth and makes text stand out</p>
+                    </div>
+
+                    <div class="concept-box fragment" style="border-color: var(--accent-green);">
+                        <strong style="color: var(--accent-green);">Line Height</strong>
+                        <p style="margin-top: 8px;">Controls readability through line spacing</p>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Review key concepts covered in the lesson. Reinforce Google Fonts, typography systems, text shadows, and line height.
+                </aside>
+            </section>
+
+            <!-- SLIDE 26: Common Mistakes -->
+            <section>
+                <h2>Common Mistakes to Avoid ⚠️</h2>
+                
+                <div style="font-size: 0.85em; text-align: left; max-width: 800px; margin: 30px auto; line-height: 2;">
+                    <p class="fragment">❌ Google Font link AFTER CSS file</p>
+                    <p class="fragment">❌ Forgetting quotes around font name</p>
+                    <p class="fragment">❌ Too many different fonts (stick to 1-2)</p>
+                    <p class="fragment">❌ Line height too tight or too loose</p>
+                    <p class="fragment">❌ No clear heading hierarchy</p>
+                    <p class="fragment">❌ Text too wide on large screens</p>
+                </div>
+                <aside class="notes">
+                    Highlight common typography mistakes and how to avoid them.
+                </aside>
+            </section>
+
+            <!-- SLIDE 27: Testing Checklist -->
+            <section>
+                <h2>Testing Checklist ✓</h2>
+                
+                <div class="checklist">
+                    <p class="fragment">□ Google Font loading correctly</p>
+                    <p class="fragment">□ All text uses Poppins (or your chosen font)</p>
+                    <p class="fragment">□ Clear heading hierarchy (h1 > h2 > h3)</p>
+                    <p class="fragment">□ Body text is readable (good line-height)</p>
+                    <p class="fragment">□ Hero title has text shadow</p>
+                    <p class="fragment">□ Buttons have bold font weight</p>
+                    <p class="fragment">□ Hero subtitle has constrained width</p>
+                    <p class="fragment">□ No browser console errors</p>
+                </div>
+                <aside class="notes">
+                    Provide a checklist for testing the typography implementation.
+                </aside>
+            </section>
+
+            <!-- SLIDE 28: What's Next? -->
+            <section>
+                <h2>What's Next? 🚀</h2>
+                
+                <div class="highlight">
+                    You've mastered professional typography!
+                </div>
+
+                <div style="font-size: 0.9em; text-align: left; max-width: 750px; margin: 40px auto; line-height: 2;">
+                    <p class="fragment">🖼️ <strong>Lesson 11:</strong> Adding images and image+text sections</p>
+                    <p class="fragment">👥 <strong>Lesson 12:</strong> Community section with alternating layouts</p>
+                    <p class="fragment">📱 <strong>Lesson 14:</strong> Making it responsive (mobile!)</p>
+                    <p class="fragment">🎨 <strong>Lesson 15:</strong> Advanced animations and effects</p>
+                </div>
+
+                <div class="success fragment" style="margin-top: 30px;">
+                    Your site is looking more professional every lesson! 💪
+                </div>
+                <aside class="notes">
+                    Tease upcoming lessons to build excitement and show the progression.
+                </aside>
+            </section>
+
+            <!-- SLIDE 29: Practice Makes Perfect -->
+            <section>
+                <h2>Practice Makes Perfect! 🎯</h2>
+                
+                <div class="big-emoji">🔤</div>
+
+                <div style="font-size: 0.95em; text-align: left; max-width: 750px; margin: 30px auto; line-height: 2;">
+                    <p class="fragment">🎨 Try 3 different Google Fonts</p>
+                    <p class="fragment">📐 Experiment with typography scales</p>
+                    <p class="fragment">✨ Adjust text shadows and effects</p>
+                    <p class="fragment">📏 Fine-tune line heights</p>
+                    <p class="fragment">🎪 Add letter spacing to different elements</p>
+                </div>
+
+                <div class="highlight fragment">
+                    The best websites have amazing typography! 🔬
+                </div>
+                <aside class="notes">
+                    Encourage practice and experimentation to solidify typography skills.
+                </aside>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            backgroundTransition: 'fade',
+            center: true,
+            slideNumber: true,
+            progress: true,
+            controls: true,
+            width: 1280,
+            height: 720,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [RevealNotes]
+        });
+    </script>
+</body>
+</html>

@@ -3,22 +3,7 @@ Google Classroom
 Classroom
 P9 - Intro to Programming
 2025-2026
-Lesson 8: Flexbox Card Layouts
-More options
-Lesson 8: Flexbox Card Layouts
-Emre Gemici
-•
-2:27 PM
-10 points
-Due Today
-Lesson_08_Presentation.html
-HTML
-
-Your work
-Assigned
-Private comments
-Class comments
-Assignment details
+Lesson 8: Flexbox Card LayoutsLesson 8: Flexbox Card Layouts
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -589,6 +574,206 @@ Assignment details
                 </aside>
             </section>
 
+            <!-- NEW SLIDE: Part 2 - CSS Styling -->
+            <section>
+                <h2>Part 2: CSS Styling 🎨</h2>
+                
+                <div class="highlight">
+                    Now add the CSS to style your features section!
+                </div>
+
+                <div style="font-size: 0.9em; text-align: left; max-width: 750px; margin: 40px auto; line-height: 2.2;">
+                    <p class="fragment">✅ Style the section background and padding</p>
+                    <p class="fragment">✅ Center and color titles/subtitles</p>
+                    <p class="fragment">✅ Set up Flexbox grid</p>
+                    <p class="fragment">✅ Style individual cards with box model</p>
+                    <p class="fragment">✅ Add hover effects and transitions</p>
+                    <p class="fragment">✅ Format icons and text</p>
+                </div>
+
+                <div class="info-box fragment">
+                    Add all CSS to style.css - let's go step by step!
+                </div>
+                <aside class="notes">
+                    Transition to CSS part. Outline the steps for styling the features section. Emphasize adding to style.css file.
+                </aside>
+            </section>
+
+            <!-- NEW SLIDE: Style the Section -->
+            <section>
+                <h2>Step 1: Style the Section 🌐</h2>
+                
+                <div class="highlight">
+                    Add padding and background color
+                </div>
+
+                <pre><code class="language-css"><span class="ps">.features</span> {
+    <span class="pr">padding</span>: <span class="nm">80px</span> <span class="nm">0</span>;
+    <span class="pr">background-color</span>: <span class="vl">#f8f9fa</span>;
+}</code></pre>
+
+                <div class="info-box fragment">
+                    <strong>Why?</strong><br>
+                    • Padding: Vertical space around content<br>
+                    • Background: Light gray for contrast
+                </div>
+
+                <div class="success fragment">
+                    Refresh browser - section now has space and color!
+                </div>
+                <aside class="notes">
+                    First CSS step: Style the .features section with padding and background. Explain box model basics here.
+                </aside>
+            </section>
+
+            <!-- NEW SLIDE: Style Titles -->
+            <section>
+                <h2>Step 2: Style Titles & Subtitles 📝</h2>
+                
+                <div class="highlight">
+                    Center and color the headings
+                </div>
+
+                <pre><code class="language-css"><span class="ps">.section-title</span> {
+    <span class="pr">text-align</span>: <span class="vl">center</span>;
+    <span class="pr">font-size</span>: <span class="nm">36px</span>;
+    <span class="pr">color</span>: <span class="vl">#2c3e50</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">10px</span>;
+}
+
+<span class="ps">.section-subtitle</span> {
+    <span class="pr">text-align</span>: <span class="vl">center</span>;
+    <span class="pr">color</span>: <span class="vl">#7f8c8d</span>;
+    <span class="pr">font-size</span>: <span class="nm">20px</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">50px</span>;
+}</code></pre>
+
+                <div class="info-box fragment">
+                    <strong>Pro tip:</strong> Use margin-bottom for vertical spacing between elements
+                </div>
+
+                <div class="success fragment">
+                    Titles now centered and styled!
+                </div>
+                <aside class="notes">
+                    Style the title and subtitle with centering, sizes, colors, and margins. Discuss text-align and margin in box model.
+                </aside>
+            </section>
+
+            <!-- NEW SLIDE: Set Up Flexbox -->
+            <section>
+                <h2>Step 3: Set Up Flexbox Grid 📐</h2>
+                
+                <div class="highlight">
+                    Make cards sit side-by-side
+                </div>
+
+                <pre><code class="language-css"><span class="ps">.features-grid</span> {
+    <span class="pr">display</span>: <span class="vl">flex</span>;  <span class="cm">/* Activate Flexbox */</span>
+    <span class="pr">justify-content</span>: <span class="vl">space-between</span>;  <span class="cm">/* Spread out */</span>
+    <span class="pr">gap</span>: <span class="nm">30px</span>;  <span class="cm">/* Space between cards */</span>
+}</code></pre>
+
+                <div class="flex-demo fragment">
+                    <div class="flex-item">Card 1</div>
+                    <div class="flex-item">Card 2</div>
+                    <div class="flex-item">Card 3</div>
+                </div>
+
+                <div class="success fragment">
+                    Cards now in a row with equal spacing!
+                </div>
+                <aside class="notes">
+                    Activate Flexbox on .features-grid. Explain display: flex, justify-content, and gap. Show demo.
+                </aside>
+            </section>
+
+            <!-- NEW SLIDE: Style Cards -->
+            <section>
+                <h2>Step 4: Style the Cards 🃏</h2>
+                
+                <div class="highlight">
+                    Use box model for professional look
+                </div>
+
+                <pre><code class="language-css"><span class="ps">.feature-card</span> {
+    <span class="pr">background-color</span>: <span class="vl">#ffffff</span>;  <span class="cm">/* White bg */</span>
+    <span class="pr">padding</span>: <span class="nm">40px</span> <span class="nm">30px</span>;  <span class="cm">/* Inside space */</span>
+    <span class="pr">border-radius</span>: <span class="nm">12px</span>;  <span class="cm">/* Rounded corners */</span>
+    <span class="pr">box-shadow</span>: <span class="nm">0</span> <span class="nm">5px</span> <span class="nm">15px</span> <span class="kw">rgba</span>(<span class="nm">0,0,0,0.08</span>);  <span class="cm">/* Subtle shadow */</span>
+    <span class="pr">flex</span>: <span class="nm">1</span>;  <span class="cm">/* Equal width */</span>
+    <span class="pr">text-align</span>: <span class="vl">center</span>;  <span class="cm">/* Center content */</span>
+}</code></pre>
+
+                <div class="card-preview fragment">
+                    <div class="card-icon">👥</div>
+                    <h3>Styled Card</h3>
+                    <p>With padding, radius, shadow!</p>
+                </div>
+                <aside class="notes">
+                    Style .feature-card with background, padding, border-radius, box-shadow, flex:1, text-align. Explain each property.
+                </aside>
+            </section>
+
+            <!-- NEW SLIDE: Add Hover Effects -->
+            <section>
+                <h2>Step 5: Add Hover Effects ✨</h2>
+                
+                <div class="highlight">
+                    Make cards interactive
+                </div>
+
+                <pre><code class="language-css"><span class="ps">.feature-card</span> {
+    <span class="cm">/* ...previous styles... */</span>
+    <span class="pr">transition</span>: <span class="vl">transform</span> <span class="nm">0.3s</span> <span class="vl">ease</span>, 
+        <span class="vl">box-shadow</span> <span class="nm">0.3s</span> <span class="vl">ease</span>;  <span class="cm">/* Smooth change */</span>
+}
+
+<span class="ps">.feature-card:hover</span> {
+    <span class="pr">transform</span>: <span class="kw">translateY</span>(<span class="nm">-10px</span>);  <span class="cm">/* Lift up */</span>
+    <span class="pr">box-shadow</span>: <span class="nm">0</span> <span class="nm">10px</span> <span class="nm">25px</span> <span class="kw">rgba</span>(<span class="nm">0,0,0,0.15</span>);  <span class="cm">/* Deeper shadow */</span>
+}</code></pre>
+
+                <div class="warning fragment">
+                    Put transition on base class, not :hover!
+                </div>
+                <aside class="notes">
+                    Add transitions and hover effects to .feature-card. Explain transition property and transform/shadow changes.
+                </aside>
+            </section>
+
+            <!-- NEW SLIDE: Style Icons and Text -->
+            <section>
+                <h2>Step 6: Style Icons & Text 🔤</h2>
+                
+                <div class="highlight">
+                    Format the content inside cards
+                </div>
+
+                <pre><code class="language-css"><span class="ps">.feature-icon</span> {
+    <span class="pr">font-size</span>: <span class="nm">60px</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">20px</span>;
+}
+
+<span class="ps">.feature-card h3</span> {
+    <span class="pr">color</span>: <span class="vl">#2c3e50</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">15px</span>;
+}
+
+<span class="ps">.feature-card p</span> {
+    <span class="pr">color</span>: <span class="vl">#7f8c8d</span>;
+    <span class="pr">font-size</span>: <span class="nm">16px</span>;
+    <span class="pr">line-height</span>: <span class="nm">1.6</span>;
+}</code></pre>
+
+                <div class="success fragment">
+                    Content now looks professional!
+                </div>
+                <aside class="notes">
+                    Final CSS: Style icons, h3, and p inside cards. Cover font-size, margins, colors, line-height.
+                </aside>
+            </section>
+
             <!-- SLIDE 30: Challenges Overview -->
             <section>
                 <h2>Time for Challenges! 🎯</h2>
@@ -830,8 +1015,8 @@ Assignment details
 
                 <pre><code class="language-css" style="font-size: 0.75em;"><span class="cm">/* Features Section */</span>
 <span class="ps">.features</span> { <span class="pr">padding</span>: <span class="nm">80px</span> <span class="nm">0</span>; <span class="pr">background-color</span>: <span class="vl">#f8f9fa</span>; }
-<span class="ps">.section-title</span> { <span class="pr">text-align</span>: <span class="vl">center</span>; <span class="pr">font-size</span>: <span class="nm">36px</span>; }
-<span class="ps">.section-subtitle</span> { <span class="pr">text-align</span>: <span class="vl">center</span>; <span class="pr">color</span>: <span class="vl">#7f8c8d</span>; }
+<span class="ps">.section-title</span> { <span class="pr">text-align</span>: <span class="vl">center</span>; <span class="pr">font-size</span>: <span class="nm">36px</span>; <span class="pr">color</span>: <span class="vl">#2c3e50</span>; <span class="pr">margin-bottom</span>: <span class="nm">10px</span>; }
+<span class="ps">.section-subtitle</span> { <span class="pr">text-align</span>: <span class="vl">center</span>; <span class="pr">color</span>: <span class="vl">#7f8c8d</span>; <span class="pr">font-size</span>: <span class="nm">20px</span>; <span class="pr">margin-bottom</span>: <span class="nm">50px</span>; }
 
 <span class="cm">/* Flexbox Grid */</span>
 <span class="ps">.features-grid</span> {
@@ -847,12 +1032,32 @@ Assignment details
     <span class="pr">border-radius</span>: <span class="nm">12px</span>;
     <span class="pr">box-shadow</span>: <span class="nm">0</span> <span class="nm">5px</span> <span class="nm">15px</span> <span class="kw">rgba</span>(<span class="nm">0,0,0,0.08</span>);
     <span class="pr">flex</span>: <span class="nm">1</span>;
-    <span class="pr">transition</span>: <span class="vl">transform</span> <span class="nm">0.3s</span>, <span class="vl">box-shadow</span> <span class="nm">0.3s</span>;
+    <span class="pr">text-align</span>: <span class="vl">center</span>;
+    <span class="pr">transition</span>: <span class="vl">transform</span> <span class="nm">0.3s</span> <span class="vl">ease</span>, <span class="vl">box-shadow</span> <span class="nm">0.3s</span> <span class="vl">ease</span>;
 }
 
 <span class="ps">.feature-card:hover</span> {
     <span class="pr">transform</span>: <span class="kw">translateY</span>(<span class="nm">-10px</span>);
     <span class="pr">box-shadow</span>: <span class="nm">0</span> <span class="nm">10px</span> <span class="nm">25px</span> <span class="kw">rgba</span>(<span class="nm">0,0,0,0.15</span>);
+}
+
+<span class="cm">/* Feature icons */</span>
+<span class="ps">.feature-icon</span> {
+    <span class="pr">font-size</span>: <span class="nm">60px</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">20px</span>;
+}
+
+<span class="cm">/* Card headings */</span>
+<span class="ps">.feature-card h3</span> {
+    <span class="pr">color</span>: <span class="vl">#2c3e50</span>;
+    <span class="pr">margin-bottom</span>: <span class="nm">15px</span>;
+}
+
+<span class="cm">/* Card text */</span>
+<span class="ps">.feature-card p</span> {
+    <span class="pr">color</span>: <span class="vl">#7f8c8d</span>;
+    <span class="pr">font-size</span>: <span class="nm">16px</span>;
+    <span class="pr">line-height</span>: <span class="nm">1.6</span>;
 }</code></pre>
                 <aside class="notes">
                     Reference the complete CSS for the section. Useful for students to copy or compare their code.
@@ -970,64 +1175,6 @@ Assignment details
                 </aside>
             </section>
 
-            <!-- SLIDE 43: Resources -->
-            <section>
-                <h2>Helpful Resources 📚</h2>
-                
-                <div style="font-size: 0.85em; text-align: left; max-width: 750px; margin: 30px auto; line-height: 2;">
-                    <p class="fragment">🦎 <strong>MDN Flexbox Guide</strong><br>Complete Flexbox documentation</p>
-                    <p class="fragment">🎮 <strong>Flexbox Froggy</strong><br>Fun game to learn Flexbox</p>
-                    <p class="fragment">📦 <strong>CSS Box Model Interactive</strong><br>Visualize padding, margin, border</p>
-                    <p class="fragment">🎨 <strong>Box-Shadow Generator</strong><br>Create custom shadows</p>
-                </div>
-
-                <div class="info-box fragment">
-                    Search for these online - great for practice!
-                </div>
-                <aside class="notes">
-                    Recommend resources for further learning and practice.
-                </aside>
-            </section>
-
-            <!-- SLIDE 44: Summary -->
-            <section>
-                <h2>What You Accomplished! 🎉</h2>
-                
-                <div class="checklist">
-                    <p class="fragment">✅ Built a complete features section</p>
-                    <p class="fragment">✅ Mastered Flexbox layout</p>
-                    <p class="fragment">✅ Understood the Box Model</p>
-                    <p class="fragment">✅ Created professional cards</p>
-                    <p class="fragment">✅ Added shadows and rounded corners</p>
-                    <p class="fragment">✅ Made interactive hover effects</p>
-                    <p class="fragment">✅ Learned fundamental CSS concepts!</p>
-                </div>
-
-                <div class="success fragment" style="margin-top: 30px; font-size: 1.2em;">
-                    You're becoming a real web developer! 🌟
-                </div>
-                <aside class="notes">
-                    Summarize achievements to motivate students.
-                </aside>
-            </section>
-
-            <!-- SLIDE 45: Final Slide -->
-            <section class="title-slide">
-                <h1 style="font-size: 3.5em; color: white;">🎉 Awesome Work!</h1>
-                <h2 style="color: rgba(255,255,255,0.9); font-size: 2em; margin-top: 40px;">You've Completed Lesson 8!</h2>
-                
-                <div class="success" style="margin-top: 60px; font-size: 1.1em;">
-                    Your GameHub site is getting more professional with every lesson! 🚀
-                </div>
-
-                <p style="font-size: 1.2em; margin-top: 60px; color: rgba(255,255,255,0.8);">
-                    Take a break, then complete the challenges!
-                </p>
-                <aside class="notes">
-                    Wrap up the lesson. Congratulate students and remind them to practice with challenges.
-                </aside>
-            </section>
-
         </div>
     </div>
 
@@ -1052,5 +1199,3 @@ Assignment details
     </script>
 </body>
 </html>
-Lesson_08_ ... ation.html
-Displaying Lesson_08_Presentation.html.

@@ -1,0 +1,22 @@
+div {
+    width: 100px;
+    height: 100px;
+    background-color: red; position: relative;
+    animation-name: example;
+    animation-duration: 3s;
+    /* animation: moveColor 0.9s infinite; */
+    animation: colorTransform 0.04s infinite;
+}
+
+@keyframes example {
+    from {background-color: red;}
+    to {background-color:bisque};
+}
+
+@keyframes colorTransform {
+    0% {background-color: red; transform: translate(0,0)rotateX(0deg) scale(1);}
+    25% {background-color: bisque; transform: rotate(90 deg) scale(1.2);}
+    50%{background-color: rgb(21, 130, 138); transform: rotate(180deg) scale(9.5);}
+    60%{background-color:aqua; transform: rotate(270deg) scale(100);}
+    70%{background-color:darkblue; transform: rotate(360deg) scale(0.5);}
+}

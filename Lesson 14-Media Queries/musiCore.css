@@ -66,6 +66,7 @@ p {
     transform: scale(1.1);
     cursor: pointer;
 }
+
 .main-nav a {
     color: #ffffff;
     text-decoration: none;
@@ -97,12 +98,12 @@ p {
 .hero-title {
     font-size: 48px;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgb(0,0,0,0.9);
+    text-shadow: 2px 2px 4px rgb(0, 0, 0, 0.9);
 }
 
 /* LESSON 6: HOVERING AGAIN */
 .hero-title:hover {
-    color:#41a796;
+    color: #41a796;
     transform: scale(1.05);
 }
 
@@ -147,9 +148,7 @@ p {
     background-color: #f8f9fa;
 }
 
-.container {
-
-}
+.container {}
 
 .section-title {
     font-size: 35px;
@@ -160,13 +159,14 @@ p {
 
 .section-subtitle {
     font-size: 20px;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
-    color:#7f8c8d;
+    color: #7f8c8d;
 }
 
 .features-grid {
-    display: flex;      /* activating flexbox  */
+    display: flex;
+    /* activating flexbox  */
     justify-content: space-between;
     /* Distributes space */
     gap: 30px;
@@ -176,7 +176,7 @@ p {
 .feature-card {
     flex: 1;
     padding: 40px 30px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     border-radius: 12px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -188,7 +188,7 @@ p {
 
 .feature-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
 .feature-icon {
@@ -214,7 +214,7 @@ p {
 /* LESSON 10 */
 .about {
     padding: 80px 0;
-    background-color:#ffffff;
+    background-color: #ffffff;
 }
 
 .about-content {
@@ -234,7 +234,7 @@ p {
 .about-image img {
     border: 10px;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.20);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.20);
     transition: transform 0.3s ease;
 }
 
@@ -260,7 +260,7 @@ p {
 
 .community {
     padding: 80px 0;
-    background-color:#ffffff;
+    background-color: #ffffff;
 }
 
 .community-content {
@@ -281,7 +281,7 @@ p {
 
 .community-image img {
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     height: auto;
     transition: transform 0.3s ease;
 }
@@ -323,7 +323,7 @@ p {
 .animation-container {
     padding: 60px;
     margin-bottom: 100px;
-    background-color:#1a1a1a;
+    background-color: #1a1a1a;
     width: 60px;
     height: 60px;
     border-radius: 30px;
@@ -333,18 +333,32 @@ p {
 }
 
 @keyframes spinbig {
-    0% {transform: rotate(90deg);}
-    40% {transform: rotate(180deg) scale(1.1);}
-    40% {background-color:#104a71; transform: rotate(270deg);}
-    80% {transform: translateY(0px) rotate(290deg) scale(1.3);}
-    100% {transform: rotate(360deg) scale(1)}
-}
+    0% {
+        transform: rotate(90deg);
+    }
 
+    40% {
+        transform: rotate(180deg) scale(1.1);
+    }
+
+    40% {
+        background-color: #104a71;
+        transform: rotate(270deg);
+    }
+
+    80% {
+        transform: translateY(0px) rotate(290deg) scale(1.3);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1)
+    }
+}
 
 /* LESSON 12 */
 
 .main-footer {
-    background: linear-gradient(135deg,#202c39 0%, #41315e);
+    background: linear-gradient(135deg, #202c39 0%, #694e9b);
     color: white;
     padding: 60px 0 20px 0
 }
@@ -354,4 +368,75 @@ p {
     justify-content: space-between;
     gap: 40px;
     margin-bottom: 40px;
+}
+
+/* ===================================
+   LESSON 14: MOBILE NAVIGATION
+   =================================== */
+.hamburger {
+    display: none;           /* Hidden by default (desktop) */
+    font-size: 24px;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 2px solid transparent;
+    border-radius: 4px;
+}
+
+.hamburger:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+
+/* Different styles for mobile (768px and smaller) */
+@media (max-width: 768px) {
+/* Hide desktop navigation */
+    .main-nav {
+        display: none;
+    }
+    
+    /* Show hamburger icon */
+    .hamburger {
+        display: block;
+    }
+
+.hero {
+        padding: 60px 0;
+}
+
+.mobile-nav {
+    display: none;                      /* Hidden by default */
+    flex-direction: column;         /* Stack links vertically */
+    position: absolute;              /* Position over content */
+    top: 70px;                         /* Below header */
+    left: 0;
+    width: 100%;                       /* Full width */
+    background: #2c3e50;             /* Same as header */
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 1000;                    /* Above other content */
+}
+
+.mobile-nav a {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.mobile-nav a:hover {
+    color: #3498db;
+}
+
+.mobile-nav a:last-child {
+    border-bottom: none;         /* Remove border from last link */
+}
+
+/* When hamburger is focused, show the mobile nav next to it */
+.hamburger:focus + .mobile-nav {
+    display: flex;  /* Show the menu! */
+}
+
 }

@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Fundamentals Practice Assessment - Beginner Level</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <style>
+        :root {
+            --dark-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --accent-cyan: #4fc3f7;
+            --accent-pink: #ff6ec7;
+            --accent-green: #00e676;
+            --accent-orange: #ffa726;
+            --accent-purple: #ba68c8;
+            --accent-yellow: #ffd54f;
+            --accent-blue: #3498db;
+            --accent-red: #e74c3c;
+            --text-light: #e0e0e0;
+            --code-bg: #1e1e1e;
+        }
+
+        .reveal {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 32px;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-transform: none;
+            font-weight: 700;
+        }
+
+        .reveal h1 {
+            color: var(--accent-cyan);
+            font-size: 2.5em;
+            text-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .reveal h2 {
+            color: var(--accent-pink);
+            font-size: 1.6em;
+            margin-bottom: 20px;
+        }
+
+        .reveal h3 {
+            color: var(--accent-yellow);
+            font-size: 1.2em;
+        }
+
+        .reveal code {
+            background: var(--code-bg);
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: #d4d4d4;
+            font-size: 0.9em;
+            font-weight: 700;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        .reveal pre {
+            background: var(--code-bg);
+            border: 2px solid #3c3c3c;
+            border-radius: 10px;
+            padding: 15px;
+            width: 100%;
+            font-size: 0.55em;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .reveal pre code {
+            background: transparent;
+            padding: 0;
+            color: #d4d4d4;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+
+        /* Syntax Highlighting */
+        .kw { color: #569cd6; font-weight: 700; }
+        .pr { color: #9cdcfe; font-weight: 700; }
+        .st { color: #ce9178; font-weight: 700; }
+        .nm { color: #b5cea8; font-weight: 700; }
+        .cm { color: #6a9955; font-weight: 600; }
+        .vl { color: #ce9178; font-weight: 700; }
+        .tag { color: #4ec9b0; font-weight: 700; }
+        .attr { color: #9cdcfe; font-weight: 700; }
+        .ps { color: #dcdcaa; font-weight: 700; }
+        .blank { 
+            background: #ff6ec7; 
+            color: #1a1a2e; 
+            padding: 2px 30px; 
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .question-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-number {
+            display: inline-block;
+            background: var(--accent-cyan);
+            color: #1a1a2e;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 50%;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .question-box {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.1) 0%, rgba(186, 104, 200, 0.1) 100%);
+            border: 3px solid var(--accent-cyan);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .answer-box {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.15) 0%, rgba(0, 200, 83, 0.1) 100%);
+            border: 3px solid var(--accent-green);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .answer-box h3 {
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 15px 0;
+            font-size: 0.85em;
+        }
+
+        .option {
+            background: rgba(68, 71, 90, 0.5);
+            border: 2px solid #555;
+            border-radius: 10px;
+            padding: 12px 15px;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        .option.correct {
+            border-color: var(--accent-green);
+            background: rgba(0, 230, 118, 0.2);
+        }
+
+        .option-letter {
+            display: inline-block;
+            background: var(--accent-purple);
+            color: white;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+
+        .order-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+            font-size: 0.8em;
+        }
+
+        .order-item {
+            background: rgba(68, 71, 90, 0.5);
+            border: 2px solid var(--accent-orange);
+            border-radius: 8px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .order-number {
+            background: var(--accent-orange);
+            color: #1a1a2e;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ff6ec7 0%, #ff9a9e 100%);
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin: 15px 0;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.1) 0%, rgba(79, 195, 247, 0.05) 100%);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.85em;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(255, 167, 38, 0.2) 0%, rgba(255, 112, 67, 0.1) 100%);
+            border: 2px solid var(--accent-orange);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.2) 0%, rgba(0, 200, 83, 0.1) 100%);
+            border: 2px solid var(--accent-green);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .big-emoji {
+            font-size: 4em;
+            margin: 20px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background: var(--accent-purple);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.65em;
+            margin: 3px;
+        }
+
+        .fill-blank {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: white;
+            padding: 3px 40px;
+            border-radius: 5px;
+            margin: 0 5px;
+            font-weight: bold;
+        }
+
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            font-size: 0.75em;
+        }
+
+        .match-item {
+            background: rgba(68, 71, 90, 0.5);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 8px;
+            padding: 10px 15px;
+        }
+
+        .match-item.right {
+            border-color: var(--accent-pink);
+        }
+
+        .true-false {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .tf-btn {
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .tf-btn.true {
+            background: var(--accent-green);
+            color: #1a1a2e;
+        }
+
+        .tf-btn.false {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        .code-output {
+            background: #0d1117;
+            border: 2px solid var(--accent-green);
+            border-radius: 8px;
+            padding: 15px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+
+        .visual-demo {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px auto;
+            max-width: 500px;
+        }
+
+        .demo-box {
+            margin: 10px auto;
+            text-align: center;
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            margin: 5px;
+            border: 3px solid white;
+        }
+
+        .anatomy-diagram {
+            background: rgba(255,255,255,0.05);
+            border: 2px dashed var(--accent-cyan);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+
+        .anatomy-label {
+            color: var(--accent-yellow);
+            font-size: 0.7em;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- ==================== TITLE SLIDE ==================== -->
+            <section>
+                <h1>🎨 CSS Fundamentals</h1>
+                <h2 style="color: var(--accent-yellow);">Practice Assessment</h2>
+                <p style="font-size: 0.9em; margin-top: 30px;">Beginner Level • Core Concepts</p>
+                <div style="margin-top: 40px;">
+                    <span class="concept-tag">Syntax</span>
+                    <span class="concept-tag">Selectors</span>
+                    <span class="concept-tag">Colors</span>
+                    <span class="concept-tag">Text</span>
+                    <span class="concept-tag">Box Model</span>
+                    <span class="concept-tag">Units</span>
+                </div>
+                <p style="font-size: 0.7em; margin-top: 40px; color: #888;">30 Questions • Press SPACE or → to advance</p>
+            </section>
+
+     
+            <!-- ==================== QUESTION 1 ==================== -->
+            <section>
+                <div class="question-number">1</div>
+                <div class="question-badge">Basic Knowledge</div>
+                <h2>What Does CSS Stand For?</h2>
+                
+                <div class="question-box">
+                    <p>Write out the full name that CSS stands for:</p>
+                    <p style="font-size: 1.5em; text-align: center; margin-top: 20px;">
+                        <strong>C</strong>_______ <strong>S</strong>_______ <strong>S</strong>_______
+                    </p>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <p style="font-size: 1.2em; text-align: center;">
+                        <strong>C</strong>ascading <strong>S</strong>tyle <strong>S</strong>heets
+                    </p>
+                    <p style="font-size: 0.75em; margin-top: 15px;">
+                        "Cascading" means styles can override each other in a specific order!
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 2 ==================== -->
+            <section>
+                <div class="question-number">2</div>
+                <div class="question-badge">Anatomy</div>
+                <h2>CSS Rule Anatomy</h2>
+                
+                <div class="question-box">
+                    <p>Label the three parts of this CSS rule:</p>
+                    <div class="anatomy-diagram">
+                        <pre style="font-size: 0.9em; background: transparent; border: none; box-shadow: none;"><code>   <span class="anatomy-label">( A )</span>       <span class="anatomy-label">( B )</span>      <span class="anatomy-label">( C )</span>
+     ↓            ↓           ↓
+    <span class="ps">h1</span>    {   <span class="pr">color</span>   :   <span class="vl">blue</span>   ;   }</code></pre>
+                    </div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <p style="font-size: 0.9em;">
+                        <strong>A = Selector</strong> — What element(s) to style<br>
+                        <strong>B = Property</strong> — What aspect to change<br>
+                        <strong>C = Value</strong> — The new setting
+                    </p>
+                    <div class="info-box" style="font-size: 0.75em;">
+                        Complete format: <code>selector { property: value; }</code>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 3 ==================== -->
+            <section>
+                <div class="question-number">3</div>
+                <div class="question-badge">Multiple Choice</div>
+                <h2>Selector Symbols</h2>
+                
+                <div class="question-box">
+                    <p>Which symbol is used to select an element by its <strong>ID</strong>?</p>
+                </div>
+
+                <div class="options">
+                    <div class="option"><span class="option-letter">A</span> <code>.</code> (dot)</div>
+                    <div class="option"><span class="option-letter">B</span> <code>#</code> (hashtag)</div>
+                    <div class="option"><span class="option-letter">C</span> <code>*</code> (asterisk)</div>
+                    <div class="option"><span class="option-letter">D</span> <code>@</code> (at sign)</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: B</h3>
+                    <p style="font-size: 0.85em;">
+                        <code>#</code> = ID selector<br>
+                        <code>.</code> = Class selector<br>
+                        <code>*</code> = Universal selector (all elements)
+                    </p>
+                    <pre><code><span class="ps">#header</span> { }    <span class="cm">/* Selects id="header" */</span>
+<span class="ps">.button</span> { }    <span class="cm">/* Selects class="button" */</span></code></pre>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 4 ==================== -->
+            <section>
+                <div class="question-number">4</div>
+                <div class="question-badge">Fill in the Blank</div>
+                <h2>Class Selector</h2>
+                
+                <div class="question-box">
+                    <p>Write a selector to target all elements with <code>class="container"</code>:</p>
+                    <pre><code><span class="fill-blank">???</span> {
+    <span class="pr">max-width</span>: <span class="nm">1200px</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">.container</span> {
+    <span class="pr">max-width</span>: <span class="nm">1200px</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        The <strong>dot (.)</strong> before the name indicates a class selector.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 5 ==================== -->
+            <section>
+                <div class="question-number">5</div>
+                <div class="question-badge">True or False</div>
+                <h2>Case Sensitivity</h2>
+                
+                <div class="question-box">
+                    <p>CSS property names are case-sensitive. <code>Color</code> and <code>color</code> are different.</p>
+                </div>
+
+                <div class="true-false">
+                    <div class="tf-btn true">TRUE</div>
+                    <div class="tf-btn false">FALSE</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: FALSE</h3>
+                    <p style="font-size: 0.85em;">
+                        CSS property names are <strong>NOT case-sensitive</strong>.<br>
+                        <code>color</code>, <code>Color</code>, and <code>COLOR</code> all work the same.
+                    </p>
+                    <div class="warning-box" style="font-size: 0.75em;">
+                        ⚠️ However, class/ID names ARE case-sensitive in HTML!<br>
+                        <code>.Button</code> ≠ <code>.button</code>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 6 ==================== -->
+            <section>
+                <div class="question-number">6</div>
+                <div class="question-badge">What's the Output?</div>
+                <h2>Hex Color Code</h2>
+                
+                <div class="question-box">
+                    <p>What color does this hex code represent?</p>
+                    <pre><code><span class="pr">background-color</span>: <span class="vl">#ff0000</span>;</code></pre>
+                </div>
+
+                <div class="options">
+                    <div class="option"><span class="option-letter">A</span> Blue</div>
+                    <div class="option"><span class="option-letter">B</span> Green</div>
+                    <div class="option"><span class="option-letter">C</span> Red</div>
+                    <div class="option"><span class="option-letter">D</span> Yellow</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: C - Red</h3>
+                    <p style="font-size: 0.8em;">
+                        Hex format: <code>#RRGGBB</code> (Red, Green, Blue)<br>
+                        <code>#ff0000</code> = Full red (ff), No green (00), No blue (00)
+                    </p>
+                    <div style="margin-top: 10px;">
+                        <span class="color-swatch" style="background: #ff0000;"></span>
+                        <span class="color-swatch" style="background: #00ff00;"></span>
+                        <span class="color-swatch" style="background: #0000ff;"></span>
+                    </div>
+                    <p style="font-size: 0.7em;">Red • Green • Blue</p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 7 ==================== -->
+            <section>
+                <div class="question-number">7</div>
+                <div class="question-badge">Code Writing</div>
+                <h2>Text Color</h2>
+                
+                <div class="question-box">
+                    <p>Write CSS to make all paragraph text the color white:</p>
+                    <pre><code><span class="fill-blank">???</span> {
+    <span class="fill-blank">???</span>: <span class="fill-blank">???</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">p</span> {
+    <span class="pr">color</span>: <span class="vl">white</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        Also valid: <code>color: #ffffff;</code> or <code>color: rgb(255, 255, 255);</code>
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 8 ==================== -->
+            <section>
+                <div class="question-number">8</div>
+                <div class="question-badge">Multiple Choice</div>
+                <h2>Background vs Color</h2>
+                
+                <div class="question-box">
+                    <p>What's the difference between <code>color</code> and <code>background-color</code>?</p>
+                </div>
+
+                <div class="options">
+                    <div class="option"><span class="option-letter">A</span> They're the same thing</div>
+                    <div class="option"><span class="option-letter">B</span> <code>color</code> = text, <code>background-color</code> = behind element</div>
+                    <div class="option"><span class="option-letter">C</span> <code>color</code> = behind element, <code>background-color</code> = text</div>
+                    <div class="option"><span class="option-letter">D</span> <code>color</code> only works on links</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: B</h3>
+                    <p style="font-size: 0.85em;">
+                        <code>color</code> → Changes <strong>text</strong> color<br>
+                        <code>background-color</code> → Changes color <strong>behind</strong> the element
+                    </p>
+                    <pre><code><span class="ps">button</span> {
+    <span class="pr">color</span>: <span class="vl">white</span>;           <span class="cm">/* Text is white */</span>
+    <span class="pr">background-color</span>: <span class="vl">blue</span>;  <span class="cm">/* Button is blue */</span>
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 9 ==================== -->
+            <section>
+                <div class="question-number">9</div>
+                <div class="question-badge">Fill in the Blank</div>
+                <h2>Font Size</h2>
+                
+                <div class="question-box">
+                    <p>Set the font size to 24 pixels:</p>
+                    <pre><code><span class="ps">h2</span> {
+    <span class="pr">font-size</span>: <span class="fill-blank">???</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">h2</span> {
+    <span class="pr">font-size</span>: <span class="nm">24px</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <code>px</code> = pixels (most common unit for beginners)<br>
+                        Other options: <code>em</code>, <code>rem</code>, <code>%</code>, <code>pt</code>
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 10 ==================== -->
+            <section>
+                <div class="question-number">10</div>
+                <div class="question-badge">Code Writing</div>
+                <h2>Bold Text</h2>
+                
+                <div class="question-box">
+                    <p>Write CSS to make text <strong>bold</strong>:</p>
+                    <pre><code><span class="ps">.important</span> {
+    <span class="fill-blank">???</span>: <span class="fill-blank">???</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">.important</span> {
+    <span class="pr">font-weight</span>: <span class="kw">bold</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        Also valid: <code>font-weight: 700;</code> (numeric value)<br>
+                        Scale: 100 (thin) → 400 (normal) → 700 (bold) → 900 (black)
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 11 ==================== -->
+            <section>
+                <div class="question-number">11</div>
+                <div class="question-badge">Multiple Choice</div>
+                <h2>Text Alignment</h2>
+                
+                <div class="question-box">
+                    <p>Which property centers text horizontally within its container?</p>
+                </div>
+
+                <div class="options">
+                    <div class="option"><span class="option-letter">A</span> <code>text-align: center;</code></div>
+                    <div class="option"><span class="option-letter">B</span> <code>text-center: true;</code></div>
+                    <div class="option"><span class="option-letter">C</span> <code>align: middle;</code></div>
+                    <div class="option"><span class="option-letter">D</span> <code>horizontal-align: center;</code></div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: A</h3>
+                    <pre><code><span class="ps">.hero-title</span> {
+    <span class="pr">text-align</span>: <span class="kw">center</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        Values: <code>left</code> | <code>center</code> | <code>right</code> | <code>justify</code>
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 12 ==================== -->
+            <section>
+                <div class="question-number">12</div>
+                <div class="question-badge">Fix the Bug</div>
+                <h2>Missing Semicolon</h2>
+                
+                <div class="question-box">
+                    <p>This CSS has a bug. Find and fix it:</p>
+                    <pre><code><span class="ps">h1</span> {
+    <span class="pr">color</span>: <span class="vl">blue</span>
+    <span class="pr">font-size</span>: <span class="nm">36px</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Fix: Add missing semicolon!</h3>
+                    <pre><code><span class="ps">h1</span> {
+    <span class="pr">color</span>: <span class="vl">blue</span>;  <span class="cm">/* ← ADD SEMICOLON HERE */</span>
+    <span class="pr">font-size</span>: <span class="nm">36px</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        Every property-value pair must end with a semicolon <code>;</code><br>
+                        Missing semicolons can break styles below them!
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 13 ==================== -->
+            <section>
+                <div class="question-number">13</div>
+                <div class="question-badge">True or False</div>
+                <h2>CSS Comments</h2>
+                
+                <div class="question-box">
+                    <p>This is the correct way to write a comment in CSS:</p>
+                    <pre><code>// This is a comment</code></pre>
+                </div>
+
+                <div class="true-false">
+                    <div class="tf-btn true">TRUE</div>
+                    <div class="tf-btn false">FALSE</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: FALSE</h3>
+                    <p style="font-size: 0.85em;">
+                        CSS uses <code>/* */</code> for comments, NOT <code>//</code>
+                    </p>
+                    <pre><code><span class="cm">/* This is a correct CSS comment */</span>
+
+<span class="cm">/* 
+   Multi-line comments
+   also use this format
+*/</span></code></pre>
+                    <p style="font-size: 0.7em; color: #888;">
+                        Note: <code>//</code> works in JavaScript, but NOT in CSS!
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 14 ==================== -->
+            <section>
+                <div class="question-number">14</div>
+                <div class="question-badge">What Does This Do?</div>
+                <h2>Width and Height</h2>
+                
+                <div class="question-box">
+                    <p>What size will this box be?</p>
+                    <pre><code><span class="ps">.box</span> {
+    <span class="pr">width</span>: <span class="nm">200px</span>;
+    <span class="pr">height</span>: <span class="nm">100px</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <p style="font-size: 0.9em;">
+                        <strong>200 pixels wide</strong> × <strong>100 pixels tall</strong>
+                    </p>
+                    <div class="visual-demo" style="padding: 10px;">
+                        <div style="width: 200px; height: 100px; background: var(--accent-purple); margin: 0 auto; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.6em; border-radius: 5px;">
+                            200px × 100px
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 15 ==================== -->
+            <section>
+                <div class="question-number">15</div>
+                <div class="question-badge">Box Model</div>
+                <h2>Box Model Layers</h2>
+                
+                <div class="question-box">
+                    <p>Put the box model layers in order from <strong>inside to outside</strong>:</p>
+                </div>
+
+                <div class="order-items" style="font-size: 0.8em;">
+                    <div class="order-item"><span class="order-number">?</span> Margin</div>
+                    <div class="order-item"><span class="order-number">?</span> Content</div>
+                    <div class="order-item"><span class="order-number">?</span> Border</div>
+                    <div class="order-item"><span class="order-number">?</span> Padding</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Correct Order (Inside → Outside)</h3>
+                    <div class="order-items" style="font-size: 0.75em;">
+                        <div class="order-item"><span class="order-number">1</span> Content (the actual text/image)</div>
+                        <div class="order-item"><span class="order-number">2</span> Padding (space inside, around content)</div>
+                        <div class="order-item"><span class="order-number">3</span> Border (the edge line)</div>
+                        <div class="order-item"><span class="order-number">4</span> Margin (space outside, between elements)</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 16 ==================== -->
+            <section>
+                <div class="question-number">16</div>
+                <div class="question-badge">Code Writing</div>
+                <h2>Adding a Border</h2>
+                
+                <div class="question-box">
+                    <p>Write CSS for a 2px solid black border:</p>
+                    <pre><code><span class="ps">.card</span> {
+    <span class="pr">border</span>: <span class="fill-blank">???</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">.card</span> {
+    <span class="pr">border</span>: <span class="nm">2px</span> <span class="kw">solid</span> <span class="vl">black</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <strong>Shorthand order:</strong> width style color<br>
+                        Styles: <code>solid</code> | <code>dashed</code> | <code>dotted</code> | <code>double</code> | <code>none</code>
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 17 ==================== -->
+            <section>
+                <div class="question-number">17</div>
+                <div class="question-badge">Multiple Choice</div>
+                <h2>Display Property</h2>
+                
+                <div class="question-box">
+                    <p>By default, which element is <code>display: block</code>?</p>
+                </div>
+
+                <div class="options">
+                    <div class="option"><span class="option-letter">A</span> <code>&lt;span&gt;</code></div>
+                    <div class="option"><span class="option-letter">B</span> <code>&lt;a&gt;</code></div>
+                    <div class="option"><span class="option-letter">C</span> <code>&lt;div&gt;</code></div>
+                    <div class="option"><span class="option-letter">D</span> <code>&lt;img&gt;</code></div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: C</h3>
+                    <p style="font-size: 0.8em;">
+                        <strong>Block elements:</strong> <code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code>-<code>&lt;h6&gt;</code>, <code>&lt;section&gt;</code><br>
+                        → Take full width, stack vertically<br><br>
+                        <strong>Inline elements:</strong> <code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code><br>
+                        → Only take needed width, flow horizontally
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 18 ==================== -->
+            <section>
+                <div class="question-number">18</div>
+                <div class="question-badge">What's the Output?</div>
+                <h2>Shorthand Padding</h2>
+                
+                <div class="question-box">
+                    <p>What does this shorthand mean?</p>
+                    <pre><code><span class="pr">padding</span>: <span class="nm">10px 20px 30px 40px</span>;</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: Clockwise from Top</h3>
+                    <p style="font-size: 0.85em;">
+                        <strong>10px</strong> = Top<br>
+                        <strong>20px</strong> = Right<br>
+                        <strong>30px</strong> = Bottom<br>
+                        <strong>40px</strong> = Left
+                    </p>
+                    <div class="info-box" style="font-size: 0.75em;">
+                        🕐 Remember: <strong>TRouBLe</strong> = Top, Right, Bottom, Left (clockwise!)
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 19 ==================== -->
+            <section>
+                <div class="question-number">19</div>
+                <div class="question-badge">Fill in the Blank</div>
+                <h2>Center a Block Element</h2>
+                
+                <div class="question-box">
+                    <p>Complete the CSS to horizontally center a block element with a set width:</p>
+                    <pre><code><span class="ps">.container</span> {
+    <span class="pr">width</span>: <span class="nm">800px</span>;
+    <span class="pr">margin</span>: <span class="nm">0</span> <span class="fill-blank">???</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">.container</span> {
+    <span class="pr">width</span>: <span class="nm">800px</span>;
+    <span class="pr">margin</span>: <span class="nm">0</span> <span class="kw">auto</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <code>auto</code> margins on left/right = equal space on both sides = centered!<br>
+                        <code>0</code> = no margin on top/bottom
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 20 ==================== -->
+            <section>
+                <div class="question-number">20</div>
+                <div class="question-badge">True or False</div>
+                <h2>Inheritance</h2>
+                
+                <div class="question-box">
+                    <p>If you set <code>color: blue</code> on the <code>&lt;body&gt;</code>, all text on the page will be blue (unless overridden).</p>
+                </div>
+
+                <div class="true-false">
+                    <div class="tf-btn true">TRUE</div>
+                    <div class="tf-btn false">FALSE</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: TRUE</h3>
+                    <p style="font-size: 0.85em;">
+                        Many CSS properties <strong>inherit</strong> from parent elements.<br>
+                        Text properties like <code>color</code>, <code>font-family</code>, <code>font-size</code> inherit by default.
+                    </p>
+                    <pre><code><span class="ps">body</span> {
+    <span class="pr">color</span>: <span class="vl">blue</span>;  <span class="cm">/* All text inherits this */</span>
+}
+
+<span class="ps">h1</span> {
+    <span class="pr">color</span>: <span class="vl">red</span>;   <span class="cm">/* Override for h1 only */</span>
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 21 ==================== -->
+            <section>
+                <div class="question-number">21</div>
+                <div class="question-badge">Matching</div>
+                <h2>CSS Units</h2>
+                
+                <div class="question-box">
+                    <p>Match each unit to its description:</p>
+                </div>
+
+                <div class="matching-grid">
+                    <div class="match-item">1. <code>px</code></div>
+                    <div class="match-item right">A. Relative to parent font-size</div>
+                    <div class="match-item">2. <code>%</code></div>
+                    <div class="match-item right">B. Fixed screen pixels</div>
+                    <div class="match-item">3. <code>em</code></div>
+                    <div class="match-item right">C. Relative to root font-size</div>
+                    <div class="match-item">4. <code>rem</code></div>
+                    <div class="match-item right">D. Percentage of parent element</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answers</h3>
+                    <p style="font-size: 0.85em;">
+                        1 → B (<code>px</code> = fixed pixels)<br>
+                        2 → D (<code>%</code> = percentage of parent)<br>
+                        3 → A (<code>em</code> = relative to parent font)<br>
+                        4 → C (<code>rem</code> = relative to root/html font)
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 22 ==================== -->
+            <section>
+                <div class="question-number">22</div>
+                <div class="question-badge">Code Writing</div>
+                <h2>Font Family</h2>
+                
+                <div class="question-box">
+                    <p>Write CSS to set the font to Arial, with a sans-serif fallback:</p>
+                    <pre><code><span class="ps">body</span> {
+    <span class="pr">font-family</span>: <span class="fill-blank">???</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">body</span> {
+    <span class="pr">font-family</span>: <span class="st">Arial, sans-serif</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <strong>Font stack:</strong> First choice, then fallbacks separated by commas.<br>
+                        If Arial isn't available, browser uses any sans-serif font.
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 23 ==================== -->
+            <section>
+                <div class="question-number">23</div>
+                <div class="question-badge">Fix the Bug</div>
+                <h2>Wrong Selector</h2>
+                
+                <div class="question-box">
+                    <p>This CSS should style <code>&lt;p class="intro"&gt;</code> but it's not working. Why?</p>
+                    <pre><code><span class="ps">#intro</span> {
+    <span class="pr">font-size</span>: <span class="nm">20px</span>;
+    <span class="pr">color</span>: <span class="vl">gray</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Fix: Wrong selector symbol!</h3>
+                    <pre><code><span class="ps">.intro</span> {  <span class="cm">/* Use DOT for class, not # */</span>
+    <span class="pr">font-size</span>: <span class="nm">20px</span>;
+    <span class="pr">color</span>: <span class="vl">gray</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <code>#</code> = ID selector (for <code>id="intro"</code>)<br>
+                        <code>.</code> = Class selector (for <code>class="intro"</code>)
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 24 ==================== -->
+            <section>
+                <div class="question-number">24</div>
+                <div class="question-badge">Multiple Choice</div>
+                <h2>Specificity</h2>
+                
+                <div class="question-box">
+                    <p>Which selector has the <strong>highest specificity</strong> (wins in conflicts)?</p>
+                </div>
+
+                <div class="options">
+                    <div class="option"><span class="option-letter">A</span> <code>p { }</code></div>
+                    <div class="option"><span class="option-letter">B</span> <code>.text { }</code></div>
+                    <div class="option"><span class="option-letter">C</span> <code>#main { }</code></div>
+                    <div class="option"><span class="option-letter">D</span> <code>* { }</code></div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: C</h3>
+                    <p style="font-size: 0.85em;">
+                        <strong>Specificity hierarchy:</strong><br>
+                        <code>*</code> (universal) < <code>p</code> (element) < <code>.text</code> (class) < <code>#main</code> (ID)
+                    </p>
+                    <div class="info-box" style="font-size: 0.75em;">
+                        ID > Class > Element > Universal<br>
+                        (Also: inline styles > everything, !important > all)
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 25 ==================== -->
+            <section>
+                <div class="question-number">25</div>
+                <div class="question-badge">What's the Output?</div>
+                <h2>Color Conflict</h2>
+                
+                <div class="question-box">
+                    <p>What color will the paragraph be?</p>
+                    <pre><code><span class="ps">p</span> { <span class="pr">color</span>: <span class="vl">red</span>; }
+<span class="ps">.highlight</span> { <span class="pr">color</span>: <span class="vl">yellow</span>; }
+<span class="ps">p</span> { <span class="pr">color</span>: <span class="vl">blue</span>; }</code></pre>
+                    <pre><code><span class="tag">&lt;p class="highlight"&gt;</span>Hello<span class="tag">&lt;/p&gt;</span></code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: Yellow</h3>
+                    <p style="font-size: 0.85em;">
+                        <code>.highlight</code> (class) beats <code>p</code> (element) due to higher specificity!<br>
+                        Even though <code>p { color: blue; }</code> comes last, class wins.
+                    </p>
+                    <div class="info-box" style="font-size: 0.75em;">
+                        Specificity > Order. When specificity is equal, last one wins.
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 26 ==================== -->
+            <section>
+                <div class="question-number">26</div>
+                <div class="question-badge">Fill in the Blank</div>
+                <h2>Descendant Selector</h2>
+                
+                <div class="question-box">
+                    <p>Write a selector to target <code>&lt;a&gt;</code> tags <strong>inside</strong> the nav:</p>
+                    <pre><code><span class="fill-blank">???</span> {
+    <span class="pr">color</span>: <span class="vl">white</span>;
+}</code></pre>
+                    <p style="font-size: 0.8em; margin-top: 10px;">HTML: <code>&lt;nav&gt;&lt;a href="#"&gt;Link&lt;/a&gt;&lt;/nav&gt;</code></p>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">nav a</span> {
+    <span class="pr">color</span>: <span class="vl">white</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <strong>Space</strong> between selectors = descendant selector<br>
+                        "Select all <code>&lt;a&gt;</code> elements that are inside <code>&lt;nav&gt;</code>"
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 27 ==================== -->
+            <section>
+                <div class="question-number">27</div>
+                <div class="question-badge">Code Writing</div>
+                <h2>Line Height</h2>
+                
+                <div class="question-box">
+                    <p>Write CSS to set the line spacing to 1.6 times the font size:</p>
+                    <pre><code><span class="ps">p</span> {
+    <span class="fill-blank">???</span>: <span class="fill-blank">???</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">p</span> {
+    <span class="pr">line-height</span>: <span class="nm">1.6</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <code>line-height</code> controls space between lines of text.<br>
+                        <code>1.6</code> = 1.6× the font size (unitless is best practice!)<br>
+                        Recommended: 1.4–1.8 for readability
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 28 ==================== -->
+            <section>
+                <div class="question-number">28</div>
+                <div class="question-badge">True or False</div>
+                <h2>Inline Styles</h2>
+                
+                <div class="question-box">
+                    <p>Inline styles (in the HTML <code>style</code> attribute) are the recommended way to write CSS.</p>
+                    <pre><code><span class="tag">&lt;p style="color: red;"&gt;</span>Text<span class="tag">&lt;/p&gt;</span></code></pre>
+                </div>
+
+                <div class="true-false">
+                    <div class="tf-btn true">TRUE</div>
+                    <div class="tf-btn false">FALSE</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: FALSE</h3>
+                    <p style="font-size: 0.85em;">
+                        Inline styles are <strong>NOT recommended</strong> because:
+                    </p>
+                    <div style="font-size: 0.75em; text-align: left;">
+                        <p>❌ Hard to maintain (scattered throughout HTML)</p>
+                        <p>❌ Can't reuse styles</p>
+                        <p>❌ Mixes content (HTML) with presentation (CSS)</p>
+                        <p>❌ Very high specificity (hard to override)</p>
+                    </div>
+                    <div class="success-box" style="font-size: 0.75em;">
+                        ✅ Best practice: Use external stylesheets (<code>.css</code> files)
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 29 ==================== -->
+            <section>
+                <div class="question-number">29</div>
+                <div class="question-badge">Multiple Choice</div>
+                <h2>Text Decoration</h2>
+                
+                <div class="question-box">
+                    <p>How do you remove the underline from links?</p>
+                </div>
+
+                <div class="options">
+                    <div class="option"><span class="option-letter">A</span> <code>underline: none;</code></div>
+                    <div class="option"><span class="option-letter">B</span> <code>text-decoration: none;</code></div>
+                    <div class="option"><span class="option-letter">C</span> <code>text-underline: false;</code></div>
+                    <div class="option"><span class="option-letter">D</span> <code>remove-underline: true;</code></div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: B</h3>
+                    <pre><code><span class="ps">a</span> {
+    <span class="pr">text-decoration</span>: <span class="kw">none</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        Other values: <code>underline</code> | <code>overline</code> | <code>line-through</code>
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 30 ==================== -->
+            <section>
+                <div class="question-number">30</div>
+                <div class="question-badge">Open Ended</div>
+                <h2>Three Ways to Add CSS</h2>
+                
+                <div class="question-box">
+                    <p>Name the <strong>three ways</strong> to add CSS to an HTML document:</p>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Three Methods</h3>
+                    <div style="font-size: 0.75em; text-align: left;">
+                        <div class="info-box">
+                            <strong>1. External Stylesheet (Best!)</strong><br>
+                            <code>&lt;link rel="stylesheet" href="style.css"&gt;</code><br>
+                            Separate .css file linked in &lt;head&gt;
+                        </div>
+                        <div class="info-box">
+                            <strong>2. Internal/Embedded Styles</strong><br>
+                            <code>&lt;style&gt;...&lt;/style&gt;</code> tags in &lt;head&gt;<br>
+                            CSS written directly in HTML document
+                        </div>
+                        <div class="info-box">
+                            <strong>3. Inline Styles (Avoid!)</strong><br>
+                            <code>&lt;p style="color: red;"&gt;</code><br>
+                            Style attribute on individual elements
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== SUMMARY SLIDE ==================== -->
+            <section>
+                <h1>🎉 Assessment Complete!</h1>
+                <h2 style="color: var(--accent-green);">Great Job!</h2>
+                
+                <div class="info-box" style="margin: 30px 0;">
+                    <h3>Key Concepts Covered:</h3>
+                    <div style="font-size: 0.8em; text-align: left; column-count: 2; column-gap: 30px;">
+                        <p>✅ CSS Syntax & Structure</p>
+                        <p>✅ Selectors (class, ID, element)</p>
+                        <p>✅ Colors (hex, named, rgb)</p>
+                        <p>✅ Text Properties</p>
+                        <p>✅ Font Styling</p>
+                        <p>✅ Box Model Basics</p>
+                        <p>✅ Width & Height</p>
+                        <p>✅ Borders</p>
+                        <p>✅ Padding & Margin</p>
+                        <p>✅ Display Property</p>
+                        <p>✅ Units (px, %, em, rem)</p>
+                        <p>✅ Specificity</p>
+                        <p>✅ Inheritance</p>
+                        <p>✅ Comments</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    💪 You've mastered the CSS fundamentals!
+                </div>
+            </section>
+
+            <!-- ==================== CHEAT SHEET ==================== -->
+            <section>
+                <h2>📝 Quick Reference Cheat Sheet</h2>
+                
+                <div class="two-column" style="font-size: 0.65em;">
+                    <div class="info-box">
+                        <strong>Selectors</strong><br>
+                        <code>element</code> → <code>p { }</code><br>
+                        <code>.class</code> → <code>.btn { }</code><br>
+                        <code>#id</code> → <code>#header { }</code><br>
+                        <code>parent child</code> → <code>nav a { }</code>
+                    </div>
+                    <div class="info-box">
+                        <strong>Common Properties</strong><br>
+                        <code>color</code> • <code>background-color</code><br>
+                        <code>font-size</code> • <code>font-family</code><br>
+                        <code>padding</code> • <code>margin</code><br>
+                        <code>border</code> • <code>width</code> • <code>height</code>
+                    </div>
+                    <div class="info-box">
+                        <strong>Box Model (Inside→Out)</strong><br>
+                        Content → Padding → Border → Margin
+                    </div>
+                    <div class="info-box">
+                        <strong>Specificity (Low→High)</strong><br>
+                        * < element < .class < #id < inline
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== STUDY TIPS ==================== -->
+            <section>
+                <h2>📚 Study Tips</h2>
+                
+                <div style="font-size: 0.8em; text-align: left; max-width: 800px; margin: 0 auto;">
+                    <div class="info-box">
+                        <strong>1. Practice, Practice, Practice</strong><br>
+                        Type out CSS yourself — don't just read it. Muscle memory matters!
+                    </div>
+                    
+                    <div class="info-box">
+                        <strong>2. Use Browser DevTools</strong><br>
+                        Right-click → Inspect to see and modify CSS live. Best learning tool!
+                    </div>
+                    
+                    <div class="info-box">
+                        <strong>3. Remember the Patterns</strong><br>
+                        <code>.</code> = class | <code>#</code> = ID | <code>property: value;</code>
+                    </div>
+                    
+                    <div class="info-box">
+                        <strong>4. Box Model is Everything</strong><br>
+                        Understanding content → padding → border → margin solves most layout problems!
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            showSlideNumber: 'all',
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            controls: true,
+            progress: true,
+            center: true,
+            width: 1200,
+            height: 700,
+            margin: 0.1
+        });
+    </script>
+</body>
+</html>

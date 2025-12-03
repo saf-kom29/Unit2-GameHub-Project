@@ -1,0 +1,999 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 14: CSS Media Queries - Making GameHub Responsive</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <style>
+        :root {
+            --dark-bg: #121212;
+            --accent-red: #e50914;
+            --accent-cyan: #4fc3f7;
+            --accent-green: #00e676;
+            --accent-orange: #ffa726;
+            --accent-purple: #ba68c8;
+            --card-bg: #1f1f1f;
+        }
+
+        .reveal {
+            background: var(--dark-bg);
+            color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 28px;
+        }
+
+        .reveal section {
+            display: flex !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .reveal pre code,
+        .reveal code {
+            font-weight: 700;
+            font-size: 1.4em;
+            line-height: 1;
+        }
+
+        .reveal pre {
+            padding: 10px;
+            border-width: 3px;
+        }
+
+        .reveal h1,
+        .reveal h2,
+        .reveal h3 {
+            text-transform: none;
+            font-weight: 700;
+        }
+
+        .reveal h1 {
+            color: var(--accent-red);
+            font-size: 2.4em;
+            text-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+            margin-bottom: 10px;
+        }
+
+        .reveal h2 {
+            color: var(--accent-cyan);
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .reveal h3 {
+            color: var(--accent-green);
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        .reveal pre {
+            background: #1e1e1e;
+            border: 2px solid #3c3c3c;
+            border-radius: 10px;
+            padding: 10px;
+            width: 95%;
+            font-size: 0.6em;
+            margin: 10px auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .reveal code {
+            font-family: 'Consolas', 'Courier New', monospace;
+        }
+
+        .reveal .highlight-box {
+            background: linear-gradient(135deg, rgba(229, 9, 20, 0.2), rgba(79, 195, 247, 0.2));
+            border: 2px solid var(--accent-red);
+            border-radius: 15px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+
+        .reveal .warning-box {
+            background: linear-gradient(135deg, rgba(255, 167, 38, 0.2), rgba(255, 110, 199, 0.2));
+            border: 2px solid var(--accent-orange);
+            border-radius: 15px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .reveal .success-box {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.2), rgba(79, 195, 247, 0.2));
+            border: 2px solid var(--accent-green);
+            border-radius: 15px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .reveal .info-box {
+            background: linear-gradient(135deg, rgba(186, 104, 200, 0.2), rgba(79, 195, 247, 0.2));
+            border: 2px solid var(--accent-purple);
+            border-radius: 15px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .reveal .device-demo {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 30px;
+            margin: 20px 0;
+        }
+
+        .reveal .device {
+            text-align: center;
+        }
+
+        .reveal .device-icon {
+            font-size: 3em;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .reveal .device-label {
+            font-size: 0.8em;
+            color: var(--accent-cyan);
+        }
+
+        /* Syntax highlighting */
+        .reveal .keyword {
+            color: #c586c0;
+        }
+
+        .reveal .property {
+            color: #9cdcfe;
+        }
+
+        .reveal .value {
+            color: #ce9178;
+        }
+
+        .reveal .selector {
+            color: #d7ba7d;
+        }
+
+        .reveal .comment {
+            color: #6a9955;
+        }
+
+        .reveal .number {
+            color: #b5cea8;
+        }
+
+        .reveal ul,
+        .reveal ol {
+            margin-left: 40px;
+        }
+
+        .reveal li {
+            margin-bottom: 12px;
+        }
+
+        .reveal .two-column {
+            display: flex;
+            gap: 30px;
+        }
+
+        .reveal .two-column>div {
+            flex: 1;
+        }
+
+        .reveal .emoji-large {
+            font-size: 4em;
+            display: block;
+            margin: 20px 0;
+        }
+
+        .reveal .instructor-badge {
+            background: var(--accent-red);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.7em;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .reveal .student-badge {
+            background: var(--accent-green);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.7em;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- ===================== TITLE SLIDE ===================== -->
+            <section>
+                <h1>📱 Lesson 14</h1>
+                <h2>CSS Media Queries</h2>
+                <p style="font-size: 1.2em; color: var(--accent-cyan);">Making GameHub Responsive</p>
+                
+                <div class="device-demo" style="margin-top: 40px;">
+                    <span style="font-size: 3em;">📱</span>
+                    <span style="font-size: 1.5em;">➡️</span>
+                    <span style="font-size: 3em;">💻</span>
+                    <span style="font-size: 1.5em;">➡️</span>
+                    <span style="font-size: 3em;">🖥️</span>
+                </div>
+
+                <aside class="notes">
+                    **WELCOME TO LESSON 14**
+                    - Today: Make GameHub responsive
+                    - Two parts: instructor-led then student-paced
+                    - By end: fully responsive website
+                </aside>
+            </section>
+
+            <!-- ===================== LESSON OBJECTIVES ===================== -->
+            <section>
+                <h2>🎯 Learning Objectives</h2>
+                <div class="highlight-box">
+                    <p>By the end of this lesson, you will:</p>
+                    <ul style="font-size: 0.9em;">
+                        <li>Understand how <strong>media queries</strong> work</li>
+                        <li>Create a <strong>mobile hamburger menu</strong></li>
+                        <li>Apply <strong>responsive breakpoints</strong> to GameHub</li>
+                        <li>Test designs using <strong>browser DevTools</strong></li>
+                        <li>Make typography, layout, and images <strong>responsive</strong></li>
+                    </ul>
+                </div>
+
+                <aside class="notes">
+                    **OBJECTIVES**
+                    - Clear goals for the lesson
+                    - Mix of theory and practice
+                    - Hands-on with GameHub project
+                </aside>
+            </section>
+
+            <!-- ===================== LESSON STRUCTURE ===================== -->
+            <section>
+                <h2>📋 Lesson Structure</h2>
+                <div class="two-column">
+                    <div class="highlight-box" style="background: linear-gradient(135deg, rgba(229, 9, 20, 0.3), rgba(255, 110, 199, 0.3));">
+                        <h3 style="color: var(--accent-red);">👨‍🏫 Part 1: Together</h3>
+                        <ul style="font-size: 0.85em; text-align: left;">
+                            <li>Media query basics</li>
+                            <li>Build hamburger menu</li>
+                            <li>Add HTML structure</li>
+                            <li>Style mobile nav</li>
+                        </ul>
+                        <p style="margin-top: 15px; font-size: 0.8em;">⏱️ ~15 minutes</p>
+                    </div>
+                    <div class="success-box" style="background: linear-gradient(135deg, rgba(0, 230, 118, 0.3), rgba(79, 195, 247, 0.3));">
+                        <h3 style="color: var(--accent-green);">🧑‍💻 Part 2: Your Turn</h3>
+                        <ul style="font-size: 0.85em; text-align: left;">
+                            <li>Follow step-by-step guide</li>
+                            <li>Add breakpoints progressively</li>
+                            <li>Test as you go</li>
+                            <li>Complete at your pace</li>
+                        </ul>
+                        <p style="margin-top: 15px; font-size: 0.8em;">⏱️ ~25 minutes</p>
+                    </div>
+                </div>
+
+                <aside class="notes">
+                    **LESSON STRUCTURE**
+                    - Part 1: Code together
+                    - Part 2: Students work independently
+                    - Emphasize the two-part structure
+                </aside>
+            </section>
+
+            <!-- ===================== WHY RESPONSIVE? ===================== -->
+            <section>
+                <h2>📊 Why Responsive Design?</h2>
+                <div class="highlight-box">
+                    <ul style="font-size: 0.9em;">
+                        <li><strong>60%</strong> of web traffic is mobile 📱</li>
+                        <li><strong>Users expect</strong> sites to work on any device</li>
+                        <li><strong>Google</strong> ranks mobile-friendly sites higher</li>
+                        <li><strong>One codebase</strong> works for all screen sizes</li>
+                    </ul>
+                </div>
+                
+                <div class="device-demo" style="margin-top: 30px;">
+                    <div class="device">
+                        <span class="device-icon">📱</span>
+                        <div class="device-label">375px<br>Phone</div>
+                    </div>
+                    <div class="device">
+                        <span class="device-icon">📱</span>
+                        <div class="device-label">768px<br>Tablet</div>
+                    </div>
+                    <div class="device">
+                        <span class="device-icon">💻</span>
+                        <div class="device-label">1024px<br>Laptop</div>
+                    </div>
+                    <div class="device">
+                        <span class="device-icon">🖥️</span>
+                        <div class="device-label">1440px<br>Desktop</div>
+                    </div>
+                </div>
+
+                <aside class="notes">
+                    **WHY RESPONSIVE?**
+                    - Mobile traffic dominates
+                    - User expectations
+                    - SEO benefits
+                    - Efficiency of one codebase
+                </aside>
+            </section>
+
+            <!-- ===================== WHAT ARE MEDIA QUERIES? ===================== -->
+            <section>
+                <h2>🤔 What Are Media Queries?</h2>
+                <div class="highlight-box">
+                    <p style="font-size: 1.1em; margin-bottom: 20px;">
+                        Media queries let you <strong>apply different CSS</strong> based on screen size
+                    </p>
+                    <pre style="font-size: 0.65em;"><code>
+<span class="comment">/* Default styles for desktop */</span>
+<span class="selector">.main-nav</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;
+}
+
+<span class="comment">/* Different styles for mobile (768px and smaller) */</span>
+<span class="keyword">@media</span> (<span class="property">max-width</span>: <span class="number">768px</span>) {
+    <span class="selector">.main-nav</span> {
+        <span class="property">display</span>: <span class="value">none</span>;  <span class="comment">/* Hide on mobile */</span>
+    }
+}
+                    </code></pre>
+                </div>
+
+                <aside class="notes">
+                    **MEDIA QUERIES**
+                    - Conditional CSS based on screen size
+                    - @media rule
+                    - max-width = "up to this size"
+                    - Desktop-first approach
+                </aside>
+            </section>
+
+            <!-- ===================== ANATOMY OF A MEDIA QUERY ===================== -->
+            <section>
+                <h2>🔍 Anatomy of a Media Query</h2>
+                <pre style="font-size: 0.55em;"><code>
+<span class="keyword">@media</span> (<span class="property">max-width</span>: <span class="number">768px</span>) {
+    <span class="comment">/* CSS rules that apply when screen is 768px or smaller */</span>
+    <span class="selector">.hero</span> {
+        <span class="property">padding</span>: <span class="number">60px</span> <span class="number">0</span>;
+    }
+}
+                </code></pre>
+                
+                <div class="info-box" style="margin-top: 25px;">
+                    <h3>Breaking It Down:</h3>
+                    <ul style="font-size: 0.85em; text-align: left;">
+                        <li><code>@media</code> = Start of media query</li>
+                        <li><code>max-width: 768px</code> = Condition (768px and below)</li>
+                        <li><code>{ ... }</code> = CSS rules to apply when condition is true</li>
+                    </ul>
+                </div>
+
+                <aside class="notes">
+                    **ANATOMY**
+                    - @media keyword
+                    - Condition in parentheses
+                    - CSS rules in curly braces
+                    - Simple conditional logic
+                </aside>
+            </section>
+
+            <!-- ===================== COMMON BREAKPOINTS ===================== -->
+            <section>
+                <h2>📐 Common Breakpoints</h2>
+                <div class="highlight-box">
+                    <table style="width: 100%; font-size: 0.8em; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: var(--accent-red);">
+                                <th style="padding: 12px; text-align: left;">Device</th>
+                                <th style="padding: 12px; text-align: left;">Max Width</th>
+                                <th style="padding: 12px; text-align: left;">Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="background: rgba(229, 9, 20, 0.1);">
+                                <td style="padding: 12px;">📱 Small Mobile</td>
+                                <td style="padding: 12px;"><code>480px</code></td>
+                                <td style="padding: 12px;">iPhone SE</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px;">📱 Mobile</td>
+                                <td style="padding: 12px;"><code>768px</code></td>
+                                <td style="padding: 12px;">iPhone 14, Pixel</td>
+                            </tr>
+                            <tr style="background: rgba(229, 9, 20, 0.1);">
+                                <td style="padding: 12px;">💻 Tablet</td>
+                                <td style="padding: 12px;"><code>1024px</code></td>
+                                <td style="padding: 12px;">iPad</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px;">🖥️ Desktop</td>
+                                <td style="padding: 12px;"><code>1200px+</code></td>
+                                <td style="padding: 12px;">Laptops, Monitors</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <aside class="notes">
+                    **BREAKPOINTS**
+                    - Industry-standard sizes
+                    - 480px, 768px, 1024px, 1200px
+                    - We'll use these today
+                    - Can customize for your needs
+                </aside>
+            </section>
+
+            <!-- ===================== PART 1 DIVIDER ===================== -->
+            <section style="background: linear-gradient(135deg, var(--accent-red), #ff6ec7);">
+                <h1 style="font-size: 3.5em; color: white; text-shadow: 0 0 30px rgba(0,0,0,0.5);">👨‍🏫 Part 1</h1>
+                <h2 style="color: white; font-size: 2em;">Code Together</h2>
+                <p style="font-size: 1.3em; color: white; margin-top: 30px;">Let's build the hamburger menu!</p>
+                
+                <div class="instructor-badge" style="margin-top: 30px; font-size: 1em;">
+                    INSTRUCTOR-LED
+                </div>
+
+                <aside class="notes">
+                    **PART 1 BEGINS**
+                    - Transition to coding together
+                    - Open VS Code
+                    - Students follow along
+                </aside>
+            </section>
+
+            <!-- ===================== STEP 1: ADD HTML ===================== -->
+            <section>
+                <div class="instructor-badge">INSTRUCTOR-LED</div>
+                <h2>Step 1: Add HTML for Mobile Nav</h2>
+                <div class="highlight-box">
+                    <p>Open <code>lesson14_starter.html</code></p>
+                    <p style="font-size: 0.9em; margin-top: 10px;">Add this inside the <code>&lt;header&gt;</code> container:</p>
+                </div>
+                
+                <pre style="font-size: 0.5em;"><code>
+&lt;<span class="keyword">header</span> <span class="property">class</span>=<span class="value">"main-header"</span>&gt;
+    &lt;<span class="keyword">div</span> <span class="property">class</span>=<span class="value">"container"</span>&gt;
+        &lt;<span class="keyword">div</span> <span class="property">class</span>=<span class="value">"logo"</span>&gt;🎮 GameHub&lt;/<span class="keyword">div</span>&gt;
+        &lt;<span class="keyword">nav</span> <span class="property">class</span>=<span class="value">"main-nav"</span>&gt;
+            &lt;<span class="keyword">a</span> <span class="property">href</span>=<span class="value">"#features"</span>&gt;Features&lt;/<span class="keyword">a</span>&gt;
+            &lt;<span class="keyword">a</span> <span class="property">href</span>=<span class="value">"#about"</span>&gt;About&lt;/<span class="keyword">a</span>&gt;
+            &lt;<span class="keyword">a</span> <span class="property">href</span>=<span class="value">"#community"</span>&gt;Community&lt;/<span class="keyword">a</span>&gt;
+            &lt;<span class="keyword">a</span> <span class="property">href</span>=<span class="value">"#contact"</span>&gt;Contact&lt;/<span class="keyword">a</span>&gt;
+        &lt;/<span class="keyword">nav</span>&gt;
+        
+        <span class="comment">&lt;!-- NEW: Mobile hamburger menu --&gt;</span>
+        &lt;<span class="keyword">div</span> <span class="property">class</span>=<span class="value">"hamburger"</span> <span class="property">tabindex</span>=<span class="value">"0"</span>&gt;☰&lt;/<span class="keyword">div</span>&gt;
+        &lt;<span class="keyword">nav</span> <span class="property">class</span>=<span class="value">"mobile-nav"</span>&gt;
+            &lt;<span class="keyword">a</span> <span class="property">href</span>=<span class="value">"#features"</span>&gt;Features&lt;/<span class="keyword">a</span>&gt;
+            &lt;<span class="keyword">a</span> <span class="property">href</span>=<span class="value">"#about"</span>&gt;About&lt;/<span class="keyword">a</span>&gt;
+            &lt;<span class="keyword">a</span> <span class="property">href</span>=<span class="value">"#community"</span>&gt;Community&lt;/<span class="keyword">a</span>&gt;
+            &lt;<span class="keyword">a</span> <span class="property">href</span>=<span class="value">"#contact"</span>&gt;Contact&lt;/<span class="keyword">a</span>&gt;
+        &lt;/<span class="keyword">nav</span>&gt;
+    &lt;/<span class="keyword">div</span>&gt;
+&lt;/<span class="keyword">header</span>&gt;
+                </code></pre>
+
+                <aside class="notes">
+                    **STEP 1: HTML**
+                    - Add hamburger icon (☰)
+                    - Add mobile-nav container
+                    - Duplicate nav links
+                    - tabindex="0" for keyboard access
+                </aside>
+            </section>
+
+            <!-- ===================== STEP 2: STYLE HAMBURGER ===================== -->
+            <section>
+                <div class="instructor-badge">INSTRUCTOR-LED</div>
+                <h2>Step 2: Style the Hamburger Icon</h2>
+                <div class="highlight-box">
+                    <p>Open <code>lesson14_starter.css</code></p>
+                    <p style="font-size: 0.9em; margin-top: 10px;">Add after the header section:</p>
+                </div>
+                
+                <pre style="font-size: 0.55em;"><code>
+<span class="comment">/* ===================================
+   LESSON 14: MOBILE NAVIGATION
+   =================================== */</span>
+<span class="selector">.hamburger</span> {
+    <span class="property">display</span>: <span class="value">none</span>;           <span class="comment">/* Hidden by default (desktop) */</span>
+    <span class="property">font-size</span>: <span class="number">24px</span>;
+    <span class="property">color</span>: <span class="value">#ffffff</span>;
+    <span class="property">cursor</span>: <span class="value">pointer</span>;
+    <span class="property">padding</span>: <span class="number">5px</span> <span class="number">10px</span>;
+    <span class="property">border</span>: <span class="number">2px</span> <span class="value">solid</span> <span class="value">transparent</span>;
+    <span class="property">border-radius</span>: <span class="number">4px</span>;
+}
+
+<span class="selector">.hamburger:focus</span> {
+    <span class="property">outline</span>: <span class="number">2px</span> <span class="value">solid</span> <span class="value">#3498db</span>;
+    <span class="property">outline-offset</span>: <span class="number">2px</span>;
+}
+                </code></pre>
+
+                <div class="info-box" style="margin-top: 15px; font-size: 0.85em;">
+                    <p><strong>💡 Note:</strong> Hidden by default, we'll show it on mobile with a media query</p>
+                </div>
+
+                <aside class="notes">
+                    **STEP 2: HAMBURGER STYLE**
+                    - display: none by default
+                    - Style for visibility
+                    - Focus state for accessibility
+                    - Will be shown on mobile
+                </aside>
+            </section>
+
+            <!-- ===================== STEP 3: STYLE MOBILE NAV ===================== -->
+            <section>
+                <div class="instructor-badge">INSTRUCTOR-LED</div>
+                <h2>Step 3: Style the Mobile Navigation</h2>
+                <pre style="font-size: 0.5em;"><code>
+<span class="selector">.mobile-nav</span> {
+    <span class="property">display</span>: <span class="value">none</span>;                      <span class="comment">/* Hidden by default */</span>
+    <span class="property">flex-direction</span>: <span class="value">column</span>;         <span class="comment">/* Stack links vertically */</span>
+    <span class="property">position</span>: <span class="value">absolute</span>;              <span class="comment">/* Position over content */</span>
+    <span class="property">top</span>: <span class="number">70px</span>;                         <span class="comment">/* Below header */</span>
+    <span class="property">left</span>: <span class="number">0</span>;
+    <span class="property">width</span>: <span class="number">100%</span>;                       <span class="comment">/* Full width */</span>
+    <span class="property">background</span>: <span class="value">#2c3e50</span>;             <span class="comment">/* Same as header */</span>
+    <span class="property">padding</span>: <span class="number">20px</span>;
+    <span class="property">box-shadow</span>: <span class="number">0</span> <span class="number">5px</span> <span class="number">15px</span> <span class="value">rgba(0,0,0,0.2)</span>;
+    <span class="property">z-index</span>: <span class="number">1000</span>;                    <span class="comment">/* Above other content */</span>
+}
+
+<span class="selector">.mobile-nav a</span> {
+    <span class="property">color</span>: <span class="value">#ffffff</span>;
+    <span class="property">text-decoration</span>: <span class="value">none</span>;
+    <span class="property">padding</span>: <span class="number">12px</span> <span class="number">0</span>;
+    <span class="property">border-bottom</span>: <span class="number">1px</span> <span class="value">solid</span> <span class="value">rgba(255,255,255,0.1)</span>;
+    <span class="property">font-weight</span>: <span class="number">500</span>;
+    <span class="property">transition</span>: <span class="value">color</span> <span class="number">0.3s</span> <span class="value">ease</span>;
+}
+
+<span class="selector">.mobile-nav a:hover</span> {
+    <span class="property">color</span>: <span class="value">#3498db</span>;
+}
+
+<span class="selector">.mobile-nav a:last-child</span> {
+    <span class="property">border-bottom</span>: <span class="value">none</span>;         <span class="comment">/* Remove border from last link */</span>
+}
+                </code></pre>
+
+                <aside class="notes">
+                    **STEP 3: MOBILE NAV STYLE**
+                    - Dropdown-style menu
+                    - Positioned absolutely
+                    - Stacked vertical links
+                    - Hidden by default
+                </aside>
+            </section>
+
+            <!-- ===================== STEP 4: THE TRICK ===================== -->
+            <section>
+                <div class="instructor-badge">INSTRUCTOR-LED</div>
+                <h2>Step 4: The CSS "Trick" ✨</h2>
+                
+                <pre style="font-size: 0.6em;"><code>
+<span class="comment">/* When hamburger is focused, show the mobile nav next to it */</span>
+<span class="selector">.hamburger:focus + .mobile-nav</span> {
+    <span class="property">display</span>: <span class="value">flex</span>;  <span class="comment">/* Show the menu! */</span>
+}
+                </code></pre>
+                
+                <div class="info-box" style="margin-top: 15px;">
+                    <h3>How It Works:</h3>
+                    <ul style="font-size: 0.85em; text-align: left;">
+                        <li><code>:focus</code> = When element is clicked/tapped</li>
+                        <li><code>+</code> = Select the next sibling element</li>
+                        <li><code>.mobile-nav</code> = The menu to show</li>
+                        <li>Result: Click hamburger → menu appears! 🎉</li>
+                    </ul>
+                </div>
+
+                <aside class="notes">
+                    **THE TRICK**
+                    - Adjacent sibling selector (+)
+                    - :focus pseudo-class
+                    - No JavaScript required
+                    - Pure CSS solution!
+                </aside>
+            </section>
+
+            <!-- ===================== STEP 5: MEDIA QUERY TIME ===================== -->
+            <section>
+                <div class="instructor-badge">INSTRUCTOR-LED</div>
+                <h2>Step 5: Create the Media Query</h2>
+                <div class="highlight-box">
+                    <p>Scroll to the bottom of your CSS file and add:</p>
+                </div>
+                
+                <pre style="font-size: 0.55em;"><code>
+<span class="comment">/* ===================================
+   LESSON 14: MEDIA QUERIES
+   =================================== */</span>
+
+<span class="comment">/* ===================================
+   LESSON 14: Mobile Breakpoint (768px and below)
+   =================================== */</span>
+<span class="keyword">@media</span> (<span class="property">max-width</span>: <span class="number">768px</span>) {
+    <span class="comment">/* Hide desktop navigation */</span>
+    <span class="selector">.main-nav</span> {
+        <span class="property">display</span>: <span class="value">none</span>;
+    }
+    
+    <span class="comment">/* Show hamburger icon */</span>
+    <span class="selector">.hamburger</span> {
+        <span class="property">display</span>: <span class="value">block</span>;
+    }
+}
+                </code></pre>
+
+                <aside class="notes">
+                    **STEP 5: MEDIA QUERY**
+                    - Go to bottom of CSS
+                    - Add media query section
+                    - Hide desktop nav
+                    - Show hamburger
+                </aside>
+            </section>
+
+            <!-- ===================== TEST IT! ===================== -->
+            <section>
+                <div class="instructor-badge">INSTRUCTOR-LED</div>
+                <h2>🧪 Test It!</h2>
+                <div class="success-box">
+                    <h3>Testing Steps:</h3>
+                    <ol style="font-size: 0.9em;">
+                        <li>Open <code>lesson14_starter.html</code> in browser</li>
+                        <li>Press <code style="background: #333; padding: 3px 8px; border-radius: 4px;">F12</code> to open DevTools</li>
+                        <li>Click <span style="color: var(--accent-cyan);">📱 device toggle</span> icon (top-left of DevTools)</li>
+                        <li>Set to <strong>375px</strong> width (mobile)</li>
+                        <li>Click the <strong>☰ hamburger</strong> icon</li>
+                    </ol>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <p><strong>✅ Success:</strong> Desktop nav hides, hamburger shows, menu appears on click!</p>
+                </div>
+
+                <aside class="notes">
+                    **TEST TOGETHER**
+                    - Open DevTools
+                    - Toggle device mode
+                    - Test hamburger click
+                    - Verify menu appears
+                    - Troubleshoot if needed
+                </aside>
+            </section>
+
+            <!-- ===================== PART 1 COMPLETE ===================== -->
+            <section>
+                <h2>🎉 Part 1 Complete!</h2>
+                <div class="success-box">
+                    <p style="font-size: 1.2em;">You just built a mobile navigation menu!</p>
+                    <ul style="font-size: 0.9em; margin-top: 20px;">
+                        <li>✅ Added HTML structure</li>
+                        <li>✅ Styled hamburger icon</li>
+                        <li>✅ Created dropdown menu</li>
+                        <li>✅ Used CSS :focus trick</li>
+                        <li>✅ Applied first media query</li>
+                    </ul>
+                </div>
+                
+                <div class="info-box" style="margin-top: 25px;">
+                    <p><strong>🎯 Next:</strong> Continue making GameHub responsive (student-paced)</p>
+                </div>
+
+                <aside class="notes">
+                    **PART 1 DONE**
+                    - Celebrate success
+                    - Review what we built
+                    - Transition to Part 2
+                    - Hand out student guide
+                </aside>
+            </section>
+
+            <!-- ===================== PART 2 DIVIDER ===================== -->
+            <section style="background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));">
+                <h1 style="font-size: 3.5em; color: white; text-shadow: 0 0 30px rgba(0,0,0,0.5);">🧑‍💻 Part 2</h1>
+                <h2 style="color: white; font-size: 2em;">Student-Paced Activity</h2>
+                <p style="font-size: 1.3em; color: white; margin-top: 30px;">Follow the step-by-step guide</p>
+                
+                <div class="student-badge" style="margin-top: 30px; font-size: 1em;">
+                    WORK AT YOUR OWN PACE
+                </div>
+
+                <aside class="notes">
+                    **PART 2 BEGINS**
+                    - Students work independently
+                    - Follow written guide
+                    - Teacher circulates to help
+                    - Test as they go
+                </aside>
+            </section>
+
+            <!-- ===================== STUDENT GUIDE OVERVIEW ===================== -->
+            <section>
+                <div class="student-badge">STUDENT-PACED</div>
+                <h2>📖 Your Guide</h2>
+                <div class="highlight-box">
+                    <p style="font-size: 1.1em; margin-bottom: 20px;">You have a <strong>step-by-step guide</strong> with:</p>
+                    <ul style="font-size: 0.9em;">
+                        <li>✅ Clear instructions for each breakpoint</li>
+                        <li>✅ All CSS code to add</li>
+                        <li>✅ Testing checkpoints</li>
+                        <li>✅ Explanations of what each code does</li>
+                        <li>✅ Troubleshooting tips</li>
+                    </ul>
+                </div>
+                
+                <div class="success-box" style="margin-top: 20px;">
+                    <p><strong>🎯 Goal:</strong> Add 5 more breakpoints to make GameHub fully responsive</p>
+                </div>
+
+                <aside class="notes">
+                    **GUIDE OVERVIEW**
+                    - Reference the written guide
+                    - Progressive steps
+                    - Test after each step
+                    - Raise hand for help
+                </aside>
+            </section>
+
+            <!-- ===================== BREAKPOINTS YOU'LL ADD ===================== -->
+            <section>
+                <div class="student-badge">STUDENT-PACED</div>
+                <h2>🎯 Breakpoints You'll Add</h2>
+                <div class="info-box">
+                    <ol style="font-size: 0.85em; text-align: left;">
+                        <li><strong>Tablet (1024px):</strong> Adjust layout and spacing</li>
+                        <li><strong>Mobile - Typography (768px):</strong> Smaller font sizes</li>
+                        <li><strong>Mobile - Hero & Buttons (768px):</strong> Stack buttons vertically</li>
+                        <li><strong>Mobile - Features (768px):</strong> Single column layout</li>
+                        <li><strong>Mobile - About & Footer (768px):</strong> Stack sections</li>
+                        <li><strong>Small Mobile (480px):</strong> Extra small adjustments</li>
+                        <li><strong>Large Desktop (1200px):</strong> Max widths for big screens</li>
+                        <li><strong>Print Styles:</strong> Printer-friendly version</li>
+                    </ol>
+                </div>
+
+                <aside class="notes">
+                    **BREAKPOINTS**
+                    - 8 total steps
+                    - Progressive enhancement
+                    - Test after each one
+                    - Follow guide carefully
+                </aside>
+            </section>
+
+            <!-- ===================== TESTING REMINDER ===================== -->
+            <section>
+                <div class="student-badge">STUDENT-PACED</div>
+                <h2>🧪 Testing Reminder</h2>
+                <div class="warning-box">
+                    <h3>⚠️ Test After Each Step!</h3>
+                    <p style="font-size: 0.9em;">Don't add all code at once. Test each breakpoint as you add it.</p>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 20px;">
+                    <h3>Quick Testing Steps:</h3>
+                    <ol style="font-size: 0.85em;">
+                        <li>Save your CSS file</li>
+                        <li>Refresh browser (Ctrl/Cmd + R)</li>
+                        <li>Open DevTools (F12)</li>
+                        <li>Toggle device mode (📱 icon)</li>
+                        <li>Test the specific width (e.g., 768px)</li>
+                        <li>Verify changes work as expected</li>
+                    </ol>
+                </div>
+
+                <aside class="notes">
+                    **TESTING**
+                    - Emphasize testing
+                    - Don't skip this step
+                    - Easier to debug one change
+                    - Builds confidence
+                </aside>
+            </section>
+
+            <!-- ===================== COMMON ISSUES ===================== -->
+            <section>
+                <div class="student-badge">STUDENT-PACED</div>
+                <h2>🐛 Common Issues & Fixes</h2>
+                <div class="warning-box">
+                    <h3>Issue #1: Media query not working</h3>
+                    <p style="font-size: 0.85em;"><strong>Fix:</strong> Check for typos in <code>@media</code>, missing colons, or incorrect values</p>
+                </div>
+                
+                <div class="warning-box">
+                    <h3>Issue #2: Styles not showing up</h3>
+                    <p style="font-size: 0.85em;"><strong>Fix:</strong> Make sure media queries are at the BOTTOM of your CSS file</p>
+                </div>
+                
+                <div class="warning-box">
+                    <h3>Issue #3: Wrong element selected</h3>
+                    <p style="font-size: 0.85em;"><strong>Fix:</strong> Double-check class names match your HTML exactly</p>
+                </div>
+
+                <aside class="notes">
+                    **COMMON ISSUES**
+                    - Typos are #1 cause
+                    - Order matters
+                    - Case-sensitive
+                    - Check DevTools console
+                </aside>
+            </section>
+
+            <!-- ===================== HELP RESOURCES ===================== -->
+            <section>
+                <div class="student-badge">STUDENT-PACED</div>
+                <h2>🆘 Need Help?</h2>
+                <div class="info-box">
+                    <ul style="font-size: 0.9em;">
+                        <li>📖 <strong>First:</strong> Check the step-by-step guide carefully</li>
+                        <li>🔍 <strong>Second:</strong> Compare your code to the examples</li>
+                        <li>🧪 <strong>Third:</strong> Test in DevTools to see what's happening</li>
+                        <li>🤔 <strong>Fourth:</strong> Ask a neighbor for a second pair of eyes</li>
+                        <li>🙋 <strong>Fifth:</strong> Raise your hand for teacher help</li>
+                    </ul>
+                </div>
+                
+                <div class="success-box" style="margin-top: 20px;">
+                    <p><strong>💡 Remember:</strong> Debugging is part of learning! Don't get frustrated.</p>
+                </div>
+
+                <aside class="notes">
+                    **HELP RESOURCES**
+                    - Progressive help steps
+                    - Encourage peer help
+                    - Teacher available
+                    - Debugging is learning
+                </aside>
+            </section>
+
+            <!-- ===================== GET STARTED ===================== -->
+            <section>
+                <div class="student-badge">STUDENT-PACED</div>
+                <h2>🚀 Ready to Begin?</h2>
+                <div class="highlight-box">
+                    <h3>Your Checklist:</h3>
+                    <ul style="font-size: 0.9em;">
+                        <li>✅ Have <code>lesson14_starter.css</code> open</li>
+                        <li>✅ Have <code>lesson14_starter.html</code> open in browser</li>
+                        <li>✅ Have DevTools ready (F12)</li>
+                        <li>✅ Have the step-by-step guide</li>
+                    </ul>
+                </div>
+                
+                <div class="success-box" style="margin-top: 30px; font-size: 1.2em;">
+                    <p>🎮 Let's make GameHub responsive!</p>
+                </div>
+
+                <aside class="notes">
+                    **BEGIN!**
+                    - Make sure everyone is ready
+                    - Files open
+                    - Guide available
+                    - Start working
+                </aside>
+            </section>
+
+            <!-- ===================== COMPLETION SLIDE ===================== -->
+            <section>
+                <h2>🎉 Activity Complete!</h2>
+                <div class="success-box">
+                    <p style="font-size: 1.2em;">When you finish all steps:</p>
+                    <ol style="font-size: 0.9em; margin-top: 20px;">
+                        <li>Test your site at <strong>all breakpoints</strong></li>
+                        <li>Make sure hamburger menu works</li>
+                        <li>Verify mobile layout looks good</li>
+                        <li>Compare to <code>lesson14_final.css</code></li>
+                    </ol>
+                </div>
+                
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <h3>🏆 Challenge (Extra Time):</h3>
+                    <ul style="font-size: 0.85em;">
+                        <li>Add a breakpoint for extra-large screens (1440px+)</li>
+                        <li>Make the mobile menu slide in with animation</li>
+                        <li>Add hover effects to mobile nav links</li>
+                    </ul>
+                </div>
+
+                <aside class="notes">
+                    **COMPLETION**
+                    - Test thoroughly
+                    - Compare to final
+                    - Optional challenges
+                    - Celebrate success
+                </aside>
+            </section>
+
+            <!-- ===================== SUMMARY ===================== -->
+            <section>
+                <h2>📚 Lesson Summary</h2>
+                <div class="highlight-box">
+                    <h3>What You Learned:</h3>
+                    <ul style="font-size: 0.9em;">
+                        <li>📱 How media queries make sites responsive</li>
+                        <li>☰ Building a hamburger menu (no JavaScript!)</li>
+                        <li>📐 Common breakpoints (480px, 768px, 1024px, 1200px)</li>
+                        <li>🎨 Adapting layouts for different screens</li>
+                        <li>🔧 Testing with browser DevTools</li>
+                        <li>🎮 Making GameHub fully responsive!</li>
+                    </ul>
+                </div>
+
+                <aside class="notes">
+                    **SUMMARY**
+                    - Review key concepts
+                    - Celebrate achievements
+                    - Answer questions
+                </aside>
+            </section>
+
+            <!-- ===================== QUESTIONS ===================== -->
+            <section>
+                <h1>❓ Questions?</h1>
+                <div class="device-demo" style="margin-top: 50px;">
+                    <span style="font-size: 4em;">📱</span>
+                    <span style="font-size: 2em;">✅</span>
+                    <span style="font-size: 4em;">💻</span>
+                    <span style="font-size: 2em;">✅</span>
+                    <span style="font-size: 4em;">🖥️</span>
+                </div>
+                <p style="color: var(--accent-green); font-size: 1.5em; margin-top: 40px;">
+                    🎮 GameHub is now responsive across all devices!
+                </p>
+
+                <aside class="notes">
+                    **CLOSING**
+                    - Take final questions
+                    - Review next lesson
+                    - Great job today!
+                </aside>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/notes/notes.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            center: false,
+            slideNumber: true,
+            controls: true,
+            width: 1280,
+            height: 720,
+            margin: 0.04,
+            plugins: [RevealNotes]
+        });
+    </script>
+</body>
+
+</html>

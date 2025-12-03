@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Unit Practice Assessment - GameHub Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/black.min.css">
+    <style>
+        :root {
+            --dark-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --accent-cyan: #4fc3f7;
+            --accent-pink: #ff6ec7;
+            --accent-green: #00e676;
+            --accent-orange: #ffa726;
+            --accent-purple: #ba68c8;
+            --accent-yellow: #ffd54f;
+            --accent-blue: #3498db;
+            --accent-red: #e74c3c;
+            --text-light: #e0e0e0;
+            --code-bg: #1e1e1e;
+        }
+
+        .reveal {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 32px;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-transform: none;
+            font-weight: 700;
+        }
+
+        .reveal h1 {
+            color: var(--accent-cyan);
+            font-size: 2.5em;
+            text-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
+            margin-bottom: 30px;
+        }
+
+        .reveal h2 {
+            color: var(--accent-pink);
+            font-size: 1.6em;
+            margin-bottom: 20px;
+        }
+
+        .reveal h3 {
+            color: var(--accent-yellow);
+            font-size: 1.2em;
+        }
+
+        .reveal code {
+            background: var(--code-bg);
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: #d4d4d4;
+            font-size: 0.9em;
+            font-weight: 700;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+        }
+
+        .reveal pre {
+            background: var(--code-bg);
+            border: 2px solid #3c3c3c;
+            border-radius: 10px;
+            padding: 15px;
+            width: 100%;
+            font-size: 0.55em;
+            margin: 15px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .reveal pre code {
+            background: transparent;
+            padding: 0;
+            color: #d4d4d4;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+
+        /* Syntax Highlighting */
+        .kw { color: #569cd6; font-weight: 700; }
+        .pr { color: #9cdcfe; font-weight: 700; }
+        .st { color: #ce9178; font-weight: 700; }
+        .nm { color: #b5cea8; font-weight: 700; }
+        .cm { color: #6a9955; font-weight: 600; }
+        .vl { color: #ce9178; font-weight: 700; }
+        .tag { color: #4ec9b0; font-weight: 700; }
+        .attr { color: #9cdcfe; font-weight: 700; }
+        .ps { color: #dcdcaa; font-weight: 700; }
+        .blank { 
+            background: #ff6ec7; 
+            color: #1a1a2e; 
+            padding: 2px 30px; 
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .question-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-number {
+            display: inline-block;
+            background: var(--accent-cyan);
+            color: #1a1a2e;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 50%;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .question-box {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.1) 0%, rgba(186, 104, 200, 0.1) 100%);
+            border: 3px solid var(--accent-cyan);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .answer-box {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.15) 0%, rgba(0, 200, 83, 0.1) 100%);
+            border: 3px solid var(--accent-green);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .answer-box h3 {
+            color: var(--accent-green);
+            margin-bottom: 10px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 15px 0;
+            font-size: 0.85em;
+        }
+
+        .option {
+            background: rgba(68, 71, 90, 0.5);
+            border: 2px solid #555;
+            border-radius: 10px;
+            padding: 12px 15px;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        .option.correct {
+            border-color: var(--accent-green);
+            background: rgba(0, 230, 118, 0.2);
+        }
+
+        .option-letter {
+            display: inline-block;
+            background: var(--accent-purple);
+            color: white;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 0.85em;
+        }
+
+        .order-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 15px 0;
+            font-size: 0.8em;
+        }
+
+        .order-item {
+            background: rgba(68, 71, 90, 0.5);
+            border: 2px solid var(--accent-orange);
+            border-radius: 8px;
+            padding: 12px 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .order-number {
+            background: var(--accent-orange);
+            color: #1a1a2e;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #ff6ec7 0%, #ff9a9e 100%);
+            padding: 15px 25px;
+            border-radius: 12px;
+            margin: 15px 0;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(79, 195, 247, 0.1) 0%, rgba(79, 195, 247, 0.05) 100%);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.85em;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(255, 167, 38, 0.2) 0%, rgba(255, 112, 67, 0.1) 100%);
+            border: 2px solid var(--accent-orange);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, rgba(0, 230, 118, 0.2) 0%, rgba(0, 200, 83, 0.1) 100%);
+            border: 2px solid var(--accent-green);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .big-emoji {
+            font-size: 4em;
+            margin: 20px 0;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .concept-tag {
+            display: inline-block;
+            background: var(--accent-purple);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.65em;
+            margin: 3px;
+        }
+
+        .fill-blank {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: white;
+            padding: 3px 40px;
+            border-radius: 5px;
+            margin: 0 5px;
+            font-weight: bold;
+        }
+
+        .matching-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            font-size: 0.75em;
+        }
+
+        .match-item {
+            background: rgba(68, 71, 90, 0.5);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 8px;
+            padding: 10px 15px;
+        }
+
+        .match-item.right {
+            border-color: var(--accent-pink);
+        }
+
+        .true-false {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .tf-btn {
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .tf-btn.true {
+            background: var(--accent-green);
+            color: #1a1a2e;
+        }
+
+        .tf-btn.false {
+            background: var(--accent-red);
+            color: white;
+        }
+
+        .code-output {
+            background: #0d1117;
+            border: 2px solid var(--accent-green);
+            border-radius: 8px;
+            padding: 15px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+
+        .visual-demo {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px auto;
+            max-width: 400px;
+        }
+
+        .demo-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .flex-demo {
+            display: flex;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .flex-item {
+            background: var(--accent-purple);
+            padding: 15px;
+            border-radius: 6px;
+            flex: 1;
+            text-align: center;
+            font-size: 0.7em;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-pink));
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- ==================== TITLE SLIDE ==================== -->
+            <section>
+                <h1>🎮 CSS Unit Practice Assessment</h1>
+                <h2 style="color: var(--accent-yellow);">GameHub Project Review</h2>
+                <p style="font-size: 0.9em; margin-top: 30px;">Lessons 6-14 Comprehensive Review</p>
+                <div style="margin-top: 40px;">
+                    <span class="concept-tag">Flexbox</span>
+                    <span class="concept-tag">Box Model</span>
+                    <span class="concept-tag">Transitions</span>
+                    <span class="concept-tag">Animations</span>
+                    <span class="concept-tag">Media Queries</span>
+                    <span class="concept-tag">Gradients</span>
+                </div>
+                <p style="font-size: 0.7em; margin-top: 40px; color: #888;">30 Questions • Press SPACE or → to advance</p>
+            </section>
+
+            <!-- ==================== INSTRUCTIONS ==================== -->
+            <section>
+                <h2>📋 How This Works</h2>
+                <div class="info-box" style="text-align: left; font-size: 0.85em;">
+                    <p><strong>1.</strong> Read each question carefully</p>
+                    <p><strong>2.</strong> Think about your answer (or write it down!)</p>
+                    <p><strong>3.</strong> Press <code>SPACE</code> or <code>→</code> to reveal the answer</p>
+                    <p><strong>4.</strong> Compare your answer to the correct one</p>
+                </div>
+                <div class="highlight-box" style="margin-top: 30px;">
+                    💡 Pro Tip: Try to answer BEFORE revealing!
+                </div>
+                <div style="margin-top: 30px; font-size: 0.8em;">
+                    <span class="concept-tag">Fill in Blank</span>
+                    <span class="concept-tag">Code Writing</span>
+                    <span class="concept-tag">Multiple Choice</span>
+                    <span class="concept-tag">True/False</span>
+                    <span class="concept-tag">Fix the Bug</span>
+                    <span class="concept-tag">Ordering</span>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 1 ==================== -->
+            <section>
+                <div class="question-number">1</div>
+                <div class="question-badge">Fill in the Blank</div>
+                <h2>Linking CSS to HTML</h2>
+                
+                <div class="question-box">
+                    <p>Complete the HTML tag to link an external stylesheet called <code>style.css</code>:</p>
+                    <pre><code>&lt;head&gt;
+    &lt;<span class="fill-blank">???</span> rel="<span class="fill-blank">???</span>" href="<span class="fill-blank">???</span>"&gt;
+&lt;/head&gt;</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code>&lt;head&gt;
+    &lt;<span class="kw">link</span> <span class="attr">rel</span>=<span class="st">"stylesheet"</span> <span class="attr">href</span>=<span class="st">"style.css"</span>&gt;
+&lt;/head&gt;</code></pre>
+                    <p style="font-size: 0.75em; margin-top: 10px;">
+                        <strong>Key points:</strong> <code>link</code> tag • <code>rel="stylesheet"</code> • filename must match exactly!
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 2 ==================== -->
+            <section>
+                <div class="question-number">2</div>
+                <div class="question-badge">Multiple Choice</div>
+                <h2>CSS Selector Types</h2>
+                
+                <div class="question-box">
+                    <p>Which selector targets elements with <code>class="feature-card"</code>?</p>
+                </div>
+
+                <div class="options">
+                    <div class="option"><span class="option-letter">A</span> <code>#feature-card</code></div>
+                    <div class="option"><span class="option-letter">B</span> <code>.feature-card</code></div>
+                    <div class="option"><span class="option-letter">C</span> <code>feature-card</code></div>
+                    <div class="option"><span class="option-letter">D</span> <code>*feature-card</code></div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: B</h3>
+                    <p style="font-size: 0.8em;">
+                        <code>.feature-card</code> — The <strong>dot (.)</strong> targets classes<br>
+                        <code>#</code> targets IDs • No prefix targets element names
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 3 ==================== -->
+            <section>
+                <div class="question-number">3</div>
+                <div class="question-badge">Code Writing</div>
+                <h2>Box Model: Padding</h2>
+                
+                <div class="question-box">
+                    <p>Write CSS to add <strong>40px padding on top/bottom</strong> and <strong>30px on left/right</strong>:</p>
+                    <pre><code><span class="ps">.feature-card</span> {
+    <span class="pr">padding</span>: <span class="fill-blank">???</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">.feature-card</span> {
+    <span class="pr">padding</span>: <span class="nm">40px 30px</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <strong>Shorthand:</strong> 2 values = top/bottom, left/right<br>
+                        Also valid: <code>padding: 40px 30px 40px 30px;</code> (clockwise from top)
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 4 ==================== -->
+            <section>
+                <div class="question-number">4</div>
+                <div class="question-badge">Explain the Difference</div>
+                <h2>Padding vs Margin</h2>
+                
+                <div class="question-box">
+                    <p>Explain the difference between <code>padding</code> and <code>margin</code> in the box model.</p>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <div class="two-column" style="font-size: 0.75em;">
+                        <div class="info-box">
+                            <strong style="color: var(--accent-cyan);">Padding</strong><br>
+                            Space <em>inside</em> the element<br>
+                            Between content and border<br>
+                            Affected by background color
+                        </div>
+                        <div class="info-box">
+                            <strong style="color: var(--accent-pink);">Margin</strong><br>
+                            Space <em>outside</em> the element<br>
+                            Between elements<br>
+                            Always transparent
+                        </div>
+                    </div>
+                    <p style="font-size: 0.7em; text-align: center; margin-top: 10px;">
+                        Think: Padding = Pillow inside | Margin = Moat outside 🏰
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 5 ==================== -->
+            <section>
+                <div class="question-number">5</div>
+                <div class="question-badge">True or False</div>
+                <h2>Flexbox Direction</h2>
+                
+                <div class="question-box">
+                    <p><code>display: flex</code> makes child elements stack <strong>vertically</strong> by default.</p>
+                </div>
+
+                <div class="true-false">
+                    <div class="tf-btn true">TRUE</div>
+                    <div class="tf-btn false">FALSE</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: FALSE</h3>
+                    <p style="font-size: 0.8em;">
+                        By default, <code>flex-direction: row</code> — items go <strong>horizontally</strong> (side-by-side).<br>
+                        Use <code>flex-direction: column</code> for vertical stacking.
+                    </p>
+                    <div class="flex-demo">
+                        <div class="flex-item">1</div>
+                        <div class="flex-item">2</div>
+                        <div class="flex-item">3</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 6 ==================== -->
+            <section>
+                <div class="question-number">6</div>
+                <div class="question-badge">Code Writing</div>
+                <h2>Flexbox Layout</h2>
+                
+                <div class="question-box">
+                    <p>Write CSS to make <code>.features-grid</code> a flex container with items spaced evenly and a 30px gap:</p>
+                    <pre><code><span class="ps">.features-grid</span> {
+    <span class="fill-blank">???</span>
+    <span class="fill-blank">???</span>
+    <span class="fill-blank">???</span>
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">.features-grid</span> {
+    <span class="pr">display</span>: <span class="kw">flex</span>;
+    <span class="pr">justify-content</span>: <span class="kw">space-between</span>;
+    <span class="pr">gap</span>: <span class="nm">30px</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <code>space-between</code> pushes first/last to edges, spaces middle evenly
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 7 ==================== -->
+            <section>
+                <div class="question-number">7</div>
+                <div class="question-badge">What Does This Do?</div>
+                <h2>flex: 1 Property</h2>
+                
+                <div class="question-box">
+                    <p>What does <code>flex: 1</code> do when applied to all cards in a flex container?</p>
+                    <pre><code><span class="ps">.feature-card</span> {
+    <span class="pr">flex</span>: <span class="nm">1</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <p style="font-size: 0.85em;">
+                        Makes all cards <strong>grow equally</strong> to fill available space.<br>
+                        Each card gets the <strong>same width</strong>, sharing space evenly.
+                    </p>
+                    <div class="flex-demo">
+                        <div class="flex-item" style="flex: 1;">flex: 1</div>
+                        <div class="flex-item" style="flex: 1;">flex: 1</div>
+                        <div class="flex-item" style="flex: 1;">flex: 1</div>
+                    </div>
+                    <p style="font-size: 0.7em; color: #888;">All three cards are equal width regardless of content!</p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 8 ==================== -->
+            <section>
+                <div class="question-number">8</div>
+                <div class="question-badge">Fill in the Blank</div>
+                <h2>Box Shadow Syntax</h2>
+                
+                <div class="question-box">
+                    <p>Complete the box-shadow with: 0 horizontal, 5px down, 15px blur, semi-transparent black:</p>
+                    <pre><code><span class="ps">.feature-card</span> {
+    <span class="pr">box-shadow</span>: <span class="fill-blank">???</span> <span class="fill-blank">???</span> <span class="fill-blank">???</span> <span class="fill-blank">???</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">.feature-card</span> {
+    <span class="pr">box-shadow</span>: <span class="nm">0</span> <span class="nm">5px</span> <span class="nm">15px</span> <span class="kw">rgba</span>(<span class="nm">0,0,0,0.08</span>);
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        Order: <strong>x-offset, y-offset, blur, color</strong><br>
+                        <code>rgba(0,0,0,0.08)</code> = black at 8% opacity (subtle!)
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 9 ==================== -->
+            <section>
+                <div class="question-number">9</div>
+                <div class="question-badge">Multiple Choice</div>
+                <h2>Border Radius</h2>
+                
+                <div class="question-box">
+                    <p>What value of <code>border-radius</code> creates a perfect circle?</p>
+                </div>
+
+                <div class="options">
+                    <div class="option"><span class="option-letter">A</span> <code>border-radius: 100px;</code></div>
+                    <div class="option"><span class="option-letter">B</span> <code>border-radius: 50%;</code></div>
+                    <div class="option"><span class="option-letter">C</span> <code>border-radius: circle;</code></div>
+                    <div class="option"><span class="option-letter">D</span> <code>border-radius: round;</code></div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: B</h3>
+                    <p style="font-size: 0.8em;">
+                        <code>50%</code> curves each corner by half the element's size = circle!<br>
+                        <span style="font-size: 0.75em; color: #888;">Note: Element should be square (equal width/height) for perfect circle</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 10 ==================== -->
+            <section>
+                <div class="question-number">10</div>
+                <div class="question-badge">Fix the Bug</div>
+                <h2>Hover Effect Not Working</h2>
+                
+                <div class="question-box">
+                    <p>This hover effect doesn't animate smoothly. What's missing?</p>
+                    <pre><code><span class="ps">.btn</span> {
+    <span class="pr">background-color</span>: <span class="vl">#6c5ce7</span>;
+    <span class="pr">color</span>: <span class="vl">white</span>;
+}
+
+<span class="ps">.btn:hover</span> {
+    <span class="pr">transform</span>: <span class="kw">translateY</span>(<span class="nm">-3px</span>);
+    <span class="pr">box-shadow</span>: <span class="nm">0 5px 15px</span> <span class="kw">rgba</span>(<span class="nm">108,92,231,0.4</span>);
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Fix: Add transition to base state!</h3>
+                    <pre><code><span class="ps">.btn</span> {
+    <span class="pr">background-color</span>: <span class="vl">#6c5ce7</span>;
+    <span class="pr">color</span>: <span class="vl">white</span>;
+    <span class="pr">transition</span>: <span class="kw">transform 0.3s ease, box-shadow 0.3s ease</span>;  <span class="cm">/* ADD THIS! */</span>
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <strong>Rule:</strong> Transition goes on the <em>base</em> state, not the hover state!
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 11 ==================== -->
+            <section>
+                <div class="question-number">11</div>
+                <div class="question-badge">Code Writing</div>
+                <h2>Transition Syntax</h2>
+                
+                <div class="question-box">
+                    <p>Write a transition that animates <code>color</code> over 0.3 seconds with an ease timing:</p>
+                    <pre><code><span class="ps">.main-nav a</span> {
+    <span class="pr">transition</span>: <span class="fill-blank">???</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">.main-nav a</span> {
+    <span class="pr">transition</span>: <span class="kw">color 0.3s ease</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <strong>Syntax:</strong> property duration timing-function<br>
+                        Common timings: <code>ease</code>, <code>ease-in</code>, <code>ease-out</code>, <code>ease-in-out</code>, <code>linear</code>
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 12 ==================== -->
+            <section>
+                <div class="question-number">12</div>
+                <div class="question-badge">Ordering</div>
+                <h2>Card Hover Effect Steps</h2>
+                
+                <div class="question-box">
+                    <p>Put these steps in the correct order to create a card lift hover effect:</p>
+                </div>
+
+                <div class="order-items" style="font-size: 0.75em;">
+                    <div class="order-item"><span class="order-number">?</span> Add <code>transform: translateY(-10px)</code> to hover state</div>
+                    <div class="order-item"><span class="order-number">?</span> Add <code>transition: transform 0.3s ease</code> to base card</div>
+                    <div class="order-item"><span class="order-number">?</span> Create <code>.feature-card:hover</code> rule</div>
+                    <div class="order-item"><span class="order-number">?</span> Test the effect in browser</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Correct Order</h3>
+                    <div class="order-items" style="font-size: 0.7em;">
+                        <div class="order-item"><span class="order-number">1</span> Add <code>transition</code> to base card (enables smooth animation)</div>
+                        <div class="order-item"><span class="order-number">2</span> Create <code>.feature-card:hover</code> rule</div>
+                        <div class="order-item"><span class="order-number">3</span> Add <code>transform: translateY(-10px)</code> to hover</div>
+                        <div class="order-item"><span class="order-number">4</span> Test the effect in browser</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 13 ==================== -->
+            <section>
+                <div class="question-number">13</div>
+                <div class="question-badge">Multiple Choice</div>
+                <h2>Transform Property</h2>
+                
+                <div class="question-box">
+                    <p>Which transform moves an element <strong>up</strong> by 10 pixels?</p>
+                </div>
+
+                <div class="options">
+                    <div class="option"><span class="option-letter">A</span> <code>transform: translateY(10px);</code></div>
+                    <div class="option"><span class="option-letter">B</span> <code>transform: translateY(-10px);</code></div>
+                    <div class="option"><span class="option-letter">C</span> <code>transform: translateX(-10px);</code></div>
+                    <div class="option"><span class="option-letter">D</span> <code>transform: moveUp(10px);</code></div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: B</h3>
+                    <p style="font-size: 0.8em;">
+                        <code>translateY(-10px)</code> — Negative Y moves <strong>up</strong><br>
+                        <span style="font-size: 0.75em;">Positive Y moves down • X is left/right</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 14 ==================== -->
+            <section>
+                <div class="question-number">14</div>
+                <div class="question-badge">Explain the Difference</div>
+                <h2>Transitions vs Animations</h2>
+                
+                <div class="question-box">
+                    <p>What's the key difference between CSS <strong>transitions</strong> and <strong>keyframe animations</strong>?</p>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <div class="two-column" style="font-size: 0.7em;">
+                        <div class="info-box">
+                            <strong style="color: var(--accent-cyan);">Transitions</strong><br>
+                            • Need a <strong>trigger</strong> (hover, focus, click)<br>
+                            • Go from A → B (two states)<br>
+                            • Great for interactive effects<br>
+                            • Example: button hover lift
+                        </div>
+                        <div class="info-box">
+                            <strong style="color: var(--accent-pink);">Animations</strong><br>
+                            • Run <strong>automatically</strong><br>
+                            • Can have multiple steps (A → B → C → D)<br>
+                            • Great for entrance effects<br>
+                            • Example: page load fade-in
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 15 ==================== -->
+            <section>
+                <div class="question-number">15</div>
+                <div class="question-badge">Code Writing</div>
+                <h2>Keyframe Animation</h2>
+                
+                <div class="question-box">
+                    <p>Complete this keyframe that fades in from invisible to fully visible:</p>
+                    <pre><code><span class="kw">@keyframes</span> <span class="ps">fadeIn</span> {
+    <span class="kw">from</span> {
+        <span class="pr">opacity</span>: <span class="fill-blank">???</span>;
+    }
+    <span class="kw">to</span> {
+        <span class="pr">opacity</span>: <span class="fill-blank">???</span>;
+    }
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="kw">@keyframes</span> <span class="ps">fadeIn</span> {
+    <span class="kw">from</span> {
+        <span class="pr">opacity</span>: <span class="nm">0</span>;  <span class="cm">/* Invisible */</span>
+    }
+    <span class="kw">to</span> {
+        <span class="pr">opacity</span>: <span class="nm">1</span>;  <span class="cm">/* Fully visible */</span>
+    }
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <code>from</code> = 0% | <code>to</code> = 100% — Same thing!
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 16 ==================== -->
+            <section>
+                <div class="question-number">16</div>
+                <div class="question-badge">Fill in the Blank</div>
+                <h2>Applying Animation</h2>
+                
+                <div class="question-box">
+                    <p>Apply the <code>fadeIn</code> animation over 1 second, keeping the final state:</p>
+                    <pre><code><span class="ps">.hero-title</span> {
+    <span class="pr">animation</span>: <span class="fill-blank">???</span> <span class="fill-blank">???</span> ease-out <span class="fill-blank">???</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">.hero-title</span> {
+    <span class="pr">animation</span>: <span class="kw">fadeIn</span> <span class="nm">1s</span> <span class="kw">ease-out forwards</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <strong>forwards</strong> = keeps final state after animation ends<br>
+                        Without it, element snaps back to starting state!
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 17 ==================== -->
+            <section>
+                <div class="question-number">17</div>
+                <div class="question-badge">What Does This Do?</div>
+                <h2>Animation Delay</h2>
+                
+                <div class="question-box">
+                    <p>What visual effect does this create?</p>
+                    <pre><code><span class="ps">.feature-card:nth-child(1)</span> { <span class="pr">animation-delay</span>: <span class="nm">0s</span>; }
+<span class="ps">.feature-card:nth-child(2)</span> { <span class="pr">animation-delay</span>: <span class="nm">0.2s</span>; }
+<span class="ps">.feature-card:nth-child(3)</span> { <span class="pr">animation-delay</span>: <span class="nm">0.4s</span>; }</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: Staggered/Cascade Effect</h3>
+                    <p style="font-size: 0.8em;">
+                        Cards animate <strong>one after another</strong> instead of all at once!<br>
+                        Card 1 → 0.2s later → Card 2 → 0.2s later → Card 3<br>
+                        Creates a professional "wave" entrance effect 🌊
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 18 ==================== -->
+            <section>
+                <div class="question-number">18</div>
+                <div class="question-badge">Code Writing</div>
+                <h2>Gradient Background</h2>
+                
+                <div class="question-box">
+                    <p>Write CSS for a gradient going from <code>#2c3e50</code> (dark) to <code>#3498db</code> (blue) at 135 degrees:</p>
+                    <pre><code><span class="ps">.main-footer</span> {
+    <span class="pr">background</span>: <span class="fill-blank">???</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">.main-footer</span> {
+    <span class="pr">background</span>: <span class="kw">linear-gradient</span>(<span class="nm">135deg</span>, <span class="vl">#2c3e50</span>, <span class="vl">#3498db</span>);
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        <strong>Syntax:</strong> linear-gradient(angle, color1, color2)<br>
+                        135deg = diagonal from top-left to bottom-right
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 19 ==================== -->
+            <section>
+                <div class="question-number">19</div>
+                <div class="question-badge">True or False</div>
+                <h2>Media Query Syntax</h2>
+                
+                <div class="question-box">
+                    <p>This media query applies styles when the screen is <strong>768px or wider</strong>:</p>
+                    <pre><code><span class="kw">@media</span> (<span class="pr">max-width</span>: <span class="nm">768px</span>) {
+    <span class="cm">/* styles here */</span>
+}</code></pre>
+                </div>
+
+                <div class="true-false">
+                    <div class="tf-btn true">TRUE</div>
+                    <div class="tf-btn false">FALSE</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: FALSE</h3>
+                    <p style="font-size: 0.8em;">
+                        <code>max-width: 768px</code> means <strong>768px or SMALLER</strong><br>
+                        For 768px or wider, use: <code>min-width: 768px</code><br>
+                        <span style="font-size: 0.75em;">Think: "max" = maximum size this applies to</span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 20 ==================== -->
+            <section>
+                <div class="question-number">20</div>
+                <div class="question-badge">Multiple Choice</div>
+                <h2>Common Breakpoints</h2>
+                
+                <div class="question-box">
+                    <p>Which breakpoint is most commonly used to target mobile phones?</p>
+                </div>
+
+                <div class="options">
+                    <div class="option"><span class="option-letter">A</span> <code>max-width: 1200px</code></div>
+                    <div class="option"><span class="option-letter">B</span> <code>max-width: 1024px</code></div>
+                    <div class="option"><span class="option-letter">C</span> <code>max-width: 768px</code></div>
+                    <div class="option"><span class="option-letter">D</span> <code>max-width: 320px</code></div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: C</h3>
+                    <p style="font-size: 0.8em;">
+                        <code>768px</code> is the standard mobile breakpoint<br>
+                        Covers most phones and small tablets in portrait mode
+                    </p>
+                    <div style="font-size: 0.7em; margin-top: 10px;">
+                        📱 480px = small phones | 📱 768px = phones/tablets | 💻 1024px = tablets | 🖥️ 1200px+ = desktop
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 21 ==================== -->
+            <section>
+                <div class="question-number">21</div>
+                <div class="question-badge">Code Writing</div>
+                <h2>Responsive Flexbox</h2>
+                
+                <div class="question-box">
+                    <p>Write a media query that stacks flex items vertically on mobile:</p>
+                    <pre><code><span class="fill-blank">???</span> {
+    <span class="ps">.features-grid</span> {
+        <span class="pr">flex-direction</span>: <span class="fill-blank">???</span>;
+    }
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="kw">@media</span> (<span class="pr">max-width</span>: <span class="nm">768px</span>) {
+    <span class="ps">.features-grid</span> {
+        <span class="pr">flex-direction</span>: <span class="kw">column</span>;
+    }
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        Changes cards from side-by-side (row) to stacked (column) on mobile!
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 22 ==================== -->
+            <section>
+                <div class="question-number">22</div>
+                <div class="question-badge">Fix the Bug</div>
+                <h2>Media Query Not Working</h2>
+                
+                <div class="question-box">
+                    <p>The mobile styles aren't applying. What's wrong?</p>
+                    <pre><code><span class="cm">/* At the TOP of the CSS file */</span>
+<span class="kw">@media</span> (<span class="pr">max-width</span>: <span class="nm">768px</span>) {
+    <span class="ps">.hero</span> { <span class="pr">padding</span>: <span class="nm">60px 0</span>; }
+}
+
+<span class="cm">/* Later in the file */</span>
+<span class="ps">.hero</span> {
+    <span class="pr">padding</span>: <span class="nm">120px 0</span>;
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Fix: Media queries should be at the END!</h3>
+                    <p style="font-size: 0.8em;">
+                        CSS cascades — later rules override earlier ones.<br>
+                        The <code>.hero</code> rule comes AFTER the media query, so it always wins!
+                    </p>
+                    <pre><code><span class="cm">/* Base styles FIRST */</span>
+<span class="ps">.hero</span> { <span class="pr">padding</span>: <span class="nm">120px 0</span>; }
+
+<span class="cm">/* Media queries at END */</span>
+<span class="kw">@media</span> (<span class="pr">max-width</span>: <span class="nm">768px</span>) {
+    <span class="ps">.hero</span> { <span class="pr">padding</span>: <span class="nm">60px 0</span>; }
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 23 ==================== -->
+            <section>
+                <div class="question-number">23</div>
+                <div class="question-badge">What Does This Do?</div>
+                <h2>Accessibility Media Query</h2>
+                
+                <div class="question-box">
+                    <p>What does this media query do and why is it important?</p>
+                    <pre><code><span class="kw">@media</span> (<span class="pr">prefers-reduced-motion</span>: <span class="kw">reduce</span>) {
+    * {
+        <span class="pr">animation</span>: <span class="kw">none</span> !important;
+        <span class="pr">transition</span>: <span class="kw">none</span> !important;
+    }
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: Accessibility for Motion Sensitivity</h3>
+                    <p style="font-size: 0.8em;">
+                        <strong>Disables all animations</strong> for users who have enabled "reduce motion" in their OS settings.<br>
+                        Important for users with vestibular disorders, motion sickness, or who find animations distracting.
+                    </p>
+                    <div class="success-box" style="font-size: 0.75em;">
+                        ♿ This is an accessibility best practice!
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 24 ==================== -->
+            <section>
+                <div class="question-number">24</div>
+                <div class="question-badge">Matching</div>
+                <h2>CSS Property Match</h2>
+                
+                <div class="question-box">
+                    <p>Match each property to its purpose:</p>
+                </div>
+
+                <div class="matching-grid">
+                    <div class="match-item">1. <code>justify-content</code></div>
+                    <div class="match-item right">A. Vertical alignment in flex</div>
+                    <div class="match-item">2. <code>align-items</code></div>
+                    <div class="match-item right">B. Space between flex items</div>
+                    <div class="match-item">3. <code>gap</code></div>
+                    <div class="match-item right">C. Horizontal distribution in flex</div>
+                    <div class="match-item">4. <code>flex-direction</code></div>
+                    <div class="match-item right">D. Row vs column layout</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answers</h3>
+                    <p style="font-size: 0.85em;">
+                        1 → C (<code>justify-content</code> = horizontal/main axis)<br>
+                        2 → A (<code>align-items</code> = vertical/cross axis)<br>
+                        3 → B (<code>gap</code> = spacing between items)<br>
+                        4 → D (<code>flex-direction</code> = row or column)
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 25 ==================== -->
+            <section>
+                <div class="question-number">25</div>
+                <div class="question-badge">Code Writing</div>
+                <h2>Footer Multi-Column</h2>
+                
+                <div class="question-box">
+                    <p>Write CSS to create a 3-column footer layout with equal-width columns:</p>
+                    <pre><code><span class="ps">.footer-content</span> {
+    <span class="fill-blank">???</span>
+}
+
+<span class="ps">.footer-section</span> {
+    <span class="fill-blank">???</span>
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">.footer-content</span> {
+    <span class="pr">display</span>: <span class="kw">flex</span>;
+    <span class="pr">justify-content</span>: <span class="kw">space-between</span>;
+    <span class="pr">gap</span>: <span class="nm">40px</span>;
+}
+
+<span class="ps">.footer-section</span> {
+    <span class="pr">flex</span>: <span class="nm">1</span>;
+}</code></pre>
+                    <p style="font-size: 0.75em;">
+                        Same pattern as feature cards! Flexbox + flex: 1 = equal columns
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 26 ==================== -->
+            <section>
+                <div class="question-number">26</div>
+                <div class="question-badge">True or False</div>
+                <h2>Semantic HTML</h2>
+                
+                <div class="question-box">
+                    <p>Using <code>&lt;footer&gt;</code> instead of <code>&lt;div class="footer"&gt;</code> improves accessibility and SEO.</p>
+                </div>
+
+                <div class="true-false">
+                    <div class="tf-btn true">TRUE</div>
+                    <div class="tf-btn false">FALSE</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: TRUE</h3>
+                    <p style="font-size: 0.8em;">
+                        Semantic HTML tags like <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>:<br>
+                        • Help screen readers understand page structure<br>
+                        • Improve SEO (search engines understand content better)<br>
+                        • Make code more readable for developers
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 27 ==================== -->
+            <section>
+                <div class="question-number">27</div>
+                <div class="question-badge">What's the Output?</div>
+                <h2>RGBA Color</h2>
+                
+                <div class="question-box">
+                    <p>What color does this produce?</p>
+                    <pre><code><span class="pr">background-color</span>: <span class="kw">rgba</span>(<span class="nm">0, 0, 0, 0.5</span>);</code></pre>
+                </div>
+
+                <div class="options">
+                    <div class="option"><span class="option-letter">A</span> Solid black</div>
+                    <div class="option"><span class="option-letter">B</span> 50% transparent black (gray overlay)</div>
+                    <div class="option"><span class="option-letter">C</span> Solid white</div>
+                    <div class="option"><span class="option-letter">D</span> 50% transparent white</div>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer: B</h3>
+                    <p style="font-size: 0.8em;">
+                        <code>rgba(0, 0, 0, 0.5)</code> = Black (0,0,0) at 50% opacity (0.5)<br>
+                        The 4th value is alpha: 0 = invisible, 1 = solid
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 28 ==================== -->
+            <section>
+                <div class="question-number">28</div>
+                <div class="question-badge">Code Writing</div>
+                <h2>Complete Hover Effect</h2>
+                
+                <div class="question-box">
+                    <p>Write a complete card hover effect that lifts the card and enhances the shadow:</p>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="ps">.feature-card</span> {
+    <span class="pr">box-shadow</span>: <span class="nm">0 5px 15px</span> <span class="kw">rgba</span>(<span class="nm">0,0,0,0.08</span>);
+    <span class="pr">transition</span>: <span class="kw">transform 0.3s ease, box-shadow 0.3s ease</span>;
+}
+
+<span class="ps">.feature-card:hover</span> {
+    <span class="pr">transform</span>: <span class="kw">translateY</span>(<span class="nm">-10px</span>);
+    <span class="pr">box-shadow</span>: <span class="nm">0 15px 30px</span> <span class="kw">rgba</span>(<span class="nm">0,0,0,0.15</span>);
+}</code></pre>
+                    <p style="font-size: 0.7em;">
+                        Key elements: base transition, negative translateY (up), larger shadow on hover
+                    </p>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 29 ==================== -->
+            <section>
+                <div class="question-number">29</div>
+                <div class="question-badge">Fill in the Blank</div>
+                <h2>Slide-Up Animation</h2>
+                
+                <div class="question-box">
+                    <p>Complete this keyframe animation that slides an element up while fading in:</p>
+                    <pre><code><span class="kw">@keyframes</span> <span class="ps">slideUp</span> {
+    <span class="kw">from</span> {
+        <span class="pr">opacity</span>: <span class="fill-blank">???</span>;
+        <span class="pr">transform</span>: <span class="kw">translateY</span>(<span class="fill-blank">???</span>);
+    }
+    <span class="kw">to</span> {
+        <span class="pr">opacity</span>: <span class="fill-blank">???</span>;
+        <span class="pr">transform</span>: <span class="kw">translateY</span>(<span class="fill-blank">???</span>);
+    }
+}</code></pre>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Answer</h3>
+                    <pre><code><span class="kw">@keyframes</span> <span class="ps">slideUp</span> {
+    <span class="kw">from</span> {
+        <span class="pr">opacity</span>: <span class="nm">0</span>;
+        <span class="pr">transform</span>: <span class="kw">translateY</span>(<span class="nm">30px</span>);  <span class="cm">/* Start below */</span>
+    }
+    <span class="kw">to</span> {
+        <span class="pr">opacity</span>: <span class="nm">1</span>;
+        <span class="pr">transform</span>: <span class="kw">translateY</span>(<span class="nm">0</span>);  <span class="cm">/* End at normal */</span>
+    }
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- ==================== QUESTION 30 ==================== -->
+            <section>
+                <div class="question-number">30</div>
+                <div class="question-badge">Open Ended</div>
+                <h2>Responsive Design Best Practices</h2>
+                
+                <div class="question-box">
+                    <p>Name <strong>three</strong> things you should change in CSS when adapting a site for mobile devices:</p>
+                </div>
+
+                <div class="answer-box fragment">
+                    <h3>✅ Common Answers Include:</h3>
+                    <div style="font-size: 0.75em; text-align: left;">
+                        <p>📱 <strong>Font sizes</strong> — Smaller headings, readable body text</p>
+                        <p>📱 <strong>Layout direction</strong> — Stack columns vertically (flex-direction: column)</p>
+                        <p>📱 <strong>Padding/margins</strong> — Reduce spacing for smaller screens</p>
+                        <p>📱 <strong>Navigation</strong> — Hide desktop nav, show hamburger menu</p>
+                        <p>📱 <strong>Image sizes</strong> — Make images max-width: 100%</p>
+                        <p>📱 <strong>Button sizes</strong> — Larger touch targets (min 44px)</p>
+                        <p>📱 <strong>Hide non-essential elements</strong> — Simplify for mobile</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== SUMMARY SLIDE ==================== -->
+            <section>
+                <h1>🎉 Assessment Complete!</h1>
+                <h2 style="color: var(--accent-green);">Great Job!</h2>
+                
+                <div class="info-box" style="margin: 30px 0;">
+                    <h3>Key Concepts Covered:</h3>
+                    <div style="font-size: 0.8em; text-align: left; column-count: 2; column-gap: 30px;">
+                        <p>✅ CSS Selectors</p>
+                        <p>✅ Box Model (padding/margin)</p>
+                        <p>✅ Flexbox Layouts</p>
+                        <p>✅ Box Shadow & Border Radius</p>
+                        <p>✅ Transitions & Timing</p>
+                        <p>✅ Transform Property</p>
+                        <p>✅ Keyframe Animations</p>
+                        <p>✅ Gradients</p>
+                        <p>✅ Media Queries</p>
+                        <p>✅ Responsive Design</p>
+                        <p>✅ Accessibility</p>
+                        <p>✅ Semantic HTML</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    💪 You're ready for the real assessment!
+                </div>
+            </section>
+
+            <!-- ==================== STUDY TIPS ==================== -->
+            <section>
+                <h2>📚 Study Tips</h2>
+                
+                <div style="font-size: 0.85em; text-align: left; max-width: 800px; margin: 0 auto;">
+                    <div class="info-box">
+                        <strong>1. Practice in Code</strong><br>
+                        Don't just memorize — actually type out the CSS and see it work!
+                    </div>
+                    
+                    <div class="info-box">
+                        <strong>2. Use DevTools</strong><br>
+                        Inspect elements, modify CSS live, see changes instantly.
+                    </div>
+                    
+                    <div class="info-box">
+                        <strong>3. Break Down Complex Effects</strong><br>
+                        Hover effect = transition on base + transform on :hover
+                    </div>
+                    
+                    <div class="info-box">
+                        <strong>4. Remember the Patterns</strong><br>
+                        Flexbox container → flex: 1 on children = equal columns
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            slideNumber: 'c/t',
+            showSlideNumber: 'all',
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            controls: true,
+            progress: true,
+            center: true,
+            width: 1200,
+            height: 700,
+            margin: 0.1
+        });
+    </script>
+</body>
+</html>
